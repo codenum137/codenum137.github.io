@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"codenum137.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="2023年10月，力扣刷题笔记">
+<meta property="og:type" content="article">
+<meta property="og:title" content="leetcode23&#x2F;10">
+<meta property="og:url" content="https://codenum137.github.io/codenum137.github.io/2023/10/21/leetcode23-10/index.html">
+<meta property="og:site_name" content="Hey~">
+<meta property="og:description" content="2023年10月，力扣刷题笔记">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-10-21T08:02:07.000Z">
+<meta property="article:modified_time" content="2023-10-22T03:57:46.639Z">
+<meta property="article:author" content="hey137">
+<meta property="article:tag" content="leetcode,算法">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://codenum137.github.io/codenum137.github.io/2023/10/21/leetcode23-10/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>leetcode23/10 | Hey~</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Hey~</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://codenum137.github.io/codenum137.github.io/2023/10/21/leetcode23-10/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="hey137">
+      <meta itemprop="description" content="And let each day be a loss to us on which we did not dance once!">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hey~">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          leetcode23/10
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2023-10-21 16:02:07" itemprop="dateCreated datePublished" datetime="2023-10-21T16:02:07+08:00">2023-10-21</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-10-22 11:57:46" itemprop="dateModified" datetime="2023-10-22T11:57:46+08:00">2023-10-22</time>
+              </span>
+
+          
+            <div class="post-description">2023年10月，力扣刷题笔记</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <ul>
+<li><p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/count-unreachable-pairs-of-nodes-in-an-undirected-graph/">2316. 统计无向图中无法互相到达点对数</a></p>
+<p>给你一个整数 <code>n</code> ，表示一张 <strong>无向图</strong> 中有 <code>n</code> 个节点，编号为 <code>0</code> 到 <code>n - 1</code> 。同时给你一个二维整数数组 <code>edges</code> ，其中 <code>edges[i] = [ai, bi]</code> 表示节点 <code>ai</code> 和 <code>bi</code> 之间有一条 <strong>无向</strong> 边。</p>
+<p>请你返回 <strong>无法互相到达</strong> 的不同 <strong>点对数目</strong> 。</p>
+<ul>
+<li><p>个人思路：利用查并集去找出每个联通分量的大小，然后两两相乘相加为答案。实际编码过程中对查并集如何构造忘得差不多了。</p>
+</li>
+<li><p>官解注释（并查集）</p>
+<pre class=" language-c++"><code class="language-c++">class UnionFind &#123;
+private:
+    vector<int> parents;
+    vector<int> sizes;
+public:
+    UnionFind(int n) : parents(n), sizes(n, 1) &#123;
+        iota(parents.begin(), parents.end(), 0);
+        //C++中 iota() 是用来批量递增赋值vector的元素的。注意，此处不是itoa，将整形转换为字符串的函数。
+        //两个参数是定义序列的正向迭代器，第三个参数是初始的 T 值。第三个指定的值会被保存到序列的第一个元素中。保存在第一个元素后的值是通过对前面的值运用自增运算符得到的。
+    &#125;
+    int Find(int x) &#123;
+        if (parents[x] == x) &#123;
+            return x;
+        &#125;
+        return parents[x] = Find(parents[x]); //缩短路径
+    &#125;
+    void Union(int x, int y) &#123;
+        int rx = Find(x), ry = Find(y);
+        if (rx != ry) &#123;
+            if (sizes[rx] > sizes[ry]) &#123; //按size合并，减少树的深度
+                parents[ry] = rx;
+                sizes[rx] += sizes[ry]; //如果是秩的话，就是两者相等时再++
+            &#125; else &#123;
+                parents[rx] = ry;
+                sizes[ry] += sizes[rx];
+            &#125;
+        &#125;
+    &#125;
+    int GetSize(int x) &#123;
+        return sizes[x];
+    &#125;
+&#125;;
+
+class Solution &#123;
+public:
+    long long countPairs(int n, vector<vector<int>> &edges) &#123;
+        UnionFind uf(n);
+        for (const auto &edge : edges) &#123;
+            uf.Union(edge[0], edge[1]);
+        &#125;
+        long long res = 0;
+        for (int i = 0; i < n; i++) &#123;
+            res += n - uf.GetSize(uf.Find(i)); //这儿与我的思路不同，直接按每一个联通分量来说，其他点都是与该联通分量不相连的。但答案别忘了除二。
+        &#125;
+        return res / 2;
+    &#125;
+&#125;;
+</code></pre>
+</li>
+<li><p>该题还可以深搜</p>
+<pre class=" language-python"><code class="language-python"><span class="token keyword">class</span> <span class="token class-name">Solution</span><span class="token punctuation">:</span>
+    <span class="token keyword">def</span> <span class="token function">countPairs</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> n<span class="token punctuation">:</span> int<span class="token punctuation">,</span> edges<span class="token punctuation">:</span> List<span class="token punctuation">[</span>List<span class="token punctuation">[</span>int<span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> int<span class="token punctuation">:</span>
+        graph <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token keyword">for</span> _ <span class="token keyword">in</span> range<span class="token punctuation">(</span>n<span class="token punctuation">)</span><span class="token punctuation">]</span>
+        <span class="token keyword">for</span> x<span class="token punctuation">,</span> y <span class="token keyword">in</span> edges<span class="token punctuation">:</span>
+            graph<span class="token punctuation">[</span>x<span class="token punctuation">]</span><span class="token punctuation">.</span>append<span class="token punctuation">(</span>y<span class="token punctuation">)</span>
+            graph<span class="token punctuation">[</span>y<span class="token punctuation">]</span><span class="token punctuation">.</span>append<span class="token punctuation">(</span>x<span class="token punctuation">)</span> 
+
+        visited <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token boolean">False</span><span class="token punctuation">]</span> <span class="token operator">*</span> n
+        <span class="token keyword">def</span> <span class="token function">dfs</span><span class="token punctuation">(</span>x<span class="token punctuation">:</span> int<span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> int<span class="token punctuation">:</span>
+            visited<span class="token punctuation">[</span>x<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token boolean">True</span> 
+            count <span class="token operator">=</span> <span class="token number">1</span>
+            <span class="token keyword">for</span> y <span class="token keyword">in</span> graph<span class="token punctuation">[</span>x<span class="token punctuation">]</span><span class="token punctuation">:</span>
+                <span class="token keyword">if</span> <span class="token operator">not</span> visited<span class="token punctuation">[</span>y<span class="token punctuation">]</span><span class="token punctuation">:</span>
+                    count <span class="token operator">+=</span> dfs<span class="token punctuation">(</span>y<span class="token punctuation">)</span>
+            <span class="token keyword">return</span> count
+
+        res <span class="token operator">=</span> <span class="token number">0</span>
+        <span class="token keyword">for</span> i <span class="token keyword">in</span> range<span class="token punctuation">(</span>n<span class="token punctuation">)</span><span class="token punctuation">:</span>
+            <span class="token keyword">if</span> <span class="token operator">not</span> visited<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">:</span> 
+                count <span class="token operator">=</span> dfs<span class="token punctuation">(</span>i<span class="token punctuation">)</span>
+                res <span class="token operator">+=</span> count <span class="token operator">*</span> <span class="token punctuation">(</span>n <span class="token operator">-</span> count<span class="token punctuation">)</span>
+        <span class="token keyword">return</span> res <span class="token operator">//</span> <span class="token number">2</span>
+</code></pre>
+</li>
+</ul>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/reducing-dishes/">1402. 做菜顺序</a></p>
+<blockquote>
+<p>一个厨师收集了他 <code>n</code> 道菜的满意程度 <code>satisfaction</code> ，这个厨师做出每道菜的时间都是 1 单位时间。</p>
+<p>一道菜的 「 <strong>like-time 系数</strong> 」定义为烹饪这道菜结束的时间（包含之前每道菜所花费的时间）乘以这道菜的满意程度，也就是 <code>time[i]</code>*<code>satisfaction[i]</code> 。</p>
+<p>返回厨师在准备了一定数量的菜肴后可以获得的最大 <strong>like-time 系数</strong> 总和。</p>
+<p>你可以按 <strong>任意</strong> 顺序安排做菜的顺序，你也可以选择放弃做某些菜来获得更大的总和。</p>
+</blockquote>
+<ul>
+<li><p>个人思路：</p>
+<p>暂无，maybe动态规划？针对每一道菜有选择和位置的问题。</p>
+<p>看了一眼标签，有贪心排序动规。对于正数like一定选择，且应按从小到大排序，而负数的选择情况仅在将其放在前几位可以使总体满意程度增加的情况，且负数一定从绝对值小的开始考虑。这样的话，对like全部排序，然后从右往左看是否选择负数即可。</p>
+<p>仔细一想，将正数向右移一位，正数的贡献程度其实就是满意度整体加了一个全体正数的和。</p>
+<pre class=" language-c++"><code class="language-c++">class Solution
+&#123;
+public:
+    int maxSatisfaction(vector<int> &satisfaction)
+    &#123;
+        vector<int> plus;
+        vector<int> neg;
+        for (auto i : satisfaction)
+        &#123;
+            if (i >= 0)
+            &#123;
+                plus.push_back(i);
+            &#125;
+            else
+            &#123;
+                neg.push_back(i);
+            &#125;
+        &#125;
+        sort(plus.begin(), plus.end());
+        sort(neg.rbegin(), neg.rend()); // 从大到小排，便于遍历
+        int ans = 0, plus_sum = 0;
+        for (int i = 0; i < plus.size(); i++)
+        &#123;
+            ans += (i + 1) * plus[i];
+            plus_sum += plus[i];
+        &#125;
+        int neg_sum = 0;
+        for (int i = 0; i < neg.size(); i++)
+        &#123;
+            neg_sum += neg[i];
+            if (neg_sum + plus_sum >= 0)
+            &#123;
+                ans += neg_sum + plus_sum;
+            &#125;
+            else
+            &#123;
+                break;
+            &#125;
+        &#125;
+        return ans;
+    &#125;
+&#125;;
+</code></pre>
+<p>通过，good。这是贪心的思路。</p>
+</li>
+<li><p>官解（贪心）</p>
+<pre class=" language-c++"><code class="language-c++">class Solution &#123;
+public:
+    int maxSatisfaction(vector<int>& satisfaction) &#123;
+        sort(satisfaction.begin(), satisfaction.end(), greater<int>());
+        int presum = 0, ans = 0;
+        for (int si: satisfaction) &#123;
+            if (presum + si > 0) &#123;
+                presum += si;
+                ans += presum;
+            &#125; else &#123;
+                break;
+            &#125;
+        &#125;
+        return ans;
+    &#125;
+&#125;;
+</code></pre>
+<p>更为简洁，一次遍历。</p>
+</li>
+<li><p>官解（动规）</p>
+<p>其实排序这一点想到之后，对于每个菜品就只有选择与否的问题了。可设dp[i][j] 表示前 i 道菜中选择 j 道菜时可以得到的最大喜爱时间，且满足 i≥j,对第i道菜有两种情况：</p>
+<ul>
+<li>第j次选择第i道菜，dp[i][j]&#x3D;max(dp[i][j],dp[i-1]]j-1]+i*satisfaction[j]</li>
+<li>第j次不选择第i道菜，dp[i][j]&#x3D;max(dp[i][j],dp[i-1][j])</li>
+</ul>
+<p>综上<br>$$<br>dp[i][j]&#x3D;max(dp[i−1][j],dp[i−1][j−1]+i×satisfaction[j])<br>$$</p>
+<pre class=" language-c++"><code class="language-c++">class Solution &#123;
+public:
+    int maxSatisfaction(vector<int>& satisfaction) &#123;
+        int n = satisfaction.size();
+        vector<vector<int>> dp(n + 1, vector<int>(n + 1));
+        sort(satisfaction.begin(), satisfaction.end());
+        int res = 0;
+        for (int i = 1; i <= n; i++) &#123;
+            for (int j = 1; j <= i; j++) &#123;
+                dp[i][j] = dp[i - 1][j - 1] + satisfaction[i - 1] * j;
+                if (j < i) &#123;
+                    dp[i][j] = max(dp[i - 1][j], dp[i][j]);
+                &#125;
+                res = max(res, dp[i][j]);
+            &#125;
+        &#125;
+        return res;
+    &#125;
+&#125;;
+</code></pre>
+</li>
+</ul>
+</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/leetcode-%E7%AE%97%E6%B3%95/" rel="tag"># leetcode,算法</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2023/10/20/%E5%8D%9A%E5%AE%A2%E7%9A%84%E6%90%AD%E5%BB%BA/" rel="prev" title="博客的搭建">
+      <i class="fa fa-chevron-left"></i> 博客的搭建
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">hey137</p>
+  <div class="site-description" itemprop="description">And let each day be a loss to us on which we did not dance once!</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">3</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">hey137</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
