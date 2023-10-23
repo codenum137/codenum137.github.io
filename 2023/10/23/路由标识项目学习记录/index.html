@@ -1,0 +1,807 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"codenum137.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="记录在路由标识中学到的知识。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="路由标识项目学习记录">
+<meta property="og:url" content="https://codenum137.github.io/codenum137.github.io/2023/10/23/%E8%B7%AF%E7%94%B1%E6%A0%87%E8%AF%86%E9%A1%B9%E7%9B%AE%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/index.html">
+<meta property="og:site_name" content="Hey~">
+<meta property="og:description" content="记录在路由标识中学到的知识。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://codenum137.github.io/2023/10/23/%E8%B7%AF%E7%94%B1%E6%A0%87%E8%AF%86%E9%A1%B9%E7%9B%AE%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/image-20231018170506585.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/10/23/%E8%B7%AF%E7%94%B1%E6%A0%87%E8%AF%86%E9%A1%B9%E7%9B%AE%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/image-20231023135106710.png">
+<meta property="article:published_time" content="2023-10-23T03:00:14.000Z">
+<meta property="article:modified_time" content="2023-10-23T11:03:01.429Z">
+<meta property="article:author" content="hey137">
+<meta property="article:tag" content="linux">
+<meta property="article:tag" content="docker">
+<meta property="article:tag" content="shell">
+<meta property="article:tag" content="debian">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://codenum137.github.io/2023/10/23/%E8%B7%AF%E7%94%B1%E6%A0%87%E8%AF%86%E9%A1%B9%E7%9B%AE%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/image-20231018170506585.png">
+
+<link rel="canonical" href="https://codenum137.github.io/codenum137.github.io/2023/10/23/%E8%B7%AF%E7%94%B1%E6%A0%87%E8%AF%86%E9%A1%B9%E7%9B%AE%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>路由标识项目学习记录 | Hey~</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Hey~</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://codenum137.github.io/codenum137.github.io/2023/10/23/%E8%B7%AF%E7%94%B1%E6%A0%87%E8%AF%86%E9%A1%B9%E7%9B%AE%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="hey137">
+      <meta itemprop="description" content="And let each day be a loss to us on which we did not dance once!">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hey~">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          路由标识项目学习记录
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2023-10-23 11:00:14 / 修改时间：19:03:01" itemprop="dateCreated datePublished" datetime="2023-10-23T11:00:14+08:00">2023-10-23</time>
+            </span>
+
+          
+            <div class="post-description">记录在路由标识中学到的知识。</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="路由标识"><a href="#路由标识" class="headerlink" title="路由标识"></a>路由标识</h1><h2 id="docker"><a href="#docker" class="headerlink" title="docker"></a>docker</h2><h3 id="dockerfile"><a href="#dockerfile" class="headerlink" title="dockerfile"></a>dockerfile</h3><ul>
+<li><p>build</p>
+<pre class=" language-dockerfile"><code class="language-dockerfile">docker build -t authserver_ubuntu:v3 .
+</code></pre>
+</li>
+<li><p>run，<code>--network=host</code>是联网功能。</p>
+<pre class=" language-dockerfile"><code class="language-dockerfile">docker run -it --network=host authserver_ubuntu:v3
+</code></pre>
+</li>
+<li><p>第一次尝试编写的dockerfile，重点在于下载libmysqlclient的库，运行时需要加&amp;，让程序后台运行，才能build成功。</p>
+<pre class=" language-dockerfile"><code class="language-dockerfile">FROM ubuntu
+MAINTAINER hey <3261575578@qq.com>
+RUN sed -i s@/archive.ubuntu.com/@/mirrors.aliyun.com/@g /etc/apt/sources.list
+RUN sed -i s@/security.debian.org/@/mirrors.aliyun.com/@g /etc/apt/sources.list
+RUN sed -i s@/deb.debian.org/@/mirrors.aliyun.com/@g /etc/apt/sources.list
+RUN sed -i s@/snapshot.debian.org/@/mirrors.aliyun.com/@g /etc/apt/sources.list
+RUN apt-get update
+RUN apt-get install g++ -y
+RUN apt-get install libmysqlclient-dev -y
+RUN mkdir /AuthServer
+COPY . /AuthServer
+WORKDIR /AuthServer
+RUN /usr/bin/g++ -g main.cpp -o main -lpthread -I /AuthServer/include /AuthServer/res/*.cpp `mysql_config --cflags --libs`
+RUN ./main &
+</code></pre>
+</li>
+<li><p>dockerfile的编写可以去run你的基础映像，在里面尝试将代码编译好，然后同样步骤写到dockerfile中，但需要注意build有时无法联网的问题，本人通过修改dns得到解决。下面网站提到可根据docker版本同样添加<code>--network=host</code>，未来可尝试一下。</p>
+<p><a target="_blank" rel="noopener" href="http://www.debugself.com/2018/01/17/docker_network/">docker build以及docker run时使用host网络的方法 | 源码先生的调试人生 (debugself.com)</a></p>
+<ul>
+<li><p>DNS有问题</p>
+<p><strong>能ping通ip地址但不能ping通域名</strong></p>
+<p>编辑<code>/etc/docker/daemon.json</code>文件，添加dns信息</p>
+<pre class=" language-json"><code class="language-json">&amp;#<span class="token number">123</span><span class="token punctuation">;</span>
+  <span class="token property">"dns"</span> <span class="token operator">:</span> <span class="token punctuation">[</span>
+    <span class="token string">"114.114.114.114"</span><span class="token punctuation">,</span>
+    <span class="token string">"8.8.8.8"</span>
+  <span class="token punctuation">]</span>
+&amp;#<span class="token number">125</span><span class="token punctuation">;</span>
+</code></pre>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="debian终端"><a href="#debian终端" class="headerlink" title="debian终端"></a>debian终端</h2><h3 id="扩容"><a href="#扩容" class="headerlink" title="扩容"></a>扩容</h3><ol>
+<li><p>确保路由器接入公网，即与NAT相连。</p>
+</li>
+<li><p>右键路由器-&gt;configure-&gt;HDD-&gt;Resize，注意resize直接是increase</p>
+<p><img src="/2023/10/23/%E8%B7%AF%E7%94%B1%E6%A0%87%E8%AF%86%E9%A1%B9%E7%9B%AE%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/image-20231018170506585.png" alt="image-20231018170506585"></p>
+</li>
+<li><p>参考以下网站解决。</p>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/jrri/p/16591351.html">Debian Linux磁盘扩容 - Jrri - 博客园 (cnblogs.com)</a></p>
+</li>
+<li><p>install时出错：unable to parse xxx可参考以下网站解决。</p>
+<p>[<a target="_blank" rel="noopener" href="https://itsfoss.com/unable-to-parse-package-file/">Solved] Unable to parse package file &#x2F;var&#x2F;lib&#x2F;apt&#x2F;lists (itsfoss.com)</a></p>
+</li>
+</ol>
+<h3 id="配置静态路由"><a href="#配置静态路由" class="headerlink" title="配置静态路由"></a>配置静态路由</h3><pre class=" language-sh"><code class="language-sh">up ip route add 192.168.2.0/24 via 192.168.0.2
+</code></pre>
+<h3 id="配置ip和默认网关"><a href="#配置ip和默认网关" class="headerlink" title="配置ip和默认网关"></a>配置ip和默认网关</h3><ol>
+<li><p>执行下面指令</p>
+<pre class=" language-sh"><code class="language-sh">sudo -s
+vim /etc/network/interfaces
+# 注释掉 "source-directory /run/network/interfaces.d" 这一行
+rm /etc/network/interfaces.d/50-cloud-init
+# 创建 "/etc/network/interfaces.d/10-ens4"
+vim /etc/network/interfaces.d/10-ens4
+</code></pre>
+</li>
+<li><p>添加内容,保存并退出编辑器</p>
+<pre class=" language-sh"><code class="language-sh">auto ens4
+iface ens4 inet6 static
+        address 2023:10::1/64
+        gateway 2023:10::11 #注意此处不能有/64，否则sudo systemctl restart networking会失败
+iface ens4 inet static
+        address 10.10.10.11/24
+up ip route add 10.10.0.0/16 via 10.10.10.21
+</code></pre>
+</li>
+<li><p>重新启动网络服务使更改生效</p>
+<pre class=" language-sh"><code class="language-sh">sudo systemctl restart networking
+</code></pre>
+</li>
+<li><p>查看是否生效</p>
+<pre class=" language-sh"><code class="language-sh">ip addr
+</code></pre>
+</li>
+</ol>
+<h3 id="增加网络接口"><a href="#增加网络接口" class="headerlink" title="增加网络接口"></a>增加网络接口</h3><ol>
+<li><p>首先增加网络适配器接口数量，右键config——adapter设置为2，用cloud&#x2F;NAT（GNS3 VM）连接</p>
+</li>
+<li><p>编辑&#x2F;etc&#x2F;network&#x2F;interfaces</p>
+<pre class=" language-sh"><code class="language-sh">sudo vim /etc/network/interfaces
+</code></pre>
+<p>添加内容</p>
+<pre class=" language-sh"><code class="language-sh">auto ens5
+iface ens5 inet dhcp
+</code></pre>
+</li>
+<li><p>重新启动网络服务使更改生效</p>
+<pre class=" language-sh"><code class="language-sh">sudo systemctl restart networking
+</code></pre>
+</li>
+</ol>
+<p>增加网络接口需注意默认网关是如何设置的，本项目中采取默认网关设为外网接口，配置静态路由将内网ip汇聚到内网接口上。</p>
+<h2 id="sonic路由"><a href="#sonic路由" class="headerlink" title="sonic路由"></a>sonic路由</h2><h3 id="isis开机自启动脚本"><a href="#isis开机自启动脚本" class="headerlink" title="isis开机自启动脚本"></a>isis开机自启动脚本</h3><ol>
+<li><p>创建脚本</p>
+<pre class=" language-sh"><code class="language-sh">vim docker_isisd.sh
+</code></pre>
+<p>脚本内容如下</p>
+<pre class=" language-sh"><code class="language-sh">cat << EOF > start_isisd.service
+[Unit]
+Description=Docker ISISD Service
+After=docker.service
+Requires=docker.service
+
+[Service]
+ExecStart=/usr/bin/docker exec -i bgp /bin/bash -c "/usr/lib/frr/isisd -A 127.0.0.1 -d"
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
+EOF
+sudo mv start_isisd.service /etc/systemd/system/
+sudo systemctl daemon-reload
+sudo systemctl enable start_isisd.service
+</code></pre>
+<blockquote>
+<p>here文档</p>
+<p>如果你需要输入多行文本，可以使用Here文档（Here Document）来实现。Here文档允许你在脚本中直接定义多行文本，并将其写入文件。</p>
+<p>下面是一个示例脚本，演示如何新建一个文件并输入多行文本：</p>
+<pre class=" language-shell"><code class="language-shell">复制代码#!/bin/bash
+
+# 创建一个新文件并输入多行文本
+cat << EOF > myfile.txt
+Hello, World!
+This is line 2.
+And this is line 3.
+EOF
+</code></pre>
+<p>在上面的示例中，使用了<code>cat</code>命令和Here文档的语法。<code>&lt;&lt; EOF</code>表示开始定义Here文档，<code>EOF</code>表示结束Here文档。在这之间的内容就是要输入的多行文本。这里定义了三行文本，并将其写入到名为<code>myfile.txt</code>的文件中。</p>
+<p>如果脚本执行成功，将会在当前目录下创建一个新的文件<code>myfile.txt</code>，其中包含三行文本。</p>
+<p>请注意，Here文档中的EOF可以是任意标识符，只需保证开始和结束的标识符一致即可。</p>
+</blockquote>
+</li>
+<li><p>增加权限</p>
+<pre class=" language-sh"><code class="language-sh">sudo chmod +x docker_isisd.sh
+</code></pre>
+</li>
+<li><p>执行脚本</p>
+<pre class=" language-sh"><code class="language-sh">./docker_isisd.sh
+</code></pre>
+</li>
+</ol>
+<h3 id="配置ip"><a href="#配置ip" class="headerlink" title="配置ip"></a>配置ip</h3><p>指令如下</p>
+<pre class=" language-sh"><code class="language-sh">sudo config interface ip add Ethernet0 2023:10::11/64
+sudo config interface ip add Ethernet4 2023:11::11/64
+sudo config interface startup Ethernet0
+sudo config interface startup Ethernet4
+show ipv6 interfae
+sudo config save
+</code></pre>
+<h3 id="配置isis"><a href="#配置isis" class="headerlink" title="配置isis"></a>配置isis</h3><p>指令如下，注意在GNS3里，sonic-vs内部接口编号对应GNS3拓扑里接口编号×4。</p>
+<pre class=" language-sh"><code class="language-sh">sudo docker exec -it bgp /bin/bash
+/usr/lib/frr/isisd -A 127.0.0.1 -d # 在bgp容器中启动ISIS
+vtysh进入配置界面
+# 配置isis域和所有需要配isis协议的接口
+configure
+ro isis sonic # 这里的 sonic 可以修改，但要与后面的 interface 中的配置保持一
+致。不同路由器可以使用相同的命名
+net 49.0001.1111.1111.1111.00 # 这里设置路由器的 NSAP 地址，可以设置为 49.0001.xxxx.xxxx.xxxx.00
+end
+configure
+interface Ethernet0
+ipv6 ro isis sonic # ipv4 对应的命令为 ip ro isis sonic
+end
+configure
+interface Ethernet4
+ipv6 ro isis sonic # ipv4 对应的命令为 ip ro isis sonic
+end
+write
+</code></pre>
+<h3 id="自动化配置ip，isis"><a href="#自动化配置ip，isis" class="headerlink" title="自动化配置ip，isis"></a>自动化配置ip，isis</h3><p><img src="/2023/10/23/%E8%B7%AF%E7%94%B1%E6%A0%87%E8%AF%86%E9%A1%B9%E7%9B%AE%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/image-20231023135106710.png" alt="image-20231023135106710"></p>
+<ul>
+<li><p>利用sed -i命令去编辑interfaces文件</p>
+<p>注释</p>
+<pre class=" language-sh"><code class="language-sh">sed -i -e 's/source-directory \/run/# source-directory \/run/g' /etc/network/interfaces
+</code></pre>
+<p>添加内容，在第8行后添加</p>
+<pre class=" language-sh"><code class="language-sh">sed -i -e '8a 
+auto ens5
+iface ens5 inet dhcp' /etc/network/interfaces
+</code></pre>
+</li>
+<li><p>脚本文件中使用sudo -s会中断脚本，故直接sudo 命令比较好。</p>
+</li>
+<li><p>sudo cat &lt;&lt; EOF &gt; 10-ens4无法在权限文件夹创建10-ens4，故需要修改上级目录的权限</p>
+</li>
+<li><p>vtysh无法通过echo -e “xxx” | vtysh和here文档来交互，但可以通过-c命令来解决。</p>
+</li>
+</ul>
+<p>部署步骤：</p>
+<ol>
+<li><p>创建脚本后复制对应脚本内容。</p>
+<pre class=" language-sh"><code class="language-sh">vim init.sh
+</code></pre>
+</li>
+<li><p>增加权限。</p>
+<pre class=" language-sh"><code class="language-sh">sudo chmod +x init.sh
+</code></pre>
+</li>
+<li><p>运行脚本。</p>
+<pre class=" language-sh"><code class="language-sh">./init.sh
+</code></pre>
+</li>
+</ol>
+<p>另路由器初始账号密码</p>
+<pre class=" language-txt"><code class="language-txt">admin
+</code></pre>
+<pre class=" language-txt"><code class="language-txt">YourPaSsWoRd
+</code></pre>
+<p>终端账号密码</p>
+<pre class=" language-sh"><code class="language-sh">debian
+</code></pre>
+<p>附上代码</p>
+<pre class=" language-python"><code class="language-python"><span class="token comment" spellcheck="true"># 配置isis自启动</span>
+<span class="token comment" spellcheck="true"># 固定不变的</span>
+<span class="token comment" spellcheck="true"># 配置ip</span>
+<span class="token comment" spellcheck="true">#     针对每个接口，需要以下命令</span>
+<span class="token comment" spellcheck="true">#     sudo config interface ip add Ethernet0 10.str(rid).str(oid).str(rid or oid) /8</span>
+<span class="token comment" spellcheck="true">#     sudo config interface startup Ethernet0</span>
+<span class="token comment" spellcheck="true">#     所有接口配置完需要保存</span>
+<span class="token comment" spellcheck="true">#     sudo config save</span>
+<span class="token comment" spellcheck="true"># 配置isis(在isisd服务配置好的情况下)</span>
+<span class="token comment" spellcheck="true">#     vtysh</span>
+<span class="token comment" spellcheck="true">#     config</span>
+<span class="token comment" spellcheck="true">#     ro isis sonic</span>
+<span class="token comment" spellcheck="true">#     net 49.0001.0000.0000.str(rid)(左边补齐0).00</span>
+<span class="token comment" spellcheck="true">#     针对每个接口,需要以下命令</span>
+<span class="token comment" spellcheck="true">#     interface Ethernet0</span>
+<span class="token comment" spellcheck="true">#     ipv6 ro isis sonic</span>
+<span class="token comment" spellcheck="true">#     ip ro isis sonic</span>
+<span class="token comment" spellcheck="true">#     exit</span>
+<span class="token comment" spellcheck="true">#     最后需要保存</span>
+<span class="token comment" spellcheck="true">#     end</span>
+<span class="token comment" spellcheck="true">#     write</span>
+
+ROUTE_NUM <span class="token operator">=</span> int<span class="token punctuation">(</span>input<span class="token punctuation">(</span><span class="token string">"请输入路由器数目\n"</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+TERM_NUM <span class="token operator">=</span> int<span class="token punctuation">(</span>input<span class="token punctuation">(</span><span class="token string">"请输入终端数目\n"</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+
+<span class="token keyword">def</span> <span class="token function">make_ipv4</span><span class="token punctuation">(</span>my_id<span class="token punctuation">,</span> oid<span class="token punctuation">,</span> mask<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">if</span> my_id <span class="token operator">&lt;</span> oid<span class="token punctuation">:</span>
+        ip <span class="token operator">=</span> <span class="token string">"10."</span> <span class="token operator">+</span> str<span class="token punctuation">(</span>my_id<span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">"."</span> <span class="token operator">+</span> str<span class="token punctuation">(</span>oid<span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">"."</span> <span class="token operator">+</span> str<span class="token punctuation">(</span>my_id<span class="token punctuation">)</span>
+    <span class="token keyword">else</span><span class="token punctuation">:</span>
+        ip <span class="token operator">=</span> <span class="token string">"10."</span> <span class="token operator">+</span> str<span class="token punctuation">(</span>oid<span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">"."</span> <span class="token operator">+</span> str<span class="token punctuation">(</span>my_id<span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">"."</span> <span class="token operator">+</span> str<span class="token punctuation">(</span>my_id<span class="token punctuation">)</span>
+    <span class="token keyword">if</span> mask <span class="token operator">></span> <span class="token number">0</span><span class="token punctuation">:</span>
+        ip <span class="token operator">=</span> ip <span class="token operator">+</span> <span class="token string">"/"</span> <span class="token operator">+</span> str<span class="token punctuation">(</span>mask<span class="token punctuation">)</span>
+    <span class="token keyword">return</span> ip
+
+
+<span class="token keyword">def</span> <span class="token function">make_ipv6</span><span class="token punctuation">(</span>my_id<span class="token punctuation">,</span> oid<span class="token punctuation">,</span> mask<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">if</span> my_id <span class="token operator">&lt;</span> oid<span class="token punctuation">:</span>
+        ip <span class="token operator">=</span> <span class="token string">"2023:"</span> <span class="token operator">+</span> str<span class="token punctuation">(</span>my_id<span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">":"</span> <span class="token operator">+</span> str<span class="token punctuation">(</span>oid<span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">"::"</span> <span class="token operator">+</span> str<span class="token punctuation">(</span>my_id<span class="token punctuation">)</span>
+    <span class="token keyword">else</span><span class="token punctuation">:</span>
+        ip <span class="token operator">=</span> <span class="token string">"2023:"</span> <span class="token operator">+</span> str<span class="token punctuation">(</span>oid<span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">":"</span> <span class="token operator">+</span> str<span class="token punctuation">(</span>my_id<span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">"::"</span> <span class="token operator">+</span> str<span class="token punctuation">(</span>my_id<span class="token punctuation">)</span>
+    <span class="token keyword">if</span> mask <span class="token operator">></span> <span class="token number">0</span><span class="token punctuation">:</span>
+        ip <span class="token operator">=</span> ip <span class="token operator">+</span> <span class="token string">"/"</span> <span class="token operator">+</span> str<span class="token punctuation">(</span>mask<span class="token punctuation">)</span>
+    <span class="token keyword">return</span> ip
+
+
+<span class="token keyword">class</span> <span class="token class-name">Terminal</span><span class="token punctuation">:</span>
+    <span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> tid<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token comment" spellcheck="true"># tid:term_id</span>
+        self<span class="token punctuation">.</span>oid <span class="token operator">=</span> None
+        self<span class="token punctuation">.</span>id <span class="token operator">=</span> tid <span class="token operator">+</span> ROUTE_NUM
+
+    <span class="token keyword">def</span> <span class="token function">add_ens4_route</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> oid<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        self<span class="token punctuation">.</span>oid <span class="token operator">=</span> oid
+
+    <span class="token keyword">def</span> <span class="token function">make_sh</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        file_name <span class="token operator">=</span> <span class="token string">"t"</span> <span class="token operator">+</span> str<span class="token punctuation">(</span>self<span class="token punctuation">.</span>id <span class="token operator">-</span> ROUTE_NUM<span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">".sh"</span>
+        <span class="token keyword">with</span> open<span class="token punctuation">(</span>file_name<span class="token punctuation">,</span> <span class="token string">"w"</span><span class="token punctuation">)</span> <span class="token keyword">as</span> f<span class="token punctuation">:</span>
+            pre_order <span class="token operator">=</span> \
+                <span class="token triple-quoted-string string">"""sudo sed -i -e 's/source-directory \\/run/# source-directory \\/run/g' /etc/network/interfaces
+sudo sed -i -e '8a \\\\nauto ens5\\niface ens5 inet dhcp' /etc/network/interfaces
+sudo rm /etc/network/interfaces.d/50-cloud-init
+"""</span>
+            f<span class="token punctuation">.</span>write<span class="token punctuation">(</span>pre_order<span class="token punctuation">)</span>
+            <span class="token comment" spellcheck="true"># 修改权限</span>
+            chmod <span class="token operator">=</span> <span class="token string">"sudo chmod 777 /etc/network/interfaces.d\n"</span>
+            f<span class="token punctuation">.</span>write<span class="token punctuation">(</span>chmod<span class="token punctuation">)</span>
+            <span class="token comment" spellcheck="true"># 配置ip和默认网关</span>
+            my_ipv6 <span class="token operator">=</span> make_ipv6<span class="token punctuation">(</span>self<span class="token punctuation">.</span>id<span class="token punctuation">,</span> self<span class="token punctuation">.</span>oid<span class="token punctuation">,</span> <span class="token number">64</span><span class="token punctuation">)</span>
+            o_ipv6 <span class="token operator">=</span> make_ipv6<span class="token punctuation">(</span>self<span class="token punctuation">.</span>oid<span class="token punctuation">,</span> self<span class="token punctuation">.</span>id<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span>
+            ipv4 <span class="token operator">=</span> make_ipv4<span class="token punctuation">(</span>self<span class="token punctuation">.</span>id<span class="token punctuation">,</span> self<span class="token punctuation">.</span>oid<span class="token punctuation">,</span> <span class="token number">24</span><span class="token punctuation">)</span>
+            o_ipv4 <span class="token operator">=</span> make_ipv4<span class="token punctuation">(</span>self<span class="token punctuation">.</span>oid<span class="token punctuation">,</span> self<span class="token punctuation">.</span>id<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span>
+            ip_config <span class="token operator">=</span> <span class="token triple-quoted-string string">"""sudo cat &lt;&lt; EOF > /etc/network/interfaces.d/10-ens4
+auto ens4
+iface ens4 inet6 static
+address """</span> <span class="token operator">+</span> my_ipv6 <span class="token operator">+</span> <span class="token triple-quoted-string string">"""
+gateway """</span> <span class="token operator">+</span> o_ipv6 <span class="token operator">+</span> <span class="token triple-quoted-string string">"""
+iface ens4 inet static
+address """</span> <span class="token operator">+</span> ipv4 <span class="token operator">+</span> <span class="token triple-quoted-string string">"""
+up ip route add 10.0.0.0/8 via """</span> <span class="token operator">+</span> o_ipv4 <span class="token operator">+</span> <span class="token triple-quoted-string string">"""
+EOF
+"""</span>
+            f<span class="token punctuation">.</span>write<span class="token punctuation">(</span>ip_config<span class="token punctuation">)</span>
+            restart_net <span class="token operator">=</span> <span class="token string">"sudo systemctl restart networking\n"</span>
+            f<span class="token punctuation">.</span>write<span class="token punctuation">(</span>restart_net<span class="token punctuation">)</span>
+
+
+<span class="token keyword">class</span> <span class="token class-name">Router</span><span class="token punctuation">:</span>
+    <span class="token keyword">def</span> <span class="token function">__init__</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> rid<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token comment" spellcheck="true"># rid:router_id</span>
+        self<span class="token punctuation">.</span>inter_map <span class="token operator">=</span> <span class="token operator">&amp;</span><span class="token comment" spellcheck="true">#123;&amp;#125;</span>
+        self<span class="token punctuation">.</span>id <span class="token operator">=</span> rid
+
+    <span class="token keyword">def</span> <span class="token function">add_edge</span><span class="token punctuation">(</span>self<span class="token punctuation">,</span> _inter<span class="token punctuation">,</span> oid<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token comment" spellcheck="true"># oid:other_id</span>
+        self<span class="token punctuation">.</span>inter_map<span class="token punctuation">[</span>_inter<span class="token punctuation">]</span> <span class="token operator">=</span> oid
+
+    <span class="token keyword">def</span> <span class="token function">make_sh</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        file_name <span class="token operator">=</span> <span class="token string">"r"</span> <span class="token operator">+</span> str<span class="token punctuation">(</span>self<span class="token punctuation">.</span>id<span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">".sh"</span>
+        <span class="token keyword">with</span> open<span class="token punctuation">(</span>file_name<span class="token punctuation">,</span> <span class="token string">"w"</span><span class="token punctuation">)</span> <span class="token keyword">as</span> f<span class="token punctuation">:</span>
+            <span class="token comment" spellcheck="true"># 修改密码</span>
+            change_passwd <span class="token operator">=</span> <span class="token string">"echo -e \"123\n123\n\" | sudo passwd admin\n"</span>
+            f<span class="token punctuation">.</span>write<span class="token punctuation">(</span>change_passwd<span class="token punctuation">)</span>
+            <span class="token comment" spellcheck="true"># 配置isis自启动</span>
+            start_isis <span class="token operator">=</span> <span class="token triple-quoted-string string">"""cat &lt;&lt; EOF > start_isisd.service
+[Unit]
+Description=Docker ISISD Service
+After=docker.service
+Requires=docker.service
+
+[Service]
+ExecStart=/usr/bin/docker exec -i bgp /bin/bash -c "/usr/lib/frr/isisd -A 127.0.0.1 -d"
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
+EOF
+sudo mv start_isisd.service /etc/systemd/system/
+sudo systemctl daemon-reload
+sudo systemctl enable start_isisd.service
+/usr/bin/docker exec -i bgp /bin/bash -c "/usr/lib/frr/isisd -A 127.0.0.1 -d"
+"""</span>
+            f<span class="token punctuation">.</span>write<span class="token punctuation">(</span>start_isis<span class="token punctuation">)</span>
+            <span class="token comment" spellcheck="true"># 配置ip</span>
+            <span class="token keyword">for</span> _inter<span class="token punctuation">,</span> oid <span class="token keyword">in</span> self<span class="token punctuation">.</span>inter_map<span class="token punctuation">.</span>items<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+                old_id <span class="token operator">=</span> <span class="token string">"10.0.0."</span> <span class="token operator">+</span> str<span class="token punctuation">(</span>_inter <span class="token operator">*</span> <span class="token number">2</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">"/31"</span>
+                ipv4 <span class="token operator">=</span> make_ipv4<span class="token punctuation">(</span>self<span class="token punctuation">.</span>id<span class="token punctuation">,</span> oid<span class="token punctuation">,</span> <span class="token number">24</span><span class="token punctuation">)</span>
+                ipv6 <span class="token operator">=</span> make_ipv6<span class="token punctuation">(</span>self<span class="token punctuation">.</span>id<span class="token punctuation">,</span> oid<span class="token punctuation">,</span> <span class="token number">64</span><span class="token punctuation">)</span>
+                remove_ip <span class="token operator">=</span> <span class="token string">"sudo config interface ip remove Ethernet"</span> <span class="token operator">+</span> str<span class="token punctuation">(</span>_inter <span class="token operator">*</span> <span class="token number">4</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">" "</span> <span class="token operator">+</span> old_id <span class="token operator">+</span> <span class="token string">"\n"</span>
+                add_ipv4 <span class="token operator">=</span> <span class="token string">"sudo config interface ip add Ethernet"</span> <span class="token operator">+</span> str<span class="token punctuation">(</span>_inter <span class="token operator">*</span> <span class="token number">4</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">" "</span> <span class="token operator">+</span> ipv4 <span class="token operator">+</span> <span class="token string">"\n"</span>
+                add_ipv6 <span class="token operator">=</span> <span class="token string">"sudo config interface ip add Ethernet"</span> <span class="token operator">+</span> str<span class="token punctuation">(</span>_inter <span class="token operator">*</span> <span class="token number">4</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">" "</span> <span class="token operator">+</span> ipv6 <span class="token operator">+</span> <span class="token string">"\n"</span>
+                start_up <span class="token operator">=</span> <span class="token string">"sudo config interface startup Ethernet"</span> <span class="token operator">+</span> str<span class="token punctuation">(</span>_inter <span class="token operator">*</span> <span class="token number">4</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">"\n"</span>
+                f<span class="token punctuation">.</span>write<span class="token punctuation">(</span>remove_ip<span class="token punctuation">)</span>
+                f<span class="token punctuation">.</span>write<span class="token punctuation">(</span>add_ipv4<span class="token punctuation">)</span>
+                f<span class="token punctuation">.</span>write<span class="token punctuation">(</span>add_ipv6<span class="token punctuation">)</span>
+                f<span class="token punctuation">.</span>write<span class="token punctuation">(</span>start_up<span class="token punctuation">)</span>
+            save <span class="token operator">=</span> <span class="token string">"sudo config save -y\n"</span>
+            f<span class="token punctuation">.</span>write<span class="token punctuation">(</span>save<span class="token punctuation">)</span>
+            <span class="token comment" spellcheck="true"># 配置isis</span>
+            pre_order <span class="token operator">=</span> <span class="token triple-quoted-string string">"""vtysh -c "
+config
+ro isis sonic
+"""</span>
+            <span class="token comment" spellcheck="true"># net 49.0001.0000.0000.str(rid)(左边补齐0).00</span>
+            net <span class="token operator">=</span> <span class="token string">"net 49.0001.0000.0000."</span> <span class="token operator">+</span> <span class="token string">"0"</span> <span class="token operator">*</span> <span class="token punctuation">(</span><span class="token number">4</span> <span class="token operator">-</span> len<span class="token punctuation">(</span>str<span class="token punctuation">(</span>self<span class="token punctuation">.</span>id<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">+</span> str<span class="token punctuation">(</span>self<span class="token punctuation">.</span>id<span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">".00\n"</span>
+            f<span class="token punctuation">.</span>write<span class="token punctuation">(</span>pre_order<span class="token punctuation">)</span>
+            f<span class="token punctuation">.</span>write<span class="token punctuation">(</span>net<span class="token punctuation">)</span>
+            <span class="token keyword">for</span> _inter <span class="token keyword">in</span> self<span class="token punctuation">.</span>inter_map<span class="token punctuation">.</span>keys<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+                enter_inter <span class="token operator">=</span> <span class="token string">"interface Ethernet"</span> <span class="token operator">+</span> str<span class="token punctuation">(</span>_inter <span class="token operator">*</span> <span class="token number">4</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">"\n"</span>
+                isis <span class="token operator">=</span> <span class="token string">"ipv6 ro isis sonic\nip ro isis sonic\n"</span>
+                f<span class="token punctuation">.</span>write<span class="token punctuation">(</span>enter_inter<span class="token punctuation">)</span>
+                f<span class="token punctuation">.</span>write<span class="token punctuation">(</span>isis<span class="token punctuation">)</span>
+                f<span class="token punctuation">.</span>write<span class="token punctuation">(</span><span class="token string">"exit\n"</span><span class="token punctuation">)</span>
+            f<span class="token punctuation">.</span>write<span class="token punctuation">(</span><span class="token string">"end\n"</span><span class="token punctuation">)</span>
+            f<span class="token punctuation">.</span>write<span class="token punctuation">(</span><span class="token string">"write\""</span><span class="token punctuation">)</span>
+
+
+<span class="token keyword">if</span> __name__ <span class="token operator">==</span> <span class="token string">'__main__'</span><span class="token punctuation">:</span>
+    router <span class="token operator">=</span> <span class="token punctuation">[</span>Router<span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">]</span>
+    term <span class="token operator">=</span> <span class="token punctuation">[</span>Terminal<span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">]</span>
+    <span class="token keyword">for</span> i <span class="token keyword">in</span> range<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> ROUTE_NUM <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+        router<span class="token punctuation">.</span>append<span class="token punctuation">(</span>Router<span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token keyword">for</span> i <span class="token keyword">in</span> range<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> TERM_NUM <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+        term<span class="token punctuation">.</span>append<span class="token punctuation">(</span>Terminal<span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"请输入"</span> <span class="token operator">+</span> str<span class="token punctuation">(</span>TERM_NUM<span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">"条终端链路信息 格式：（终端n通过ei接口与路由器a相连 n inter_ei aID"</span><span class="token punctuation">)</span>
+    <span class="token keyword">for</span> i <span class="token keyword">in</span> range<span class="token punctuation">(</span>TERM_NUM<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        edge <span class="token operator">=</span> input<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        term_id<span class="token punctuation">,</span> inter<span class="token punctuation">,</span> r_id <span class="token operator">=</span> edge<span class="token punctuation">.</span>split<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        term_id <span class="token operator">=</span> int<span class="token punctuation">(</span>term_id<span class="token punctuation">)</span>
+        r_id <span class="token operator">=</span> int<span class="token punctuation">(</span>r_id<span class="token punctuation">)</span>
+        inter <span class="token operator">=</span> int<span class="token punctuation">(</span>inter<span class="token punctuation">)</span>
+        term<span class="token punctuation">[</span>term_id<span class="token punctuation">]</span><span class="token punctuation">.</span>add_ens4_route<span class="token punctuation">(</span>r_id<span class="token punctuation">)</span>
+        router<span class="token punctuation">[</span>r_id<span class="token punctuation">]</span><span class="token punctuation">.</span>add_edge<span class="token punctuation">(</span>inter<span class="token punctuation">,</span> term<span class="token punctuation">[</span>term_id<span class="token punctuation">]</span><span class="token punctuation">.</span>id<span class="token punctuation">)</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"请输入路由链路信息，以空行结尾 格式：（路由器a的ei接口与路由器b的ej接口相连aID inter_ei inter_ej bID）"</span><span class="token punctuation">)</span>
+    <span class="token keyword">while</span> <span class="token boolean">True</span><span class="token punctuation">:</span>
+        edge <span class="token operator">=</span> input<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        <span class="token keyword">if</span> edge <span class="token operator">==</span> <span class="token string">""</span><span class="token punctuation">:</span>
+            <span class="token keyword">break</span>
+        s_router<span class="token punctuation">,</span> s_inter<span class="token punctuation">,</span> d_inter<span class="token punctuation">,</span> d_router <span class="token operator">=</span> edge<span class="token punctuation">.</span>split<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        s_router <span class="token operator">=</span> int<span class="token punctuation">(</span>s_router<span class="token punctuation">)</span>
+        s_inter <span class="token operator">=</span> int<span class="token punctuation">(</span>s_inter<span class="token punctuation">)</span>
+        d_router <span class="token operator">=</span> int<span class="token punctuation">(</span>d_router<span class="token punctuation">)</span>
+        d_inter <span class="token operator">=</span> int<span class="token punctuation">(</span>d_inter<span class="token punctuation">)</span>
+        router<span class="token punctuation">[</span>s_router<span class="token punctuation">]</span><span class="token punctuation">.</span>add_edge<span class="token punctuation">(</span>s_inter<span class="token punctuation">,</span> d_router<span class="token punctuation">)</span>
+        router<span class="token punctuation">[</span>d_router<span class="token punctuation">]</span><span class="token punctuation">.</span>add_edge<span class="token punctuation">(</span>d_inter<span class="token punctuation">,</span> s_router<span class="token punctuation">)</span>
+
+    <span class="token keyword">for</span> i <span class="token keyword">in</span> range<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> ROUTE_NUM <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+        router<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>make_sh<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token keyword">for</span> i <span class="token keyword">in</span> range<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> TERM_NUM <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+        term<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>make_sh<span class="token punctuation">(</span><span class="token punctuation">)</span>
+</code></pre>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/linux/" rel="tag"># linux</a>
+              <a href="/tags/docker/" rel="tag"># docker</a>
+              <a href="/tags/shell/" rel="tag"># shell</a>
+              <a href="/tags/debian/" rel="tag"># debian</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2023/10/21/leetcode23-10/" rel="prev" title="leetcode23/10">
+      <i class="fa fa-chevron-left"></i> leetcode23/10
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%B7%AF%E7%94%B1%E6%A0%87%E8%AF%86"><span class="nav-number">1.</span> <span class="nav-text">路由标识</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#docker"><span class="nav-number">1.1.</span> <span class="nav-text">docker</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#dockerfile"><span class="nav-number">1.1.1.</span> <span class="nav-text">dockerfile</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#debian%E7%BB%88%E7%AB%AF"><span class="nav-number">1.2.</span> <span class="nav-text">debian终端</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%89%A9%E5%AE%B9"><span class="nav-number">1.2.1.</span> <span class="nav-text">扩容</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE%E9%9D%99%E6%80%81%E8%B7%AF%E7%94%B1"><span class="nav-number">1.2.2.</span> <span class="nav-text">配置静态路由</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%85%8D%E7%BD%AEip%E5%92%8C%E9%BB%98%E8%AE%A4%E7%BD%91%E5%85%B3"><span class="nav-number">1.2.3.</span> <span class="nav-text">配置ip和默认网关</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A2%9E%E5%8A%A0%E7%BD%91%E7%BB%9C%E6%8E%A5%E5%8F%A3"><span class="nav-number">1.2.4.</span> <span class="nav-text">增加网络接口</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#sonic%E8%B7%AF%E7%94%B1"><span class="nav-number">1.3.</span> <span class="nav-text">sonic路由</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#isis%E5%BC%80%E6%9C%BA%E8%87%AA%E5%90%AF%E5%8A%A8%E8%84%9A%E6%9C%AC"><span class="nav-number">1.3.1.</span> <span class="nav-text">isis开机自启动脚本</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%85%8D%E7%BD%AEip"><span class="nav-number">1.3.2.</span> <span class="nav-text">配置ip</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%85%8D%E7%BD%AEisis"><span class="nav-number">1.3.3.</span> <span class="nav-text">配置isis</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%87%AA%E5%8A%A8%E5%8C%96%E9%85%8D%E7%BD%AEip%EF%BC%8Cisis"><span class="nav-number">1.3.4.</span> <span class="nav-text">自动化配置ip，isis</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">hey137</p>
+  <div class="site-description" itemprop="description">And let each day be a loss to us on which we did not dance once!</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">4</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">hey137</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
