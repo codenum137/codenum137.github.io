@@ -4,6 +4,25 @@
   
     
     <entry>
+      <title>docker学习记录</title>
+      <link href="/2023/10/23/docker%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/"/>
+      <url>/2023/10/23/docker%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/</url>
+      
+        <content type="html"><![CDATA[<h2 id="dockerfile"><a href="#dockerfile" class="headerlink" title="dockerfile"></a>dockerfile</h2><ul><li><p>build</p><pre class=" language-dockerfile"><code class="language-dockerfile">docker build -t authserver_ubuntu:v3 .</code></pre></li><li><p>run</p><pre class=" language-dockerfile"><code class="language-dockerfile">docker run -it --network=host authserver_ubuntu:v3</code></pre></li><li><p>第一次尝试编写的dockerfile，重点在于下载libmysqlclient的库，运行时需要加&amp;，让程序后台运行，才能build成功。</p><pre class=" language-dockerfile"><code class="language-dockerfile">FROM ubuntuMAINTAINER hey <3261575578@qq.com>RUN sed -i s@/archive.ubuntu.com/@/mirrors.aliyun.com/@g /etc/apt/sources.listRUN sed -i s@/security.debian.org/@/mirrors.aliyun.com/@g /etc/apt/sources.listRUN sed -i s@/deb.debian.org/@/mirrors.aliyun.com/@g /etc/apt/sources.listRUN sed -i s@/snapshot.debian.org/@/mirrors.aliyun.com/@g /etc/apt/sources.listRUN apt-get updateRUN apt-get install g++ -yRUN apt-get install libmysqlclient-dev -yRUN mkdir /AuthServerCOPY . /AuthServerWORKDIR /AuthServerRUN /usr/bin/g++ -g main.cpp -o main -lpthread -I /AuthServer/include /AuthServer/res/*.cpp `mysql_config --cflags --libs`RUN ./main &</code></pre></li></ul>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> -docker -linux </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>leetcode23/10</title>
       <link href="/2023/10/21/leetcode23-10/"/>
       <url>/2023/10/21/leetcode23-10/</url>
