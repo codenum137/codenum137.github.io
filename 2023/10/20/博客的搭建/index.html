@@ -1,26 +1,22 @@
+
+
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
 <head>
   <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
-<meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 6.3.0">
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
-  <link rel="mask-icon" href="/images/logo.svg" color="#222">
-
-<link rel="stylesheet" href="/css/main.css">
-
-
-<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
-
-<script id="hexo-configurations">
-    var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"codenum137.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
-  </script>
-
-  <meta name="description" content="​		前面的搭建内容已经忘了，主要是参考以下网站进行的。 从零开始搭建个人博客（超详细） - 知乎 (zhihu.com) ​		而在hexo typora github体系下如何插入图片做了太多尝试，改的乱七八槽的，这里便不在记录。可能有用的应是如下网址： Hexo+Github博客：网站内图片不能正常显示，但本地文件可以显示_hexo部署在github上图片http403-CSDN博客 hex">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/H.png">
+  <link rel="icon" href="/img/H.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="hey137">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="​		前面的搭建内容已经忘了，主要是参考以下网站进行的。 从零开始搭建个人博客（超详细） - 知乎 (zhihu.com) ​		而在hexo typora github体系下如何插入图片做了太多尝试，改的乱七八槽的，这里便不在记录。可能有用的应是如下网址： Hexo+Github博客：网站内图片不能正常显示，但本地文件可以显示_hexo部署在github上图片http403-CSDN博客 hex">
 <meta property="og:type" content="article">
 <meta property="og:title" content="博客的搭建">
 <meta property="og:url" content="https://codenum137.github.io/codenum137.github.io/2023/10/20/%E5%8D%9A%E5%AE%A2%E7%9A%84%E6%90%AD%E5%BB%BA/index.html">
@@ -31,467 +27,703 @@
 <meta property="og:image" content="https://codenum137.github.io/2023/10/20/%E5%8D%9A%E5%AE%A2%E7%9A%84%E6%90%AD%E5%BB%BA/image-20231020164920225.png">
 <meta property="og:image" content="https://codenum137.github.io/2023/10/20/%E5%8D%9A%E5%AE%A2%E7%9A%84%E6%90%AD%E5%BB%BA/image-20231020165356115.png">
 <meta property="og:image" content="https://codenum137.github.io/2023/10/20/%E5%8D%9A%E5%AE%A2%E7%9A%84%E6%90%AD%E5%BB%BA/image-20231020171446736.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/10/20/%E5%8D%9A%E5%AE%A2%E7%9A%84%E6%90%AD%E5%BB%BA/image-20231024114250471.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/10/20/%E5%8D%9A%E5%AE%A2%E7%9A%84%E6%90%AD%E5%BB%BA/image-20231024115429856.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/10/20/%E5%8D%9A%E5%AE%A2%E7%9A%84%E6%90%AD%E5%BB%BA/image-20231024122906362.png">
 <meta property="article:published_time" content="2023-10-20T08:30:55.000Z">
-<meta property="article:modified_time" content="2023-10-21T10:33:32.431Z">
+<meta property="article:modified_time" content="2023-10-24T04:29:44.462Z">
 <meta property="article:author" content="hey137">
-<meta name="twitter:card" content="summary">
+<meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://codenum137.github.io/2023/10/20/%E5%8D%9A%E5%AE%A2%E7%9A%84%E6%90%AD%E5%BB%BA/image-20231020164849323.png">
+  
+  
+  
+  <title>博客的搭建 - Hey~</title>
 
-<link rel="canonical" href="https://codenum137.github.io/codenum137.github.io/2023/10/20/%E5%8D%9A%E5%AE%A2%E7%9A%84%E6%90%AD%E5%BB%BA/">
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
 
-<script id="page-configurations">
-  // https://hexo.io/docs/variables.html
-  CONFIG.page = {
-    sidebar: "",
-    isHome : false,
-    isPost : true,
-    lang   : 'zh-CN'
-  };
-</script>
 
-  <title>博客的搭建 | Hey~</title>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
   
 
 
 
 
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"codenum137.github.io","root":"/","version":"1.9.5","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
 
 
-  <noscript>
-  <style>
-  .use-motion .brand,
-  .use-motion .menu-item,
-  .sidebar-inner,
-  .use-motion .post-block,
-  .use-motion .pagination,
-  .use-motion .comments,
-  .use-motion .post-header,
-  .use-motion .post-body,
-  .use-motion .collection-header { opacity: initial; }
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
 
-  .use-motion .site-title,
-  .use-motion .site-subtitle {
-    opacity: initial;
-    top: initial;
-  }
 
-  .use-motion .logo-line-before i { left: initial; }
-  .use-motion .logo-line-after i { right: initial; }
-  </style>
-</noscript>
+<body>
+  
 
-<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+  <header>
+    
 
-<body itemscope itemtype="http://schema.org/WebPage">
-  <div class="container use-motion">
-    <div class="headband"></div>
-
-    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-container">
-  <div class="site-nav-toggle">
-    <div class="toggle" aria-label="切换导航栏">
-      <span class="toggle-line toggle-line-first"></span>
-      <span class="toggle-line toggle-line-middle"></span>
-      <span class="toggle-line toggle-line-last"></span>
-    </div>
-  </div>
-
-  <div class="site-meta">
-
-    <a href="/" class="brand" rel="start">
-      <span class="logo-line-before"><i></i></span>
-      <h1 class="site-title">Hey~</h1>
-      <span class="logo-line-after"><i></i></span>
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Hey~</strong>
     </a>
-  </div>
 
-  <div class="site-nav-right">
-    <div class="toggle popup-trigger">
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
     </div>
   </div>
-</div>
-
-
-
-
-<nav class="site-nav">
-  <ul id="menu" class="main-menu menu">
-        <li class="menu-item menu-item-home">
-
-    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
-
-  </li>
-        <li class="menu-item menu-item-archives">
-
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
-
-  </li>
-  </ul>
 </nav>
 
+  
 
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="博客的搭建"></span>
+          
+        </div>
 
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2023-10-20 16:30" pubdate>
+          2023年10月20日 下午
+        </time>
+      </span>
+    
+  </div>
 
-</div>
-    </header>
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2.8k 字
+        
+      </span>
+    
 
     
-  <div class="back-to-top">
-    <i class="fa fa-arrow-up"></i>
-    <span>0%</span>
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          24 分钟
+        
+      </span>
+    
+
+    
+    
   </div>
 
 
-    <main class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          
-
-          <div class="content post posts-expand">
-            
-
-    
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://codenum137.github.io/codenum137.github.io/2023/10/20/%E5%8D%9A%E5%AE%A2%E7%9A%84%E6%90%AD%E5%BB%BA/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="hey137">
-      <meta itemprop="description" content="And let each day be a loss to us on which we did not dance once!">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hey~">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          博客的搭建
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2023-10-20 16:30:55" itemprop="dateCreated datePublished" datetime="2023-10-20T16:30:55+08:00">2023-10-20</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2023-10-21 18:33:32" itemprop="dateModified" datetime="2023-10-21T18:33:32+08:00">2023-10-21</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
+        
+      </div>
 
       
-        <p>​		前面的搭建内容已经忘了，主要是参考以下网站进行的。</p>
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">博客的搭建</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>​		前面的搭建内容已经忘了，主要是参考以下网站进行的。</p>
 <p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/102592286">从零开始搭建个人博客（超详细） - 知乎 (zhihu.com)</a></p>
 <p>​		而在hexo typora github体系下如何插入图片做了太多尝试，改的乱七八槽的，这里便不在记录。可能有用的应是如下网址：</p>
 <p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_36408085/article/details/104117319">Hexo+Github博客：网站内图片不能正常显示，但本地文件可以显示_hexo部署在github上图片http403-CSDN博客</a></p>
 <p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/265077468">hexo博客如何插入图片 - 知乎 (zhihu.com)</a>（这篇为主）</p>
 <span id="more"></span>
-
+<h1>搭建</h1>
 <p>​		接下来将记录其他美化博客的操作，并且我的风格是简约为主。</p>
-<h2 id="「第三期」-hexo-github搭建博客（主题美化）-知乎-zhihu-com"><a href="#「第三期」-hexo-github搭建博客（主题美化）-知乎-zhihu-com" class="headerlink" title="「第三期」 hexo+github搭建博客（主题美化） - 知乎 (zhihu.com)"></a><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/376367026">「第三期」 hexo+github搭建博客（主题美化） - 知乎 (zhihu.com)</a></h2><h3 id="新建分类categories"><a href="#新建分类categories" class="headerlink" title="新建分类categories"></a>新建分类categories</h3><p><code>categories</code> 页是用来展示所有分类的页面，如果在你的博客 <code>source</code> 目录下还没有 <code>categories/index.md</code> 文件，那么你就需要新建一个，命令如下：</p>
-<pre class=" language-text"><code class="language-text">hexo new page "categories"
-</code></pre>
+<h2 id="「第三期」-hexo-github搭建博客（主题美化）-知乎-zhihu-com"><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/376367026">「第三期」 hexo+github搭建博客（主题美化） - 知乎 (zhihu.com)</a></h2>
+<h3 id="新建分类categories">新建分类categories</h3>
+<p><code>categories</code> 页是用来展示所有分类的页面，如果在你的博客 <code>source</code> 目录下还没有 <code>categories/index.md</code> 文件，那么你就需要新建一个，命令如下：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">hexo new page &quot;categories&quot;<br></code></pre></td></tr></table></figure>
 <p>编辑你刚刚新建的页面文件 <code>/source/categories/index.md</code>，至少需要以下内容：</p>
-<pre class=" language-text"><code class="language-text">---
-title: categories
-date: 2021-05-07 20:08:39
-type: "categories"
-layout: "categories"
----
-</code></pre>
-<h3 id="新建标签tags页"><a href="#新建标签tags页" class="headerlink" title="新建标签tags页"></a>新建标签tags页</h3><p><code>tags</code> 页是用来展示所有标签的页面，如果在你的博客 <code>source</code> 目录下还没有 <code>tags/index.md</code> 文件，那么你就需要新建一个，命令如下：</p>
-<pre class=" language-text"><code class="language-text">hexo new page "tags"
-</code></pre>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs text">---<br>title: categories<br>date: 2021-05-07 20:08:39<br>type: &quot;categories&quot;<br>layout: &quot;categories&quot;<br>---<br></code></pre></td></tr></table></figure>
+<h3 id="新建标签tags页">新建标签tags页</h3>
+<p><code>tags</code> 页是用来展示所有标签的页面，如果在你的博客 <code>source</code> 目录下还没有 <code>tags/index.md</code> 文件，那么你就需要新建一个，命令如下：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">hexo new page &quot;tags&quot;<br></code></pre></td></tr></table></figure>
 <p>编辑你刚刚新建的页面文件 <code>/source/tags/index.md</code>，至少需要以下内容：</p>
-<pre class=" language-text"><code class="language-text">---
-title: tags
-date: 2021-05-07 17:25:30
-type: "tags"
-layout: "tags"
----
-</code></pre>
-<h3 id="新建关于我about页"><a href="#新建关于我about页" class="headerlink" title="新建关于我about页"></a>新建关于我about页</h3><p><code>about</code> 页是用来展示<strong>关于我和我的博客</strong>信息的页面，如果在你的博客 <code>source</code> 目录下还没有 <code>about/index.md</code> 文件，那么你就需要新建一个，命令如下：</p>
-<pre class=" language-text"><code class="language-text">hexo new page "about"
-</code></pre>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs text">---<br>title: tags<br>date: 2021-05-07 17:25:30<br>type: &quot;tags&quot;<br>layout: &quot;tags&quot;<br>---<br></code></pre></td></tr></table></figure>
+<h3 id="新建关于我about页">新建关于我about页</h3>
+<p><code>about</code> 页是用来展示<strong>关于我和我的博客</strong>信息的页面，如果在你的博客 <code>source</code> 目录下还没有 <code>about/index.md</code> 文件，那么你就需要新建一个，命令如下：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">hexo new page &quot;about&quot;<br></code></pre></td></tr></table></figure>
 <p>编辑你刚刚新建的页面文件 <code>/source/about/index.md</code>，至少需要以下内容：</p>
-<pre class=" language-text"><code class="language-text">---
-title: about
-date: 2021-05-07 17:25:30
-type: "about"
-layout: "about"
----
-</code></pre>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs text">---<br>title: about<br>date: 2021-05-07 17:25:30<br>type: &quot;about&quot;<br>layout: &quot;about&quot;<br>---<br></code></pre></td></tr></table></figure>
 <p>目前这三个貌似对博客并没有什么影响。</p>
-<p><img src="/2023/10/20/%E5%8D%9A%E5%AE%A2%E7%9A%84%E6%90%AD%E5%BB%BA/image-20231020164849323.png" alt="image-20231020164849323"></p>
-<h3 id="代码高亮"><a href="#代码高亮" class="headerlink" title="代码高亮"></a>代码高亮</h3><p>之前的代码风格如下：</p>
-<p><img src="/2023/10/20/%E5%8D%9A%E5%AE%A2%E7%9A%84%E6%90%AD%E5%BB%BA/image-20231020164920225.png" alt="image-20231020164920225"></p>
+<p><img src="/2023/10/20/%E5%8D%9A%E5%AE%A2%E7%9A%84%E6%90%AD%E5%BB%BA/image-20231020164849323.png" srcset="/img/loading.gif" lazyload alt="image-20231020164849323"></p>
+<h3 id="代码高亮（没采用）">代码高亮（没采用）</h3>
+<p>之前的代码风格如下：</p>
+<p><img src="/2023/10/20/%E5%8D%9A%E5%AE%A2%E7%9A%84%E6%90%AD%E5%BB%BA/image-20231020164920225.png" srcset="/img/loading.gif" lazyload alt="image-20231020164920225"></p>
 <p>还行，但我喜欢darker。</p>
-<p>由于 Hexo 自带的代码高亮主题显示不好看，所以主题中使用到了 <a href="https://link.zhihu.com/?target=https://github.com/ele828/hexo-prism-plugin">hexo-prism-plugin</a> 的 Hexo 插件来做代码高亮，安装命令如下：</p>
-<pre class=" language-text"><code class="language-text">npm i -S hexo-prism-plugin
-</code></pre>
+<p>由于 Hexo 自带的代码高亮主题显示不好看，所以主题中使用到了 <a href="https://link.zhihu.com/?target=https%3A//github.com/ele828/hexo-prism-plugin">hexo-prism-plugin</a> 的 Hexo 插件来做代码高亮，安装命令如下：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">npm i -S hexo-prism-plugin<br></code></pre></td></tr></table></figure>
 <p>然后，修改 Hexo 根目录下 <code>_config.yml</code> 文件中 <code>highlight.enable</code> 的值为 <code>false</code>，并新增 <code>prism_plugin</code> 插件相关的配置，主要配置如下：</p>
-<pre class=" language-yaml"><code class="language-yaml"><span class="token key atrule">highlight</span><span class="token punctuation">:</span>
-  <span class="token key atrule">enable</span><span class="token punctuation">:</span> <span class="token boolean important">false</span>
-
-<span class="token key atrule">prism_plugin</span><span class="token punctuation">:</span>
-  <span class="token key atrule">mode</span><span class="token punctuation">:</span> <span class="token string">'preprocess'</span>    <span class="token comment" spellcheck="true"># realtime/preprocess</span>
-  <span class="token key atrule">theme</span><span class="token punctuation">:</span> <span class="token string">'tomorrow'</span>
-  <span class="token key atrule">line_number</span><span class="token punctuation">:</span> <span class="token boolean important">false    </span><span class="token comment" spellcheck="true"># default false</span>
-  <span class="token key atrule">custom_css</span><span class="token punctuation">:</span>
-</code></pre>
-<pre class=" language-c++"><code class="language-c++">#include<iostream>
-using namespace std;
-int main()
-&#123;
-    cout<<"hello world"<<endl;
-    return 0;
-&#125;
-</code></pre>
-<p>修改之后，也不是很好看，主要没有彩色高亮。<img src="/2023/10/20/%E5%8D%9A%E5%AE%A2%E7%9A%84%E6%90%AD%E5%BB%BA/image-20231020165356115.png" alt="image-20231020165356115"></p>
-<h3 id="搜索功能"><a href="#搜索功能" class="headerlink" title="搜索功能"></a>搜索功能</h3><p>本主题中还使用到了 <a href="https://link.zhihu.com/?target=https://github.com/wzpan/hexo-generator-search">hexo-generator-search</a> 的 Hexo 插件来做内容搜索，安装命令如下：</p>
-<pre class=" language-text"><code class="language-text">npm install hexo-generator-search --save
-</code></pre>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-attr">highlight:</span><br>  <span class="hljs-attr">enable:</span> <span class="hljs-literal">false</span><br><br><span class="hljs-attr">prism_plugin:</span><br>  <span class="hljs-attr">mode:</span> <span class="hljs-string">&#x27;preprocess&#x27;</span>    <span class="hljs-comment"># realtime/preprocess</span><br>  <span class="hljs-attr">theme:</span> <span class="hljs-string">&#x27;tomorrow&#x27;</span><br>  <span class="hljs-attr">line_number:</span> <span class="hljs-literal">false</span>    <span class="hljs-comment"># default false</span><br>  <span class="hljs-attr">custom_css:</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-meta">#<span class="hljs-keyword">include</span><span class="hljs-string">&lt;iostream&gt;</span></span><br><span class="hljs-keyword">using</span> <span class="hljs-keyword">namespace</span> std;<br><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span><br><span class="hljs-function"></span>&#123;<br>    cout&lt;&lt;<span class="hljs-string">&quot;hello world&quot;</span>&lt;&lt;endl;<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>修改之后，也不是很好看，主要没有彩色高亮，不采用。<img src="/2023/10/20/%E5%8D%9A%E5%AE%A2%E7%9A%84%E6%90%AD%E5%BB%BA/image-20231020165356115.png" srcset="/img/loading.gif" lazyload alt="image-20231020165356115"></p>
+<h3 id="删除插件">删除插件</h3>
+<p>于是学习了一下怎么删除插件</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">npm uninstall &lt;你的插件名&gt;<br></code></pre></td></tr></table></figure>
+<h3 id="搜索功能">搜索功能</h3>
+<p>本主题中还使用到了 <a href="https://link.zhihu.com/?target=https%3A//github.com/wzpan/hexo-generator-search">hexo-generator-search</a> 的 Hexo 插件来做内容搜索，安装命令如下：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">npm install hexo-generator-search --save<br></code></pre></td></tr></table></figure>
 <p>在 Hexo 根目录下的 <code>_config.yml</code> 文件中，新增以下的配置项：</p>
-<pre class=" language-yaml"><code class="language-yaml"><span class="token key atrule">search</span><span class="token punctuation">:</span>
-  <span class="token key atrule">path</span><span class="token punctuation">:</span> search.xml
-  <span class="token key atrule">field</span><span class="token punctuation">:</span> post
-</code></pre>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-attr">search:</span><br>  <span class="hljs-attr">path:</span> <span class="hljs-string">search.xml</span><br>  <span class="hljs-attr">field:</span> <span class="hljs-string">post</span><br></code></pre></td></tr></table></figure>
 <p>加了好像也没有什么影响。</p>
 <p>由于上述的网站的美化操作对于我的博客来说似乎没有什么用，于是我打算针对性的去搜索进行美化。</p>
-<h2 id="MY"><a href="#MY" class="headerlink" title="MY"></a>MY</h2><h3 id="文章摘要"><a href="#文章摘要" class="headerlink" title="文章摘要"></a>文章摘要</h3><ol>
+<h2 id="MY">MY</h2>
+<h3 id="文章摘要">文章摘要</h3>
+<ol>
 <li>修改配置</li>
 </ol>
 <p>在next主题的_config.yml中打开设置（默认是打开）</p>
-<pre class=" language-yaml"><code class="language-yaml"><span class="token comment" spellcheck="true"># Automatically excerpt description in homepage as preamble text.</span>
-<span class="token key atrule">excerpt_description</span><span class="token punctuation">:</span> <span class="token boolean important">true</span>
-</code></pre>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-comment"># Automatically excerpt description in homepage as preamble text.</span><br><span class="hljs-attr">excerpt_description:</span> <span class="hljs-literal">true</span><br></code></pre></td></tr></table></figure>
 <ol start="2">
-<li><p>两种方法</p>
+<li>
+<p>两种方法</p>
 <ul>
-<li><p>概述</p>
+<li>
+<p>概述</p>
 <p>在文章的<code>front-matter</code>中添加<code>description</code>，其中description中的内容就会被显示在首页上，其余一律不显示。</p>
-<pre class=" language-txt"><code class="language-txt">---
-title: 让首页显示部分内容
-date: 2020-02-23 22:55:10
-description: 这是显示在首页的概述，正文内容均会被隐藏。
----
-</code></pre>
+<figure class="highlight txt"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs txt">---<br>title: 让首页显示部分内容<br>date: 2020-02-23 22:55:10<br>description: 这是显示在首页的概述，正文内容均会被隐藏。<br>---<br><br></code></pre></td></tr></table></figure>
 </li>
-<li><p>文章截断</p>
+<li>
+<p>文章截断</p>
 <p>在需要截断的地方加入</p>
-<pre><code>&lt;!--more--&gt;
-</code></pre>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-comment">&lt;!--more--&gt;</span><br></code></pre></td></tr></table></figure>
 </li>
 </ul>
 </li>
 </ol>
 <p>效果如下</p>
-<p><img src="/2023/10/20/%E5%8D%9A%E5%AE%A2%E7%9A%84%E6%90%AD%E5%BB%BA/image-20231020171446736.png" alt="image-20231020171446736"></p>
+<p><img src="/2023/10/20/%E5%8D%9A%E5%AE%A2%E7%9A%84%E6%90%AD%E5%BB%BA/image-20231020171446736.png" srcset="/img/loading.gif" lazyload alt="image-20231020171446736"></p>
+<h3 id="更换主题为fuild">更换主题为fuild</h3>
+<p><a target="_blank" rel="noopener" href="https://github.com/fluid-dev/hexo-theme-fluid/tree/master">fluid-dev/hexo-theme-fluid: :ocean: 一款 Material Design 风格的 Hexo 主题 / An elegant Material-Design theme for Hexo (github.com)</a></p>
+<p>按照上述网址的readme进行主题的更换，更换后需要<code>hexo clean</code>并<code>hexo g</code>，不然打开是白屏的，且</p>
+<p><a target="_blank" rel="noopener" href="https://hexo.fluid-dev.com/docs/guide/#%E5%85%B3%E4%BA%8E%E6%8C%87%E5%8D%97">配置指南 | Hexo Fluid 用户手册 (fluid-dev.com)</a></p>
+<p><strong>注意</strong></p>
+<blockquote>
+<p>Hexo 5.0.0 版本以上的用户，在博客目录下创建 <code>_config.fluid.yml</code> 文件，将主题的 <a target="_blank" rel="noopener" href="https://github.com/fluid-dev/hexo-theme-fluid/blob/master/_config.yml">_config.yml (opens new window)</a>全部配置（或部分配置）复制过去。</p>
+<p>以后如果修改任何主题配置，都只需修改 <code>_config.fluid.yml</code> 的配置即可。</p>
+<p>注意：</p>
+<ul>
+<li>只要存在于 <code>_config.fluid.yml</code> 的配置都是高优先级，修改原 <code>_config.yml</code> 是无效的。</li>
+<li>每次更新主题可能存在配置变更，请注意更新说明，可能需要手动对 <code>_config.fluid.yml</code> 同步修改。</li>
+<li>想查看覆盖配置有没有生效，可以通过 <code>hexo g --debug</code> 查看命令行输出。</li>
+<li>如果想将某些配置覆盖为空，注意不要把主键删掉，不然是无法覆盖的，比如：</li>
+</ul>
+</blockquote>
+<p><img src="/2023/10/20/%E5%8D%9A%E5%AE%A2%E7%9A%84%E6%90%AD%E5%BB%BA/image-20231024114250471.png" srcset="/img/loading.gif" lazyload alt="image-20231024114250471"></p>
+<p>素服了，且之前配置的关于，分类，搜索等也能看见了。</p>
+<h3 id="增加latex显示功能">增加latex显示功能</h3>
+<p><a target="_blank" rel="noopener" href="https://hexo.fluid-dev.com/docs/guide/#%E5%85%B3%E4%BA%8E%E6%8C%87%E5%8D%97">配置指南 | Hexo Fluid 用户手册 (fluid-dev.com)</a></p>
+<ul>
+<li>
+<p>按照指南配置，不采用官方的hexo-math插件。</p>
+</li>
+<li>
+<p>需要显示latex的需要在格式头增加<code>math: true</code></p>
+<p><img src="/2023/10/20/%E5%8D%9A%E5%AE%A2%E7%9A%84%E6%90%AD%E5%BB%BA/image-20231024115429856.png" srcset="/img/loading.gif" lazyload alt="image-20231024115429856"></p>
+</li>
+<li>
+<p>使用<code>mathjax</code>渲染器失败，采用<code>katex</code>，显示ok。</p>
+<p><img src="/2023/10/20/%E5%8D%9A%E5%AE%A2%E7%9A%84%E6%90%AD%E5%BB%BA/image-20231024122906362.png" srcset="/img/loading.gif" lazyload alt="image-20231024122906362"></p>
+</li>
+</ul>
 
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>博客的搭建</div>
+      <div>https://codenum137.github.io/codenum137.github.io/2023/10/20/博客的搭建/</div>
     </div>
-
-    
-    
-    
-
-      <footer class="post-footer">
-
-        
-
-
-        
-    <div class="post-nav">
-      <div class="post-nav-item">
-    <a href="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/" rel="prev" title="linux期末复习">
-      <i class="fa fa-chevron-left"></i> linux期末复习
-    </a></div>
-      <div class="post-nav-item">
-    <a href="/2023/10/21/leetcode23-10/" rel="next" title="leetcode23/10">
-      leetcode23/10 <i class="fa fa-chevron-right"></i>
-    </a></div>
-    </div>
-      </footer>
-    
-  </article>
-  
-  
-  
-
-
-
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>hey137</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2023年10月20日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
           </div>
-          
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
 
-<script>
-  window.addEventListener('tabs:register', () => {
-    let { activeClass } = CONFIG.comments;
-    if (CONFIG.comments.storage) {
-      activeClass = localStorage.getItem('comments_active') || activeClass;
-    }
-    if (activeClass) {
-      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
-      if (activeTab) {
-        activeTab.click();
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2023/10/21/leetcode23-10/" title="leetcode23/10">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">leetcode23/10</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/" title="linux期末复习">
+                        <span class="hidden-mobile">linux期末复习</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
       }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
     }
-  });
-  if (CONFIG.comments.storage) {
-    window.addEventListener('tabs:click', event => {
-      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
-      let commentClass = event.target.classList[1];
-      localStorage.setItem('comments_active', commentClass);
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
     });
-  }
+  });
 </script>
 
-        </div>
-          
-  
-  <div class="toggle sidebar-toggle">
-    <span class="toggle-line toggle-line-first"></span>
-    <span class="toggle-line toggle-line-middle"></span>
-    <span class="toggle-line toggle-line-last"></span>
-  </div>
 
-  <aside class="sidebar">
-    <div class="sidebar-inner">
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
 
-      <ul class="sidebar-nav motion-element">
-        <li class="sidebar-nav-toc">
-          文章目录
-        </li>
-        <li class="sidebar-nav-overview">
-          站点概览
-        </li>
-      </ul>
+  <script>Fluid.plugins.codeWidget();</script>
 
-      <!--noindex-->
-      <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E3%80%8C%E7%AC%AC%E4%B8%89%E6%9C%9F%E3%80%8D-hexo-github%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%EF%BC%88%E4%B8%BB%E9%A2%98%E7%BE%8E%E5%8C%96%EF%BC%89-%E7%9F%A5%E4%B9%8E-zhihu-com"><span class="nav-number">1.</span> <span class="nav-text">「第三期」 hexo+github搭建博客（主题美化） - 知乎 (zhihu.com)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B0%E5%BB%BA%E5%88%86%E7%B1%BBcategories"><span class="nav-number">1.1.</span> <span class="nav-text">新建分类categories</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B0%E5%BB%BA%E6%A0%87%E7%AD%BEtags%E9%A1%B5"><span class="nav-number">1.2.</span> <span class="nav-text">新建标签tags页</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B0%E5%BB%BA%E5%85%B3%E4%BA%8E%E6%88%91about%E9%A1%B5"><span class="nav-number">1.3.</span> <span class="nav-text">新建关于我about页</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%E9%AB%98%E4%BA%AE"><span class="nav-number">1.4.</span> <span class="nav-text">代码高亮</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%90%9C%E7%B4%A2%E5%8A%9F%E8%83%BD"><span class="nav-number">1.5.</span> <span class="nav-text">搜索功能</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MY"><span class="nav-number">2.</span> <span class="nav-text">MY</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%87%E7%AB%A0%E6%91%98%E8%A6%81"><span class="nav-number">2.1.</span> <span class="nav-text">文章摘要</span></a></li></ol></li></ol></div>
-      </div>
-      <!--/noindex-->
-
-      <div class="site-overview-wrap sidebar-panel">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-  <p class="site-author-name" itemprop="name">hey137</p>
-  <div class="site-description" itemprop="description">And let each day be a loss to us on which we did not dance once!</div>
-</div>
-<div class="site-state-wrap motion-element">
-  <nav class="site-state">
-      <div class="site-state-item site-state-posts">
-          <a href="/archives/">
-        
-          <span class="site-state-item-count">4</span>
-          <span class="site-state-item-name">日志</span>
-        </a>
-      </div>
-      <div class="site-state-item site-state-tags">
-            <a href="/tags/">
-        <span class="site-state-item-count">6</span>
-        <span class="site-state-item-name">标签</span></a>
-      </div>
-  </nav>
-</div>
-
-
-
-      </div>
-
-    </div>
-  </aside>
-  <div id="sidebar-dimmer"></div>
-
-
-      </div>
-    </main>
-
-    <footer class="footer">
-      <div class="footer-inner">
-        
-
-        
-
-<div class="copyright">
-  
-  &copy; 
-  <span itemprop="copyrightYear">2023</span>
-  <span class="with-love">
-    <i class="fa fa-heart"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">hey137</span>
-</div>
-  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
-  </div>
-
-        
-
-
-
-
-
-
-
-
-      </div>
-    </footer>
-  </div>
 
   
-  <script src="/lib/anime.min.js"></script>
-  <script src="/lib/velocity/velocity.min.js"></script>
-  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
 
-<script src="/js/utils.js"></script>
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
 
-<script src="/js/motion.js"></script>
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
 
 
-<script src="/js/schemes/pisces.js"></script>
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
 
 
-<script src="/js/next-boot.js"></script>
 
 
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
 
 
   
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-  
-
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
 </body>
 </html>
