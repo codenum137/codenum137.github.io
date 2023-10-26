@@ -26,7 +26,7 @@
 <meta property="og:image" content="https://codenum137.github.io/2023/10/25/Go%E8%AF%AD%E8%A8%80%E7%AE%80%E6%98%8E%E6%95%99%E7%A8%8B/image-20231025170551590.png">
 <meta property="og:image" content="https://codenum137.github.io/2023/10/25/Go%E8%AF%AD%E8%A8%80%E7%AE%80%E6%98%8E%E6%95%99%E7%A8%8B/image-20231025171807679.png">
 <meta property="article:published_time" content="2023-10-25T08:19:22.000Z">
-<meta property="article:modified_time" content="2023-10-25T09:52:05.830Z">
+<meta property="article:modified_time" content="2023-10-26T03:28:33.448Z">
 <meta property="article:author" content="hey137">
 <meta property="article:tag" content="go">
 <meta name="twitter:card" content="summary_large_image">
@@ -223,7 +223,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.2k 字
+          2.9k 字
         
       </span>
     
@@ -234,7 +234,7 @@
         
         
         
-          10 分钟
+          25 分钟
         
       </span>
     
@@ -277,6 +277,7 @@
               <div class="markdown-body">
                 
                 <h1>Go</h1>
+<p><a target="_blank" rel="noopener" href="https://geektutu.com/post/quick-golang.html">Go 语言简明教程 | 快速入门 | 极客兔兔 (geektutu.com)</a></p>
 <h2 id="Go安装">Go安装</h2>
 <p><a target="_blank" rel="noopener" href="https://golang.org/dl/">官方下载</a>下载go并安装。</p>
 <h3 id="vscode配置go环境">vscode配置go环境</h3>
@@ -342,6 +343,42 @@
 <li>布尔：boolean</li>
 </ul>
 <figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs go"><span class="hljs-keyword">var</span> a <span class="hljs-type">int8</span> = <span class="hljs-number">10</span><br><span class="hljs-keyword">var</span> c1 <span class="hljs-type">byte</span> = <span class="hljs-string">&#x27;a&#x27;</span><br><span class="hljs-keyword">var</span> b <span class="hljs-type">float32</span> = <span class="hljs-number">12.2</span><br><span class="hljs-keyword">var</span> msg = <span class="hljs-string">&quot;Hello World&quot;</span><br>ok := <span class="hljs-literal">false</span><br></code></pre></td></tr></table></figure>
+<h3 id="字符串">字符串</h3>
+<p>Go语言使用UTF-8编码，不是ASCII。英文字符占1byte，中文占3byte。</p>
+<p>使用<code>reflect.TypeOf().Kind() </code>可以知道字符串的类型是uint8，占一个byte，引用新的包需要在<code>import</code>中添加。</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs go">str1 := <span class="hljs-string">&quot;Golang&quot;</span><br>str2 := <span class="hljs-string">&quot;Go语言&quot;</span><br>fmt.Println(reflect.TypeOf(str2[<span class="hljs-number">2</span>]).Kind()) <span class="hljs-comment">// uint8</span><br></code></pre></td></tr></table></figure>
+<p>因此打印字符需要使用<code>string</code>类型转换，但由于中文UTF-8占3个字符，故<code>string</code>也无法正常显示。</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs go">fmt.Println(str1[<span class="hljs-number">2</span>], <span class="hljs-type">string</span>(str1[<span class="hljs-number">2</span>]))       <span class="hljs-comment">// 108 l</span><br>fmt.Printf(<span class="hljs-string">&quot;%d %c\n&quot;</span>, str2[<span class="hljs-number">2</span>], str2[<span class="hljs-number">2</span>])     <span class="hljs-comment">// 232 è</span><br>fmt.Println(<span class="hljs-string">&quot;len(str2)：&quot;</span>, <span class="hljs-built_in">len</span>(str2))       <span class="hljs-comment">// len(str2)： 8 Go占2byte，语言占6byte</span><br></code></pre></td></tr></table></figure>
+<p>显示中文需要将字符串转化为<code>rune</code>数组，转换成 <code>[]rune</code> 类型后，字符串中的每个字符，无论占多少个字节都用 int32 来表示，因而可以正确处理中文。</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs go">str2 := <span class="hljs-string">&quot;Go语言&quot;</span><br>runeArr := []<span class="hljs-type">rune</span>(str2)<br>fmt.Println(reflect.TypeOf(runeArr[<span class="hljs-number">2</span>]).Kind()) <span class="hljs-comment">// int32</span><br>fmt.Println(runeArr[<span class="hljs-number">2</span>], <span class="hljs-type">string</span>(runeArr[<span class="hljs-number">2</span>]))    <span class="hljs-comment">// 35821 语</span><br>fmt.Println(<span class="hljs-string">&quot;len(runeArr)：&quot;</span>, <span class="hljs-built_in">len</span>(runeArr))    <span class="hljs-comment">// len(runeArr)： 4</span><br></code></pre></td></tr></table></figure>
+<h3 id="数组（array）与切片（slice）">数组（array）与切片（slice）</h3>
+<ul>
+<li>
+<p>数组</p>
+<p>声明数组</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs go"><span class="hljs-keyword">var</span> arr [<span class="hljs-number">5</span>]<span class="hljs-type">int</span>     <span class="hljs-comment">// 一维</span><br><span class="hljs-keyword">var</span> arr2 [<span class="hljs-number">5</span>][<span class="hljs-number">5</span>]<span class="hljs-type">int</span> <span class="hljs-comment">// 二维 </span><br></code></pre></td></tr></table></figure>
+<p>声明初始化</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs go"><span class="hljs-keyword">var</span> arr = [<span class="hljs-number">5</span>]<span class="hljs-type">int</span>&#123;<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>&#125;<br><span class="hljs-comment">// 或 arr := [5]int&#123;1, 2, 3, 4, 5&#125;</span><br></code></pre></td></tr></table></figure>
+<p>索引[]，修改</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs go">arr := [<span class="hljs-number">5</span>]<span class="hljs-type">int</span>&#123;<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>&#125;<br><span class="hljs-keyword">for</span> i := <span class="hljs-number">0</span>; i &lt; <span class="hljs-built_in">len</span>(arr); i++ &#123;<br>	arr[i] += <span class="hljs-number">100</span><br>&#125;<br>fmt.Println(arr)  <span class="hljs-comment">// [101 102 103 104 105]</span><br></code></pre></td></tr></table></figure>
+</li>
+<li>
+<p>切片</p>
+<p>数组的长度不能改变，如果想拼接2个数组，或是获取子数组，需要使用切片。切片是数组的抽象。 切片使用数组作为底层结构。切片包含三个组件：容量，长度和指向底层数组的指针,切片可以随时进行扩展</p>
+<p>声明切片</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs go">slice1 := <span class="hljs-built_in">make</span>([]<span class="hljs-type">float32</span>, <span class="hljs-number">0</span>) <span class="hljs-comment">// 长度为0的切片</span><br>slice2 := <span class="hljs-built_in">make</span>([]<span class="hljs-type">float32</span>, <span class="hljs-number">3</span>, <span class="hljs-number">5</span>) <span class="hljs-comment">// [0 0 0] 长度为3容量为5的切片</span><br>fmt.Println(<span class="hljs-built_in">len</span>(slice2), <span class="hljs-built_in">cap</span>(slice2)) <span class="hljs-comment">// 3 </span><br></code></pre></td></tr></table></figure>
+<p>使用切片</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs go"><span class="hljs-comment">// 添加元素，切片容量可以根据需要自动扩展</span><br>slice2 = <span class="hljs-built_in">append</span>(slice2, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>) <span class="hljs-comment">// [0, 0, 0, 1, 2, 3, 4]</span><br>fmt.Println(<span class="hljs-built_in">len</span>(slice2), <span class="hljs-built_in">cap</span>(slice2)) <span class="hljs-comment">// 7 12</span><br><span class="hljs-comment">// 子切片 [start, end)</span><br>sub1 := slice2[<span class="hljs-number">3</span>:] <span class="hljs-comment">// [1 2 3 4]</span><br>sub2 := slice2[:<span class="hljs-number">3</span>] <span class="hljs-comment">// [0 0 0]</span><br>sub3 := slice2[<span class="hljs-number">1</span>:<span class="hljs-number">4</span>] <span class="hljs-comment">// [0 0 1]</span><br><span class="hljs-comment">// 合并切片</span><br>combined := <span class="hljs-built_in">append</span>(sub1, sub2...) <span class="hljs-comment">// [1, 2, 3, 4, 0, 0, 0]</span><br></code></pre></td></tr></table></figure>
+<ul>
+<li>切片的长度可变，不够时会自动扩展</li>
+<li><code>sub2...</code>是切片解构，将切片解构为N个独立元素。</li>
+</ul>
+</li>
+</ul>
+<h3 id="字典（map）">字典（map）</h3>
+<p>ez</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs go"><span class="hljs-comment">// 仅声明</span><br>m1 := <span class="hljs-built_in">make</span>(<span class="hljs-keyword">map</span>[<span class="hljs-type">string</span>]<span class="hljs-type">int</span>)<br><span class="hljs-comment">// 声明时初始化</span><br>m2 := <span class="hljs-keyword">map</span>[<span class="hljs-type">string</span>]<span class="hljs-type">string</span>&#123;<br>	<span class="hljs-string">&quot;Sam&quot;</span>: <span class="hljs-string">&quot;Male&quot;</span>,<br>	<span class="hljs-string">&quot;Alice&quot;</span>: <span class="hljs-string">&quot;Female&quot;</span>,<br>&#125;<br><span class="hljs-comment">// 赋值/修改</span><br>m1[<span class="hljs-string">&quot;Tom&quot;</span>] = <span class="hljs-number">18</span><br></code></pre></td></tr></table></figure>
+<h3 id="指针（pointer）">指针（pointer）</h3>
 
                 
               </div>
@@ -360,7 +397,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/%E5%AD%A6%E4%B9%A0/" class="category-chain-item">学习</a>
+  <a href="/categories/%E6%95%99%E7%A8%8B/" class="category-chain-item">教程</a>
   
   
 
@@ -431,6 +468,12 @@
                 <div class="post-prevnext my-3">
                   <article class="post-prev col-6">
                     
+                    
+                      <a href="/2023/10/26/EndNote%E6%95%99%E7%A8%8B/" title="EndNote教程">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">EndNote教程</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
                     
                   </article>
                   <article class="post-next col-6">
