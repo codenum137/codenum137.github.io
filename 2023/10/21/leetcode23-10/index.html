@@ -25,8 +25,9 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://codenum137.github.io/2023/10/21/leetcode23-10/image-20231025112205483.png">
 <meta property="og:image" content="https://codenum137.github.io/2023/10/21/leetcode23-10/image-20231025112431284.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/10/21/leetcode23-10/image-20231027100154766.png">
 <meta property="article:published_time" content="2023-10-21T08:02:07.000Z">
-<meta property="article:modified_time" content="2023-10-26T01:43:14.572Z">
+<meta property="article:modified_time" content="2023-10-27T02:33:33.649Z">
 <meta property="article:author" content="hey137">
 <meta property="article:tag" content="leetcode">
 <meta property="article:tag" content="算法">
@@ -226,7 +227,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          9.8k 字
+          10k 字
         
       </span>
     
@@ -237,7 +238,7 @@
         
         
         
-          82 分钟
+          88 分钟
         
       </span>
     
@@ -432,6 +433,25 @@
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">countDigits</span><span class="hljs-params">(<span class="hljs-type">int</span> num)</span> </span>&#123;<br>    <span class="hljs-type">int</span> t = num, res = <span class="hljs-number">0</span>;<br>    <span class="hljs-keyword">while</span> (t) &#123;<br>        <span class="hljs-keyword">if</span> (num % (t % <span class="hljs-number">10</span>) == <span class="hljs-number">0</span>) &#123;<br>            res += <span class="hljs-number">1</span>;<br>        &#125;<br>        t /= <span class="hljs-number">10</span>;<br>    &#125;<br>    <span class="hljs-keyword">return</span> res;<br>&#125;<br></code></pre></td></tr></table></figure>
 </li>
 </ul>
+<h2 id="1465-切割后面积最大的蛋糕"><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/maximum-area-of-a-piece-of-cake-after-horizontal-and-vertical-cuts/">1465. 切割后面积最大的蛋糕</a></h2>
+<blockquote>
+<p>矩形蛋糕的高度为 <code>h</code> 且宽度为 <code>w</code>，给你两个整数数组 <code>horizontalCuts</code> 和 <code>verticalCuts</code>，其中：</p>
+<ul>
+<li><code>horizontalCuts[i]</code> 是从矩形蛋糕顶部到第 <code>i</code> 个水平切口的距离</li>
+<li><code>verticalCuts[j]</code> 是从矩形蛋糕的左侧到第 <code>j</code> 个竖直切口的距离</li>
+</ul>
+<p>请你按数组 <em><code>horizontalCuts</code></em> 和 <em><code>verticalCuts</code></em> 中提供的水平和竖直位置切割后，请你找出 <strong>面积最大</strong> 的那份蛋糕，并返回其 <strong>面积</strong> 。由于答案可能是一个很大的数字，因此需要将结果 <strong>对</strong> <code>109 + 7</code> <strong>取余</strong> 后返回。</p>
+<p><img src="/2023/10/21/leetcode23-10/image-20231027100154766.png" srcset="/img/loading.gif" lazyload alt="image-20231027100154766"></p>
+</blockquote>
+<ul>
+<li>
+<p>个人思路：排序，贪心秒了。以后尝试用go语言来写</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs go"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">maxArea</span><span class="hljs-params">(h <span class="hljs-type">int</span>, w <span class="hljs-type">int</span>, horizontalCuts []<span class="hljs-type">int</span>, verticalCuts []<span class="hljs-type">int</span>)</span></span> <span class="hljs-type">int</span> &#123;<br>	hmax, vmax := <span class="hljs-number">0</span>, <span class="hljs-number">0</span><br>	pre := <span class="hljs-number">0</span><br>	sort.Ints(horizontalCuts)<br>	sort.Ints(verticalCuts)<br>	<span class="hljs-keyword">for</span> _, num := <span class="hljs-keyword">range</span> horizontalCuts &#123;<br>		<span class="hljs-keyword">if</span> num-pre &gt; hmax &#123;<br>			hmax = num - pre<br>		&#125;<br>		pre = num<br>	&#125;<br>	hmax = max(hmax, h-pre)<br>	pre = <span class="hljs-number">0</span><br>	<span class="hljs-keyword">for</span> _, num := <span class="hljs-keyword">range</span> verticalCuts &#123;<br>		<span class="hljs-keyword">if</span> num-pre &gt; vmax &#123;<br>			vmax = num - pre<br>		&#125;<br>		pre = num<br>	&#125;<br>	vmax = max(vmax, w-pre)<br>	<span class="hljs-keyword">return</span> hmax * vmax % (<span class="hljs-number">1e9</span> + <span class="hljs-number">7</span>)<br>&#125;<br></code></pre></td></tr></table></figure>
+</li>
+<li>
+<p>官解</p>
+</li>
+</ul>
 <link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
                 
               </div>
@@ -452,6 +472,13 @@
         
   <a href="/categories/%E7%AE%97%E6%B3%95%E7%BC%96%E7%A8%8B/" class="category-chain-item">算法编程</a>
   
+  
+    <span>></span>
+    
+  <a href="/categories/%E7%AE%97%E6%B3%95%E7%BC%96%E7%A8%8B/leetcode/" class="category-chain-item">leetcode</a>
+  
+  
+
   
 
       </span>
