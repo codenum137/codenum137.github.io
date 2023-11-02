@@ -1,0 +1,734 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/H.png">
+  <link rel="icon" href="/img/H.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="hey137">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="2023年11月，力扣每日一题笔记">
+<meta property="og:type" content="article">
+<meta property="og:title" content="leetcode23-11">
+<meta property="og:url" content="https://codenum137.github.io/codenum137.github.io/2023/11/01/leetcode23-11/index.html">
+<meta property="og:site_name" content="Hey~">
+<meta property="og:description" content="2023年11月，力扣每日一题笔记">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://codenum137.github.io/2023/11/01/leetcode23-11/image-20231101115818837.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/11/01/leetcode23-11/image-20231101120031858.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/11/01/leetcode23-11/image-20231101121312534.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/11/01/leetcode23-11/image-20231101122310790.png">
+<meta property="article:published_time" content="2023-11-01T01:51:49.000Z">
+<meta property="article:modified_time" content="2023-11-02T04:52:35.462Z">
+<meta property="article:author" content="hey137">
+<meta property="article:tag" content="leetcode">
+<meta property="article:tag" content="算法">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://codenum137.github.io/2023/11/01/leetcode23-11/image-20231101115818837.png">
+  
+  
+  
+  <title>leetcode23-11 - Hey~</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"codenum137.github.io","root":"/","version":"1.9.5","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Hey~</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="leetcode23-11"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2023-11-01 09:51" pubdate>
+          2023年11月1日 上午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          5.4k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          45 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">leetcode23-11</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1>leetcode23-11</h1>
+<h2 id="2127-参加会议的最多员工数"><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/maximum-employees-to-be-invited-to-a-meeting/">2127. 参加会议的最多员工数</a></h2>
+<blockquote>
+<p>一个公司准备组织一场会议，邀请名单上有 <code>n</code> 位员工。公司准备了一张 <strong>圆形</strong> 的桌子，可以坐下 <strong>任意数目</strong> 的员工。</p>
+<p>员工编号为 <code>0</code> 到 <code>n - 1</code> 。每位员工都有一位 <strong>喜欢</strong> 的员工，每位员工 <strong>当且仅当</strong> 他被安排在喜欢员工的旁边，他才会参加会议。每位员工喜欢的员工 <strong>不会</strong> 是他自己。</p>
+<p>给你一个下标从 <strong>0</strong> 开始的整数数组 <code>favorite</code> ，其中 <code>favorite[i]</code> 表示第 <code>i</code> 位员工喜欢的员工。请你返回参加会议的 <strong>最多员工数目</strong> 。</p>
+</blockquote>
+<ul>
+<li>
+<p>个人思路</p>
+<p>如果将答案中的员工用单向边（a-&gt;b，表示a喜欢b）相连，那么最后其中一定存在一个环，因为假如没有环，这个单向边组成链条中必有一个点没有指出的边，也就是没有喜欢的人，那么他就不应该参会。且这个环，要么是一个两个点的环，要么是一个首尾相连的环，不然无法与喜欢的人在一起。</p>
+<p>这样，我们可以穷举每个人作为起点，依次把前一个人喜欢的人顺时针放入圆桌，同时记录left和right，表示新加入的人左边的人和右边的人，故left始终是起点，而right是前一个新加入的人。而新加入的人new喜欢的人有如下情况：</p>
+<ul>
+<li>不在圆桌上，则继续加入圆桌</li>
+<li>在圆桌上
+<ul>
+<li>是left，形成首尾相连的环，成功，统计长度。</li>
+<li>是right，形成两个点的环，此时查看是否喜欢left的人，有则加入，并继续查看是否有喜欢新加入的人的人，直到没有喜欢新加入的人的人；对new也做同样处理，成功，统计长度。</li>
+<li>既不是left，也不是right，无法坐在一起，失败。</li>
+</ul>
+</li>
+</ul>
+<p><s>且上述情况成功的人可以标作visited，不把他作为起点。遍历完成后统计最大值即为答案。</s></p>
+<p><s>一次逻辑错误，2人环的可以圈地自萌，应记录2人环的数量，然后在最大值再加这个数量即是答案。</s></p>
+<p><s>二次逻辑错误，当答案是其中一个二人环时，需特殊判断一下，否则答案会多2，如[1,2]会是4。</s></p>
+<p><img src="/2023/11/01/leetcode23-11/image-20231101115818837.png" srcset="/img/loading.gif" lazyload alt="image-20231101115818837"></p>
+<p><s>不只2人环可以圈地自萌，除了首尾相连（人数大于2）的成功情况（就二人环带尾巴都可以圈地自萌），并且当答案是首尾相连（人数大于2）时，无法圈地自萌。采用groups累计圈地自萌的数量，res只记录首尾相连(len&gt;2)的最大值，最后res取两者最大值。</s></p>
+<p><img src="/2023/11/01/leetcode23-11/image-20231101120031858.png" srcset="/img/loading.gif" lazyload alt="image-20231101120031858"></p>
+<p>此时样例无法通过了，需要区分groups是否是含有同一个二人环。修改第一次循环判断，增加对visited的判断，开始怀疑是否可以用visited代替table。。</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs go"><span class="hljs-keyword">for</span> _, ok := table[favorite[new_person]]; !ok &amp;&amp; !(visited[favorite[new_person]]); _, ok = table[favorite[new_person]]<br></code></pre></td></tr></table></figure>
+<figure class="highlight txt"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs txt">[2,2,1,2]<br></code></pre></td></tr></table></figure>
+<p><img src="/2023/11/01/leetcode23-11/image-20231101121312534.png" srcset="/img/loading.gif" lazyload alt="image-20231101121312534"></p>
+<p>然而还是出错，现在的问题是对于二人环的两边的尾巴，需要一个搜索来解决，而不是像我这样直接遍历得来的。</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs go">[<span class="hljs-number">6</span>,<span class="hljs-number">10</span>,<span class="hljs-number">10</span>,<span class="hljs-number">0</span>,<span class="hljs-number">6</span>,<span class="hljs-number">0</span>,<span class="hljs-number">4</span>,<span class="hljs-number">4</span>,<span class="hljs-number">1</span>,<span class="hljs-number">3</span>,<span class="hljs-number">3</span>]<br></code></pre></td></tr></table></figure>
+<p><img src="/2023/11/01/leetcode23-11/image-20231101122310790.png" srcset="/img/loading.gif" lazyload alt="image-20231101122310790"></p>
+<p>本人写的笨比代码</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br></pre></td><td class="code"><pre><code class="hljs go"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">int_max</span><span class="hljs-params">(a <span class="hljs-type">int</span>, b <span class="hljs-type">int</span>)</span></span> <span class="hljs-type">int</span> &#123;<br>	<span class="hljs-keyword">if</span> a &gt; b &#123;<br>		<span class="hljs-keyword">return</span> a<br>	&#125; <span class="hljs-keyword">else</span> &#123;<br>		<span class="hljs-keyword">return</span> b<br>	&#125;<br>&#125;<br><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">maximumInvitations</span><span class="hljs-params">(favorite []<span class="hljs-type">int</span>)</span></span> <span class="hljs-type">int</span> &#123;<br>	n := <span class="hljs-built_in">len</span>(favorite)<br>	visited := <span class="hljs-built_in">make</span>([]<span class="hljs-type">bool</span>, n)<br>	<span class="hljs-comment">// for i := 0; i &lt; n; i++ &#123;</span><br>	<span class="hljs-comment">// 	visited[i] = false</span><br>	<span class="hljs-comment">// &#125;</span><br>	res, groups := <span class="hljs-number">0</span>, <span class="hljs-number">0</span><br>	<span class="hljs-keyword">for</span> i := <span class="hljs-number">0</span>; i &lt; n; i++ &#123;<br>		<span class="hljs-keyword">if</span> visited[i] &#123;<br>			<span class="hljs-keyword">continue</span><br>		&#125;<br>		table := <span class="hljs-keyword">map</span>[<span class="hljs-type">int</span>]<span class="hljs-keyword">struct</span>&#123;&#125;&#123;i: <span class="hljs-keyword">struct</span>&#123;&#125;&#123;&#125;&#125;<br>		left, right, new_person, now_len := i, i, i, <span class="hljs-number">1</span><br>		<span class="hljs-keyword">for</span> _, ok := table[favorite[new_person]]; !ok &amp;&amp; !(visited[favorite[new_person]]); _, ok = table[favorite[new_person]] &#123;<br>			right = new_person<br>			new_person = favorite[new_person]<br>			<span class="hljs-comment">// fmt.Printf(&quot;i:%d new_person:%d\n&quot;, i, new_person)</span><br>			table[new_person] = <span class="hljs-keyword">struct</span>&#123;&#125;&#123;&#125;<br>			now_len++<br>		&#125;<br>		<span class="hljs-keyword">if</span> favorite[new_person] == left || favorite[new_person] == right &#123;<br>			<span class="hljs-keyword">if</span> favorite[new_person] == right &#123;<br>				left_new := [<span class="hljs-number">2</span>]<span class="hljs-type">int</span>&#123;left, new_person&#125;<br>				<span class="hljs-comment">// fmt.Printf(&quot;left_new:%v\n&quot;, left_new)</span><br>				<span class="hljs-comment">// fmt.Printf(&quot;table:%v\n&quot;, table)</span><br>				<span class="hljs-keyword">for</span> p := <span class="hljs-number">0</span>; p &lt; <span class="hljs-number">2</span>; p++ &#123;<br>					<span class="hljs-keyword">for</span> flag, target := <span class="hljs-literal">false</span>, left_new[p]; ; &#123;<br>						flag = <span class="hljs-literal">false</span><br>						<span class="hljs-keyword">for</span> j := <span class="hljs-number">0</span>; j &lt; n; j++ &#123;<br>							<span class="hljs-keyword">if</span> _, ok := table[j]; ok || (favorite[j] != target) &#123;<br>								<span class="hljs-keyword">continue</span><br>							&#125; <span class="hljs-keyword">else</span> &#123;<br>								target = j<br>								<span class="hljs-comment">// fmt.Printf(&quot;i:%d new_person:%d\n&quot;, i, target)</span><br>								flag = <span class="hljs-literal">true</span><br>								table[j] = <span class="hljs-keyword">struct</span>&#123;&#125;&#123;&#125;<br>								now_len++<br>								<span class="hljs-keyword">break</span><br>							&#125;<br>						&#125;<br>						<span class="hljs-keyword">if</span> !flag &#123;<br>							<span class="hljs-keyword">break</span><br>						&#125;<br>					&#125;<br>				&#125;<br>				groups += now_len<br>			&#125; <span class="hljs-keyword">else</span> &#123;<br>				<span class="hljs-keyword">if</span> res &lt; now_len &#123;<br>					res = now_len<br>				&#125;<br>			&#125;<br>			<span class="hljs-comment">// fmt.Printf(&quot;res:%d now_len:%d\n&quot;, res, now_len)</span><br>			<span class="hljs-keyword">for</span> key, _ := <span class="hljs-keyword">range</span> table &#123;<br>				visited[key] = <span class="hljs-literal">true</span><br>			&#125;<br>		&#125;<br>	&#125;<br>	res = int_max(res, groups)<br>	<span class="hljs-keyword">return</span> res<br>&#125;<br></code></pre></td></tr></table></figure>
+</li>
+<li>
+<p>愚蠢的写法，for循环永远不会执行。</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs go"><span class="hljs-keyword">for</span> flag, target := <span class="hljs-literal">false</span>, left_new[p]; flag; &#123;&#125;<br></code></pre></td></tr></table></figure>
+<p>这几天搞不清楚这个for的执行次序出错很多次了，应是先初始化，再做判断，执行一遍代码，然后循环（赋值，判断，执行代码）</p>
+</li>
+<li>
+<p>官解</p>
+<p>个人思路其实正确，重点在于如何求解环为2的长度。</p>
+<blockquote>
+<p>为了求解「基环内向树」上的最长的「双向游走」路径，我们可以使用拓扑排序 + 动态规划的方法。记 f[i]表示到节点 i为止的最长「游走」路径经过的节点个数，那么状态方程即为：</p>
+<p class="katex-block "><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>f</mi><mo stretchy="false">[</mo><mi>i</mi><mo stretchy="false">]</mo><mo>=</mo><munder><mrow><mi>max</mi><mo>⁡</mo></mrow><mrow><mi>j</mi><mo>→</mo><mi>i</mi></mrow></munder><mo stretchy="false">{</mo><mi>f</mi><mo stretchy="false">[</mo><mi>j</mi><mo stretchy="false">]</mo><mo stretchy="false">}</mo><mo>+</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">f[i] = \max_{j \to i}\{ f[j] \} + 1
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.10764em;">f</span><span class="mopen">[</span><span class="mord mathnormal">i</span><span class="mclose">]</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1.6138em;vertical-align:-0.8638em;"></span><span class="mop op-limits"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.4306em;"><span style="top:-2.3723em;margin-left:0em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.05724em;">j</span><span class="mrel mtight">→</span><span class="mord mathnormal mtight">i</span></span></span></span><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span><span class="mop">max</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.8638em;"><span></span></span></span></span></span><span class="mopen">{</span><span class="mord mathnormal" style="margin-right:0.10764em;">f</span><span class="mopen">[</span><span class="mord mathnormal" style="margin-right:0.05724em;">j</span><span class="mclose">]}</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">1</span></span></span></span></span></p>
+<p>即我们考虑节点 i 的上一个节点 j，在图中必须有从 j 到 i的一条有向边，这样我们就可以从 j 转移到 i。如果不存在满足要求的 j（例如「基环内向树」退化成一个大小 =2 的环），那么 f[i]=1。状态转移可以和拓扑排序同时进行。</p>
+<p>在拓扑排序完成后，剩余没有被弹出过队列的节点就是环上的节点。我们可以找出每一个环。如果环的大小 ≥3，我们就用其来更新最大的环的大小；如果环的大小 =2，设环上的两个节点为 x和 y，那么该「基环内向树」上最长的「双向游走」的路径长度就是 f[x]+f[y]。</p>
+</blockquote>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br></pre></td><td class="code"><pre><code class="hljs go"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">maximumInvitations</span><span class="hljs-params">(favorite []<span class="hljs-type">int</span>)</span></span> <span class="hljs-type">int</span> &#123;<br>    n := <span class="hljs-built_in">len</span>(favorite)<br>    <span class="hljs-comment">// 统计入度，便于进行拓扑排序</span><br>    indeg := <span class="hljs-built_in">make</span>([]<span class="hljs-type">int</span>, n)<br>    <span class="hljs-keyword">for</span> _, x := <span class="hljs-keyword">range</span> favorite &#123;<br>        indeg[x]++<br>    &#125;<br><br>    used := <span class="hljs-built_in">make</span>([] <span class="hljs-type">bool</span>, n)<br>    f := <span class="hljs-built_in">make</span>([] <span class="hljs-type">int</span>, n)<br>    <span class="hljs-keyword">for</span> i := <span class="hljs-number">0</span>; i &lt; n; i++ &#123;<br>        f[i] = <span class="hljs-number">1</span><br>    &#125;<br>    <br>    q := []<span class="hljs-type">int</span>&#123;&#125;<br>    <span class="hljs-keyword">for</span> i := <span class="hljs-number">0</span>; i &lt; n; i++ &#123;<br>        <span class="hljs-keyword">if</span> indeg[i] == <span class="hljs-number">0</span> &#123;<br>            q = <span class="hljs-built_in">append</span>(q, i)<br>        &#125;<br>    &#125;<br>    <span class="hljs-keyword">for</span> <span class="hljs-built_in">len</span>(q) &gt; <span class="hljs-number">0</span> &#123;<br>        u := q[<span class="hljs-number">0</span>]<br>        used[u] = <span class="hljs-literal">true</span><br>        q = q[<span class="hljs-number">1</span>:]<br>        v := favorite[u]<br>        <span class="hljs-comment">// 状态转移</span><br>        f[v] = max(f[v], f[u] + <span class="hljs-number">1</span>);<br>        indeg[v]--<br>        <span class="hljs-keyword">if</span> indeg[v] == <span class="hljs-number">0</span> &#123;<br>            q = <span class="hljs-built_in">append</span>(q, v)<br>        &#125;<br>    &#125;<br>    <span class="hljs-comment">// ring 表示最大的环的大小</span><br>    <span class="hljs-comment">// total 表示所有环大小为 2 的「基环内向树」上的最长的「双向游走」路径之和</span><br>    ring, total := <span class="hljs-number">0</span>, <span class="hljs-number">0</span><br>    <span class="hljs-keyword">for</span> i := <span class="hljs-number">0</span>; i &lt; n; i++ &#123;<br>        <span class="hljs-keyword">if</span> !used[i] &#123;<br>            j := favorite[i];<br>            <span class="hljs-comment">// favorite[favorite[i]] = i 说明环的大小为 2</span><br>            <span class="hljs-keyword">if</span> favorite[j] == i &#123;<br>                total += f[i] + f[j]<br>                used[i], used[j] = <span class="hljs-literal">true</span>, <span class="hljs-literal">true</span><br>            &#125; <span class="hljs-keyword">else</span> &#123;<br>                <span class="hljs-comment">// 否则环的大小至少为 3，我们需要找出环</span><br>                u, cnt := i, <span class="hljs-number">0</span><br>                <span class="hljs-keyword">for</span> <span class="hljs-literal">true</span> &#123;<br>                    cnt++<br>                    u = favorite[u]<br>                    used[u] = <span class="hljs-literal">true</span><br>                    <span class="hljs-keyword">if</span> u == i &#123;<br>                        <span class="hljs-keyword">break</span><br>                    &#125;<br>                &#125;<br>                ring = max(ring, cnt)<br>            &#125;<br>        &#125;<br>    &#125;<br>    <span class="hljs-keyword">return</span> max(ring, total)<br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">max</span><span class="hljs-params">(x, y <span class="hljs-type">int</span>)</span></span> <span class="hljs-type">int</span> &#123;<br>    <span class="hljs-keyword">if</span> x &lt; y &#123;<br>        <span class="hljs-keyword">return</span> y<br>    &#125;<br>    <span class="hljs-keyword">return</span> x<br>&#125;<br><br></code></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="2103-环和杆"><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/rings-and-rods/">2103. 环和杆</a></h2>
+<blockquote>
+<p>总计有 <code>n</code> 个环，环的颜色可以是红、绿、蓝中的一种。这些环分别穿在 10 根编号为 <code>0</code> 到 <code>9</code> 的杆上。</p>
+<p>给你一个长度为 <code>2n</code> 的字符串 <code>rings</code> ，表示这 <code>n</code> 个环在杆上的分布。<code>rings</code> 中每两个字符形成一个 <strong>颜色位置对</strong> ，用于描述每个环：</p>
+<ul>
+<li>第 <code>i</code> 对中的 <strong>第一个</strong> 字符表示第 <code>i</code> 个环的 <strong>颜色</strong>（<code>'R'</code>、<code>'G'</code>、<code>'B'</code>）。</li>
+<li>第 <code>i</code> 对中的 <strong>第二个</strong> 字符表示第 <code>i</code> 个环的 <strong>位置</strong>，也就是位于哪根杆上（<code>'0'</code> 到 <code>'9'</code>）。</li>
+</ul>
+<p>例如，<code>&quot;R3G2B1&quot;</code> 表示：共有 <code>n == 3</code> 个环，红色的环在编号为 3 的杆上，绿色的环在编号为 2 的杆上，蓝色的环在编号为 1 的杆上。</p>
+<p>找出所有集齐 <strong>全部三种颜色</strong> 环的杆，并返回这种杆的数量。</p>
+</blockquote>
+<ul>
+<li>
+<p>个人思路</p>
+<p>模拟很简单，重点在于如何快速的判断三种颜色都存在。我的思路是，另每一个颜色代表一个质数，如2,3,5，每个杆都有一个初始值，为1。遍历颜色环，在i号杆就零i号杆的值乘以对于颜色的质数。最后遍历杆的值，能整除15的就是三种颜色都有的。</p>
+<p>wait，有个新思路，上述涉及乘法可能会有溢出的问题，可以采用位运算。一种运算过一次就不一样的位运算，就是或。三种颜色对应不同位上的1，如001,010,100；每个杆初始值为0，按位或，最后为111的就是三种颜色都有的。</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs go"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">countPoints</span><span class="hljs-params">(rings <span class="hljs-type">string</span>)</span></span> <span class="hljs-type">int</span> &#123;<br>	rgb := <span class="hljs-keyword">map</span>[<span class="hljs-type">string</span>]<span class="hljs-type">int</span>&#123;<span class="hljs-string">&quot;R&quot;</span>: <span class="hljs-number">1</span> &lt;&lt; <span class="hljs-number">0</span>, <span class="hljs-string">&quot;G&quot;</span>: <span class="hljs-number">1</span> &lt;&lt; <span class="hljs-number">1</span>, <span class="hljs-string">&quot;B&quot;</span>: <span class="hljs-number">1</span> &lt;&lt; <span class="hljs-number">2</span>&#125;<br>	pole, res := [<span class="hljs-number">10</span>]<span class="hljs-type">int</span>&#123;&#125;, <span class="hljs-number">0</span><br><br>	<span class="hljs-keyword">for</span> i := <span class="hljs-number">0</span>; i &lt; <span class="hljs-built_in">len</span>(rings); i += <span class="hljs-number">2</span> &#123;<br>		pn, _ := strconv.Atoi(<span class="hljs-type">string</span>(rings[i+<span class="hljs-number">1</span>])) <span class="hljs-comment">//Atoi返回转化后的数字和错误</span><br>		pole[pn] |= rgb[<span class="hljs-type">string</span>(rings[i])]<br>	&#125;<br>	<span class="hljs-keyword">for</span> i := <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">10</span>; i++ &#123;<br>		<span class="hljs-comment">// fmt.Println(pole[i])</span><br>		<span class="hljs-keyword">if</span> pole[i] == <span class="hljs-number">7</span> &#123;<br>			res++<br>		&#125;<br>	&#125;<br>	<span class="hljs-keyword">return</span> res<br>&#125;<br></code></pre></td></tr></table></figure>
+</li>
+<li>
+<p>官解</p>
+<p>学习一位数字的字符串转化整形</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs go">pole_index := rings[i + <span class="hljs-number">1</span>] - <span class="hljs-string">&#x27;0&#x27;</span><br></code></pre></td></tr></table></figure>
+</li>
+</ul>
+<link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E7%AE%97%E6%B3%95%E7%BC%96%E7%A8%8B/" class="category-chain-item">算法编程</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/%E7%AE%97%E6%B3%95%E7%BC%96%E7%A8%8B/leetcode/" class="category-chain-item">leetcode</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/leetcode/" class="print-no-link">#leetcode</a>
+      
+        <a href="/tags/%E7%AE%97%E6%B3%95/" class="print-no-link">#算法</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>leetcode23-11</div>
+      <div>https://codenum137.github.io/codenum137.github.io/2023/11/01/leetcode23-11/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>hey137</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2023年11月1日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2023/10/27/Go%E9%AB%98%E6%80%A7%E8%83%BD%E7%9C%81%E6%B5%81%E7%89%88/" title="Go高性能省流版">
+                        <span class="hidden-mobile">Go高性能省流版</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

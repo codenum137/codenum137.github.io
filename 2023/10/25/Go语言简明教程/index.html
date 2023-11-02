@@ -26,7 +26,7 @@
 <meta property="og:image" content="https://codenum137.github.io/2023/10/25/Go%E8%AF%AD%E8%A8%80%E7%AE%80%E6%98%8E%E6%95%99%E7%A8%8B/image-20231025170551590.png">
 <meta property="og:image" content="https://codenum137.github.io/2023/10/25/Go%E8%AF%AD%E8%A8%80%E7%AE%80%E6%98%8E%E6%95%99%E7%A8%8B/image-20231025171807679.png">
 <meta property="article:published_time" content="2023-10-25T08:19:22.000Z">
-<meta property="article:modified_time" content="2023-10-31T06:35:43.926Z">
+<meta property="article:modified_time" content="2023-11-02T04:52:30.744Z">
 <meta property="article:author" content="hey137">
 <meta property="article:tag" content="go">
 <meta name="twitter:card" content="summary_large_image">
@@ -234,7 +234,7 @@
         
         
         
-          116 分钟
+          118 分钟
         
       </span>
     
@@ -414,13 +414,28 @@
 <figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs go">fmt.Println(str1[<span class="hljs-number">2</span>], <span class="hljs-type">string</span>(str1[<span class="hljs-number">2</span>]))       <span class="hljs-comment">// 108 l</span><br>fmt.Printf(<span class="hljs-string">&quot;%d %c\n&quot;</span>, str2[<span class="hljs-number">2</span>], str2[<span class="hljs-number">2</span>])     <span class="hljs-comment">// 232 è</span><br>fmt.Println(<span class="hljs-string">&quot;len(str2)：&quot;</span>, <span class="hljs-built_in">len</span>(str2))       <span class="hljs-comment">// len(str2)： 8 Go占2byte，语言占6byte</span><br></code></pre></td></tr></table></figure>
 <p>显示中文需要将字符串转化为<code>rune</code>数组，转换成 <code>[]rune</code> 类型后，字符串中的每个字符，无论占多少个字节都用 int32 来表示，因而可以正确处理中文。</p>
 <figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs go">str2 := <span class="hljs-string">&quot;Go语言&quot;</span><br>runeArr := []<span class="hljs-type">rune</span>(str2)<br>fmt.Println(reflect.TypeOf(runeArr[<span class="hljs-number">2</span>]).Kind()) <span class="hljs-comment">// int32</span><br>fmt.Println(runeArr[<span class="hljs-number">2</span>], <span class="hljs-type">string</span>(runeArr[<span class="hljs-number">2</span>]))    <span class="hljs-comment">// 35821 语</span><br>fmt.Println(<span class="hljs-string">&quot;len(runeArr)：&quot;</span>, <span class="hljs-built_in">len</span>(runeArr))    <span class="hljs-comment">// len(runeArr)： 4</span><br></code></pre></td></tr></table></figure>
+<h4 id="类型转化">类型转化</h4>
+<ul>
+<li>
+<p>字符串转数字</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs go">pn, _ := strconv.Atoi(<span class="hljs-type">string</span>(rings[i+<span class="hljs-number">1</span>]))<br></code></pre></td></tr></table></figure>
+<p>若是一位数字</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs go">pole_index := rings[i + <span class="hljs-number">1</span>] - <span class="hljs-string">&#x27;0&#x27;</span><br></code></pre></td></tr></table></figure>
+</li>
+<li>
+<p>数字转字符串</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs go">s := strconv.Itoa(i)<br></code></pre></td></tr></table></figure>
+<p>或者，注意是<code>%d</code>，不是<code>%s</code>。</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs go">s := fmt.Sprintf(<span class="hljs-string">&quot;%d&quot;</span>, <span class="hljs-type">int32</span>(<span class="hljs-number">111</span>))<br></code></pre></td></tr></table></figure>
+</li>
+</ul>
 <h3 id="数组（array）与切片（slice）">数组（array）与切片（slice）</h3>
 <ul>
 <li>
 <p>数组</p>
 <p>声明数组</p>
 <figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs go"><span class="hljs-keyword">var</span> arr [<span class="hljs-number">5</span>]<span class="hljs-type">int</span>     <span class="hljs-comment">// 一维</span><br><span class="hljs-keyword">var</span> arr2 [<span class="hljs-number">5</span>][<span class="hljs-number">5</span>]<span class="hljs-type">int</span> <span class="hljs-comment">// 二维 </span><br></code></pre></td></tr></table></figure>
-<p>声明初始化</p>
+<p>声明初始化，若没有初始化，就是默认值，如整形就是0。</p>
 <figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs go"><span class="hljs-keyword">var</span> arr = [<span class="hljs-number">5</span>]<span class="hljs-type">int</span>&#123;<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>&#125;<br><span class="hljs-comment">// 或 arr := [5]int&#123;1, 2, 3, 4, 5&#125;</span><br><span class="hljs-comment">// 或 arr := [...]int&#123;1,2,3,4,5&#125;</span><br></code></pre></td></tr></table></figure>
 <p>索引[]，修改</p>
 <figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs go">arr := [<span class="hljs-number">5</span>]<span class="hljs-type">int</span>&#123;<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>&#125;<br><span class="hljs-keyword">for</span> i := <span class="hljs-number">0</span>; i &lt; <span class="hljs-built_in">len</span>(arr); i++ &#123;<br>	arr[i] += <span class="hljs-number">100</span><br>&#125;<br>fmt.Println(arr)  <span class="hljs-comment">// [101 102 103 104 105]</span><br></code></pre></td></tr></table></figure>
