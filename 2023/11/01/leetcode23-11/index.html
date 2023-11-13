@@ -31,8 +31,9 @@
 <meta property="og:image" content="https://codenum137.github.io/2023/11/01/leetcode23-11/image-20231103105139031.png">
 <meta property="og:image" content="https://codenum137.github.io/2023/11/01/leetcode23-11/image-20231109130858875.png">
 <meta property="og:image" content="https://codenum137.github.io/2023/11/01/leetcode23-11/image-20231110094954664.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/11/01/leetcode23-11/image-20231113105050025.png">
 <meta property="article:published_time" content="2023-11-01T01:51:49.000Z">
-<meta property="article:modified_time" content="2023-11-10T01:54:00.652Z">
+<meta property="article:modified_time" content="2023-11-13T02:51:09.761Z">
 <meta property="article:author" content="hey137">
 <meta property="article:tag" content="leetcode">
 <meta property="article:tag" content="算法">
@@ -230,7 +231,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          20k 字
+          23k 字
         
       </span>
     
@@ -241,7 +242,7 @@
         
         
         
-          166 分钟
+          190 分钟
         
       </span>
     
@@ -580,6 +581,68 @@
 <p>双指针</p>
 <p>spells升序，potions降序，i，j为两者排序后的初始下标，随着i的增加，j只增不减，为O(n)。为了记录原始下标，对<strong>spells下标</strong>按照其位置上的能量强度进行升序排序。</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-function">vector&lt;<span class="hljs-type">int</span>&gt; <span class="hljs-title">successfulPairs</span><span class="hljs-params">(vector&lt;<span class="hljs-type">int</span>&gt;&amp; spells, vector&lt;<span class="hljs-type">int</span>&gt;&amp; potions, <span class="hljs-type">long</span> <span class="hljs-type">long</span> success)</span> </span>&#123;<br>        <span class="hljs-function">vector&lt;<span class="hljs-type">int</span>&gt; <span class="hljs-title">res</span><span class="hljs-params">(spells.size())</span></span>;<br>        <span class="hljs-function">vector&lt;<span class="hljs-type">int</span>&gt; <span class="hljs-title">idx</span><span class="hljs-params">(spells.size())</span></span>;<br>        <span class="hljs-built_in">iota</span>(idx.<span class="hljs-built_in">begin</span>(), idx.<span class="hljs-built_in">end</span>(), <span class="hljs-number">0</span>);<br>        <span class="hljs-built_in">sort</span>(idx.<span class="hljs-built_in">begin</span>(), idx.<span class="hljs-built_in">end</span>(), [&amp;](<span class="hljs-type">int</span> a, <span class="hljs-type">int</span> b) &#123;<br>            <span class="hljs-keyword">return</span> spells[a] &lt; spells[b];<br>        &#125;);<br>        <span class="hljs-built_in">sort</span>(potions.<span class="hljs-built_in">begin</span>(), potions.<span class="hljs-built_in">end</span>(), [](<span class="hljs-type">int</span> a, <span class="hljs-type">int</span> b) &#123;<br>            <span class="hljs-keyword">return</span> a &gt; b;<br>        &#125;);<br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>, j = <span class="hljs-number">0</span>; i &lt; spells.<span class="hljs-built_in">size</span>(); ++i) &#123;<br>            <span class="hljs-type">int</span> p = idx[i];<br>            <span class="hljs-type">int</span> v = spells[p];<br>            <span class="hljs-keyword">while</span> (j &lt; potions.<span class="hljs-built_in">size</span>() &amp;&amp; (<span class="hljs-type">long</span> <span class="hljs-type">long</span>) potions[j] * v &gt;= success) &#123;<br>                ++j;<br>            &#125;<br>            res[p] = j;<br>        &#125;<br>        <span class="hljs-keyword">return</span> res;<br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="765-情侣牵手"><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/couples-holding-hands/">765. 情侣牵手</a></h2>
+<blockquote>
+<p><code>n</code> 对情侣坐在连续排列的 <code>2n</code> 个座位上，想要牵到对方的手。</p>
+<p>人和座位由一个整数数组 <code>row</code> 表示，其中 <code>row[i]</code> 是坐在第 <code>i </code>个座位上的人的 <strong>ID</strong>。情侣们按顺序编号，第一对是 <code>(0, 1)</code>，第二对是 <code>(2, 3)</code>，以此类推，最后一对是 <code>(2n-2, 2n-1)</code>。</p>
+<p>返回 <em>最少交换座位的次数，以便每对情侣可以并肩坐在一起</em>。 <em>每次</em>交换可选择任意两人，让他们站起来交换座位。</p>
+</blockquote>
+<ul>
+<li>
+<p>个人思路</p>
+<ul>
+<li>
+<p>一开始将所有已经牵手的情侣去掉，剩下的都是未牵手的。然后明确一点，一个最小的情侣圈（情侣圈指这个圈子的所有情侣里是能通过交换座位来牵手的，不会出现单身狗。最小的是指这个圈无法通过划分变成两个更小的情侣圈）的人数是2n，那么必定需要交换n-1次来使情侣两两牵手。</p>
+<p>如何寻找最小的情侣圈？</p>
+<p>没想出来</p>
+</li>
+</ul>
+</li>
+<li>
+<p>官解</p>
+<ul>
+<li>
+<p>并查集</p>
+<p>自己都说情侣圈了，其实就是找环。</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><code class="hljs go">class Solution &#123;<br>public:<br>    <span class="hljs-type">int</span> getf(vector&lt;<span class="hljs-type">int</span>&gt;&amp; f, <span class="hljs-type">int</span> x) &#123;<br>        <span class="hljs-keyword">if</span> (f[x] == x) &#123;<br>            <span class="hljs-keyword">return</span> x;<br>        &#125;<br>        <span class="hljs-type">int</span> newf = getf(f, f[x]);<br>        f[x] = newf;<br>        <span class="hljs-keyword">return</span> newf;<br>    &#125;<br><br>    void add(vector&lt;<span class="hljs-type">int</span>&gt;&amp; f, <span class="hljs-type">int</span> x, <span class="hljs-type">int</span> y) &#123;<br>        <span class="hljs-type">int</span> fx = getf(f, x);<br>        <span class="hljs-type">int</span> fy = getf(f, y);<br>        f[fx] = fy;<br>    &#125;<br><br>    <span class="hljs-type">int</span> minSwapsCouples(vector&lt;<span class="hljs-type">int</span>&gt;&amp; row) &#123;<br>        <span class="hljs-type">int</span> n = row.size();<br>        <span class="hljs-type">int</span> tot = n / <span class="hljs-number">2</span>;<br>        vector&lt;<span class="hljs-type">int</span>&gt; f(tot, <span class="hljs-number">0</span>);<br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; tot; i++) &#123;<br>            f[i] = i;<br>        &#125;<br><br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; n; i += <span class="hljs-number">2</span>) &#123;<br>            <span class="hljs-type">int</span> l = row[i] / <span class="hljs-number">2</span>;<br>            <span class="hljs-type">int</span> r = row[i + <span class="hljs-number">1</span>] / <span class="hljs-number">2</span>;<br>            add(f, l, r);<br>        &#125;<br><br>        unordered_map&lt;<span class="hljs-type">int</span>, <span class="hljs-type">int</span>&gt; m;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; tot; i++) &#123;<br>            <span class="hljs-type">int</span> fx = getf(f, i);<br>            m[fx]++;<br>        &#125;<br>        <br>        <span class="hljs-type">int</span> ret = <span class="hljs-number">0</span>;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">const</span> auto&amp; [f, sz]: m) &#123;<br>            ret += sz - <span class="hljs-number">1</span>;<br>        &#125;<br>        <span class="hljs-keyword">return</span> ret;<br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="307-区域和检索-数组可修改"><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/range-sum-query-mutable/">307. 区域和检索 - 数组可修改</a></h2>
+<blockquote>
+<p>给你一个数组 <code>nums</code> ，请你完成两类查询。</p>
+<ol>
+<li>其中一类查询要求 <strong>更新</strong> 数组 <code>nums</code> 下标对应的值</li>
+<li>另一类查询要求返回数组 <code>nums</code> 中索引 <code>left</code> 和索引 <code>right</code> 之间（ <strong>包含</strong> ）的nums元素的 <strong>和</strong> ，其中 <code>left &lt;= right</code></li>
+</ol>
+<p>实现 <code>NumArray</code> 类：</p>
+<ul>
+<li><code>NumArray(int[] nums)</code> 用整数数组 <code>nums</code> 初始化对象</li>
+<li><code>void update(int index, int val)</code> 将 <code>nums[index]</code> 的值 <strong>更新</strong> 为 <code>val</code></li>
+<li><code>int sumRange(int left, int right)</code> 返回数组 <code>nums</code> 中索引 <code>left</code> 和索引 <code>right</code> 之间（ <strong>包含</strong> ）的nums元素的 <strong>和</strong> （即，<code>nums[left] + nums[left + 1], ..., nums[right]</code>）</li>
+</ul>
+</blockquote>
+<ul>
+<li>
+<p>个人思路</p>
+<p>前缀和会超时，原因应该是更新操作费时</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-keyword">class</span> <span class="hljs-title class_">NumArray</span><br>&#123;<br><span class="hljs-keyword">public</span>:<br>    vector&lt;<span class="hljs-type">int</span>&gt; array;<br>    vector&lt;<span class="hljs-type">int</span>&gt; pre_sum;<br>    <span class="hljs-built_in">NumArray</span>(vector&lt;<span class="hljs-type">int</span>&gt; &amp;nums)<br>    &#123;<br>        array.<span class="hljs-built_in">push_back</span>(nums[<span class="hljs-number">0</span>]);<br>        pre_sum.<span class="hljs-built_in">push_back</span>(nums[<span class="hljs-number">0</span>]);<br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>; i &lt; nums.<span class="hljs-built_in">size</span>(); i++)<br>        &#123;<br>            array.<span class="hljs-built_in">push_back</span>(nums[i]);<br>            pre_sum.<span class="hljs-built_in">push_back</span>(pre_sum[i - <span class="hljs-number">1</span>] + nums[i]);<br>        &#125;<br>    &#125;<br><br>    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">update</span><span class="hljs-params">(<span class="hljs-type">int</span> index, <span class="hljs-type">int</span> val)</span></span><br><span class="hljs-function">    </span>&#123;<br>        <span class="hljs-type">int</span> diff = val - array[index];<br>        array[index] = val;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = index; i &lt; array.<span class="hljs-built_in">size</span>(); i++)<br>        &#123;<br>            pre_sum[i] += diff;<br>        &#125;<br>    &#125;<br><br>    <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">sumRange</span><span class="hljs-params">(<span class="hljs-type">int</span> left, <span class="hljs-type">int</span> right)</span></span><br><span class="hljs-function">    </span>&#123;<br>        <span class="hljs-keyword">return</span> left ? pre_sum[right] - pre_sum[left - <span class="hljs-number">1</span>] : pre_sum[right];<br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
+</li>
+<li>
+<p>官解</p>
+<ul>
+<li>
+<p>分块和</p>
+<p>重点在于对分块粒度的分析</p>
+<blockquote>
+<p><img src="/2023/11/01/leetcode23-11/image-20231113105050025.png" srcset="/img/loading.gif" lazyload alt="image-20231113105050025"></p>
+</blockquote>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-keyword">class</span> <span class="hljs-title class_">NumArray</span> &#123;<br><span class="hljs-keyword">private</span>:<br>    vector&lt;<span class="hljs-type">int</span>&gt; sum; <span class="hljs-comment">// sum[i] 表示第 i 个块的元素和</span><br>    <span class="hljs-type">int</span> size; <span class="hljs-comment">// 块的大小</span><br>    vector&lt;<span class="hljs-type">int</span>&gt; &amp;nums;<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-built_in">NumArray</span>(vector&lt;<span class="hljs-type">int</span>&gt;&amp; nums) : <span class="hljs-built_in">nums</span>(nums) &#123;<br>        <span class="hljs-type">int</span> n = nums.<span class="hljs-built_in">size</span>();<br>        size = <span class="hljs-built_in">sqrt</span>(n);<br>        sum.<span class="hljs-built_in">resize</span>((n + size - <span class="hljs-number">1</span>) / size); <span class="hljs-comment">// n/size 向上取整</span><br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; n; i++) &#123;<br>            sum[i / size] += nums[i];<br>        &#125;<br>    &#125;<br><br>    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">update</span><span class="hljs-params">(<span class="hljs-type">int</span> index, <span class="hljs-type">int</span> val)</span> </span>&#123;<br>        sum[index / size] += val - nums[index];<br>        nums[index] = val;<br>    &#125;<br><br>    <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">sumRange</span><span class="hljs-params">(<span class="hljs-type">int</span> left, <span class="hljs-type">int</span> right)</span> </span>&#123;<br>        <span class="hljs-type">int</span> b1 = left / size, i1 = left % size, b2 = right / size, i2 = right % size;<br>        <span class="hljs-keyword">if</span> (b1 == b2) &#123; <span class="hljs-comment">// 区间 [left, right] 在同一块中</span><br>            <span class="hljs-keyword">return</span> <span class="hljs-built_in">accumulate</span>(nums.<span class="hljs-built_in">begin</span>() + b1 * size + i1, nums.<span class="hljs-built_in">begin</span>() + b1 * size + i2 + <span class="hljs-number">1</span>, <span class="hljs-number">0</span>);<br>        &#125;<br>        <span class="hljs-type">int</span> sum1 = <span class="hljs-built_in">accumulate</span>(nums.<span class="hljs-built_in">begin</span>() + b1 * size + i1, nums.<span class="hljs-built_in">begin</span>() + b1 * size + size, <span class="hljs-number">0</span>);<br>        <span class="hljs-type">int</span> sum2 = <span class="hljs-built_in">accumulate</span>(nums.<span class="hljs-built_in">begin</span>() + b2 * size, nums.<span class="hljs-built_in">begin</span>() + b2 * size + i2 + <span class="hljs-number">1</span>, <span class="hljs-number">0</span>);<br>        <span class="hljs-type">int</span> sum3 = <span class="hljs-built_in">accumulate</span>(sum.<span class="hljs-built_in">begin</span>() + b1 + <span class="hljs-number">1</span>, sum.<span class="hljs-built_in">begin</span>() + b2, <span class="hljs-number">0</span>);<br>        <span class="hljs-keyword">return</span> sum1 + sum2 + sum3;<br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
 </li>
 </ul>
 </li>
