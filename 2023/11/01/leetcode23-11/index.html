@@ -34,8 +34,10 @@
 <meta property="og:image" content="https://codenum137.github.io/2023/11/01/leetcode23-11/image-20231113105050025.png">
 <meta property="og:image" content="https://codenum137.github.io/2023/11/01/leetcode23-11/image-20231113161334209.png">
 <meta property="og:image" content="https://codenum137.github.io/2023/11/01/leetcode23-11/image-20231113161434596.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/11/01/leetcode23-11/image-20231116120027193.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/11/01/leetcode23-11/image-20231117093859444.png">
 <meta property="article:published_time" content="2023-11-01T01:51:49.000Z">
-<meta property="article:modified_time" content="2023-11-13T08:31:38.620Z">
+<meta property="article:modified_time" content="2023-11-17T01:58:22.146Z">
 <meta property="article:author" content="hey137">
 <meta property="article:tag" content="leetcode">
 <meta property="article:tag" content="算法">
@@ -233,7 +235,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          24k 字
+          26k 字
         
       </span>
     
@@ -244,7 +246,7 @@
         
         
         
-          201 分钟
+          218 分钟
         
       </span>
     
@@ -683,7 +685,86 @@
 <p>如果 x 是一个被更新的关键区间的右端点，那么下一个被更新的关键区间的右端点为 x+lowbit(x)。</p>
 </li>
 </ul>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-keyword">class</span> <span class="hljs-title class_">NumArray</span> &#123;<br><span class="hljs-keyword">private</span>:<br>    vector&lt;<span class="hljs-type">int</span>&gt; nums;<br>    vector&lt;<span class="hljs-type">int</span>&gt; tree;<br><br>    <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">prefixSum</span><span class="hljs-params">(<span class="hljs-type">int</span> i)</span> </span>&#123;<br>        <span class="hljs-type">int</span> s = <span class="hljs-number">0</span>;<br>        <span class="hljs-keyword">for</span> (; i &gt; <span class="hljs-number">0</span>; i &amp;= i - <span class="hljs-number">1</span>) &#123; <span class="hljs-comment">// i -= i &amp; -i 的另一种写法,i&amp;-i是lowbit（i）</span><br>            s += tree[i];<br>        &#125;<br>        <span class="hljs-keyword">return</span> s;<br>    &#125;<br><br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-built_in">NumArray</span>(vector&lt;<span class="hljs-type">int</span>&gt; &amp;nums) : <span class="hljs-built_in">nums</span>(nums.<span class="hljs-built_in">size</span>()), <span class="hljs-built_in">tree</span>(nums.<span class="hljs-built_in">size</span>() + <span class="hljs-number">1</span>) &#123;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; nums.<span class="hljs-built_in">size</span>(); i++) &#123;<br>            <span class="hljs-built_in">update</span>(i, nums[i]);<br>        &#125;<br>    &#125;<br><br>    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">update</span><span class="hljs-params">(<span class="hljs-type">int</span> index, <span class="hljs-type">int</span> val)</span> </span>&#123;<br>        <span class="hljs-type">int</span> delta = val - nums[index];<br>        nums[index] = val;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = index + <span class="hljs-number">1</span>; i &lt; tree.<span class="hljs-built_in">size</span>(); i += i &amp; -i) &#123;<br>            tree[i] += delta;<br>        &#125;<br>    &#125;<br><br>    <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">sumRange</span><span class="hljs-params">(<span class="hljs-type">int</span> left, <span class="hljs-type">int</span> right)</span> </span>&#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-built_in">prefixSum</span>(right + <span class="hljs-number">1</span>) - <span class="hljs-built_in">prefixSum</span>(left);<br>    &#125;<br>&#125;;<br><br></code></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-keyword">class</span> <span class="hljs-title class_">NumArray</span> &#123;<br><span class="hljs-keyword">private</span>:<br>    vector&lt;<span class="hljs-type">int</span>&gt; nums;<br>    vector&lt;<span class="hljs-type">int</span>&gt; tree;<br><br>    <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">prefixSum</span><span class="hljs-params">(<span class="hljs-type">int</span> i)</span> </span>&#123;<br>        <span class="hljs-type">int</span> s = <span class="hljs-number">0</span>;<br>        <span class="hljs-keyword">for</span> (; i &gt; <span class="hljs-number">0</span>; i &amp;= i - <span class="hljs-number">1</span>) &#123; <span class="hljs-comment">// i -= i &amp; -i 的另一种写法,i&amp;-i是lowbit（i）</span><br>            s += tree[i];<br>        &#125;<br>        <span class="hljs-keyword">return</span> s;<br>    &#125;<br><br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-built_in">NumArray</span>(vector&lt;<span class="hljs-type">int</span>&gt; &amp;nums) : <span class="hljs-built_in">nums</span>(nums.<span class="hljs-built_in">size</span>()), <span class="hljs-built_in">tree</span>(nums.<span class="hljs-built_in">size</span>() + <span class="hljs-number">1</span>) &#123;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; nums.<span class="hljs-built_in">size</span>(); i++) &#123;<br>            <span class="hljs-built_in">update</span>(i, nums[i]);<br>        &#125;<br>    &#125;<br><br>    <span class="hljs-function"><span class="hljs-type">void</span> <span class="hljs-title">update</span><span class="hljs-params">(<span class="hljs-type">int</span> index, <span class="hljs-type">int</span> val)</span> </span>&#123;<br>        <span class="hljs-type">int</span> delta = val - nums[index];<br>        nums[index] = val;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = index + <span class="hljs-number">1</span>; i &lt; tree.<span class="hljs-built_in">size</span>(); i += i &amp; -i) &#123;<br>            tree[i] += delta;<br>        &#125;<br>    &#125;<br><br>    <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">sumRange</span><span class="hljs-params">(<span class="hljs-type">int</span> left, <span class="hljs-type">int</span> right)</span> </span>&#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-built_in">prefixSum</span>(right + <span class="hljs-number">1</span>) - <span class="hljs-built_in">prefixSum</span>(left);<br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="2760-最长奇偶子数组"><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/longest-even-odd-subarray-with-threshold/">2760. 最长奇偶子数组</a></h2>
+<blockquote>
+<p>给你一个下标从 <strong>0</strong> 开始的整数数组 <code>nums</code> 和一个整数 <code>threshold</code> 。</p>
+<p>请你从 <code>nums</code> 的子数组中找出以下标 <code>l</code> 开头、下标 <code>r</code> 结尾 <code>(0 &lt;= l &lt;= r &lt; nums.length)</code> 且满足以下条件的 <strong>最长子数组</strong> ：</p>
+<ul>
+<li><code>nums[l] % 2 == 0</code></li>
+<li>对于范围 <code>[l, r - 1]</code> 内的所有下标 <code>i</code> ，<code>nums[i] % 2 != nums[i + 1] % 2</code></li>
+<li>对于范围 <code>[l, r]</code> 内的所有下标 <code>i</code> ，<code>nums[i] &lt;= threshold</code></li>
+</ul>
+<p>以整数形式返回满足题目要求的最长子数组的长度。</p>
+<p><strong>注意：子数组</strong> 是数组中的一个连续非空元素序列。</p>
+</blockquote>
+<ul>
+<li>
+<p>个人思路</p>
+<ul>
+<li>
+<p>dp</p>
+<p>用一维数组<code>dp[i]</code>表示以<code>i</code>为下标的数结尾的最长奇偶子数组长度，转移方程是</p>
+<p class="katex-block "><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>d</mi><mi>p</mi><mo stretchy="false">[</mo><mi>i</mi><mo stretchy="false">]</mo><mo>=</mo><mrow><mo fence="true">{</mo><mtable rowspacing="0.36em" columnalign="left left" columnspacing="1em"><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mi>d</mi><mi>p</mi><mo stretchy="false">[</mo><mi>i</mi><mo>−</mo><mn>1</mn><mo stretchy="false">]</mo><mo>+</mo><mn>1</mn></mrow></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mtext>nums[i]&lt;=threshold 且 nums[i] % 2 != nums[i + 1] % 2</mtext></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mn>1</mn></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mtext>其他</mtext></mstyle></mtd></mtr></mtable></mrow></mrow><annotation encoding="application/x-tex">dp[i]=
+\begin{cases}
+dp[i-1]+1 &amp; \text{nums[i]&lt;=threshold 且 nums[i] \% 2 != nums[i + 1] \% 2}\\
+1 &amp; \text{其他}
+\end{cases}
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">d</span><span class="mord mathnormal">p</span><span class="mopen">[</span><span class="mord mathnormal">i</span><span class="mclose">]</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:3em;vertical-align:-1.25em;"></span><span class="minner"><span class="mopen delimcenter" style="top:0em;"><span class="delimsizing size4">{</span></span><span class="mord"><span class="mtable"><span class="col-align-l"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.69em;"><span style="top:-3.69em;"><span class="pstrut" style="height:3.008em;"></span><span class="mord"><span class="mord mathnormal">d</span><span class="mord mathnormal">p</span><span class="mopen">[</span><span class="mord mathnormal">i</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord">1</span><span class="mclose">]</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord">1</span></span></span><span style="top:-2.25em;"><span class="pstrut" style="height:3.008em;"></span><span class="mord"><span class="mord">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.19em;"><span></span></span></span></span></span><span class="arraycolsep" style="width:1em;"></span><span class="col-align-l"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.69em;"><span style="top:-3.69em;"><span class="pstrut" style="height:3.008em;"></span><span class="mord"><span class="mord text"><span class="mord">nums[i]&lt;=threshold </span><span class="mord cjk_fallback">且</span><span class="mord"> nums[i] % 2 != nums[i + 1] % 2</span></span></span></span><span style="top:-2.25em;"><span class="pstrut" style="height:3.008em;"></span><span class="mord"><span class="mord text"><span class="mord cjk_fallback">其他</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.19em;"><span></span></span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">longestAlternatingSubarray</span><span class="hljs-params">(vector&lt;<span class="hljs-type">int</span>&gt; &amp;nums, <span class="hljs-type">int</span> threshold)</span></span><br><span class="hljs-function"></span>&#123;<br>    <span class="hljs-function">vector&lt;<span class="hljs-type">int</span>&gt; <span class="hljs-title">dp</span><span class="hljs-params">(nums.size(), <span class="hljs-number">0</span>)</span></span>;<br>    <span class="hljs-type">int</span> res = <span class="hljs-number">1</span>;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>; i &lt; nums.<span class="hljs-built_in">size</span>(); i++)<br>    &#123;<br>        <span class="hljs-keyword">if</span> (nums[i] &lt;= threshold &amp;&amp; nums[i] % <span class="hljs-number">2</span> != nums[i - <span class="hljs-number">1</span>] % <span class="hljs-number">2</span>)<br>        &#123;<br>            dp[i] = dp[i - <span class="hljs-number">1</span>] + <span class="hljs-number">1</span>;<br>            <span class="hljs-keyword">if</span> (dp[i] &gt; res)<br>            &#123;<br>                res = dp[i];<br>            &#125;<br>        &#125;<br>    &#125;<br>    <span class="hljs-keyword">return</span> res;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>错误，没注意第一个条件是<code>nums[l] % 2 == 0</code></p>
+</li>
+<li>
+<p>枚举</p>
+<p>一遍遍历，直接记录符合条件的子数组最大值。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span><br>&#123;<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">longestAlternatingSubarray</span><span class="hljs-params">(vector&lt;<span class="hljs-type">int</span>&gt; &amp;nums, <span class="hljs-type">int</span> threshold)</span></span><br><span class="hljs-function">    </span>&#123;<br>        <span class="hljs-type">int</span> res = <span class="hljs-number">0</span>;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; nums.<span class="hljs-built_in">size</span>(); i++)<br>        &#123;<br>            <span class="hljs-keyword">if</span> (nums[i] % <span class="hljs-number">2</span> == <span class="hljs-number">0</span> &amp;&amp; nums[i] &lt;= threshold)<br>            &#123;<br>                <span class="hljs-type">int</span> len = <span class="hljs-number">1</span>;<br>                i++;<br>                <span class="hljs-keyword">while</span> (i &lt; nums.<span class="hljs-built_in">size</span>() &amp;&amp; nums[i] &lt;= threshold &amp;&amp; nums[i] % <span class="hljs-number">2</span> != nums[i - <span class="hljs-number">1</span>] % <span class="hljs-number">2</span>)<br>                &#123;<br>                    len++;<br>                    i++;<br>                &#125;<br>                <span class="hljs-keyword">if</span> (len &gt; res)<br>                &#123;<br>                    res = len;<br>                &#125;<br>                i--;<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">return</span> res;<br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li>
+<p>官解</p>
+<ul>
+<li>
+<p>枚举</p>
+</li>
+<li>
+<p>动态规划</p>
+<p>dp为开头，而不是结尾，这样才能考虑第一位，因此需要反向遍历。w</p>
+<p><img src="/2023/11/01/leetcode23-11/image-20231116120027193.png" srcset="/img/loading.gif" lazyload alt="image-20231116120027193"></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs c++"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br><span class="hljs-keyword">public</span>:<br>    <span class="hljs-function"><span class="hljs-type">int</span> <span class="hljs-title">longestAlternatingSubarray</span><span class="hljs-params">(vector&lt;<span class="hljs-type">int</span>&gt;&amp; nums, <span class="hljs-type">int</span> threshold)</span> </span>&#123;<br>        <span class="hljs-type">int</span> res = <span class="hljs-number">0</span>, dp = <span class="hljs-number">0</span>, n = nums.<span class="hljs-built_in">size</span>();<br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> l = n - <span class="hljs-number">1</span>; l &gt;= <span class="hljs-number">0</span>; l--) &#123;<br>            <span class="hljs-keyword">if</span> (nums[l] &gt; threshold) &#123;<br>                dp = <span class="hljs-number">0</span>;<br>            &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (l == n - <span class="hljs-number">1</span> || nums[l] % <span class="hljs-number">2</span> != nums[l + <span class="hljs-number">1</span>] % <span class="hljs-number">2</span>) &#123;<br>                dp++;<br>            &#125; <span class="hljs-keyword">else</span> &#123;<br>                dp = <span class="hljs-number">1</span>;<br>            &#125;<br>            <span class="hljs-keyword">if</span> (nums[l] % <span class="hljs-number">2</span> == <span class="hljs-number">0</span>) &#123;<br>                res = <span class="hljs-built_in">max</span>(res, dp);<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">return</span> res;<br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="2736-最大和查询"><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/maximum-sum-queries/">2736. 最大和查询</a></h2>
+<blockquote>
+<p>给你两个长度为 <code>n</code> 、下标从 <strong>0</strong> 开始的整数数组 <code>nums1</code> 和 <code>nums2</code> ，另给你一个下标从 <strong>1</strong> 开始的二维数组 <code>queries</code> ，其中 <code>queries[i] = [xi, yi]</code> 。</p>
+<p>对于第 <code>i</code> 个查询，在所有满足 <code>nums1[j] &gt;= xi</code> 且 <code>nums2[j] &gt;= yi</code> 的下标 <code>j</code> <code>(0 &lt;= j &lt; n)</code> 中，找出 <code>nums1[j] + nums2[j]</code> 的 <strong>最大值</strong> ，如果不存在满足条件的 <code>j</code> 则返回 <strong>-1</strong> 。</p>
+<p>返回数组 <code>answer</code> *，*其中 <code>answer[i]</code> 是第 <code>i</code> 个查询的答案。</p>
+</blockquote>
+<ul>
+<li>
+<p>个人思路</p>
+<ul>
+<li>
+<p>贪心？</p>
+<p>按最大和排序，但这是个困难题，铁超时。看眼提示</p>
+<p><img src="/2023/11/01/leetcode23-11/image-20231117093859444.png" srcset="/img/loading.gif" lazyload alt="image-20231117093859444"></p>
+<p>看不懂</p>
+</li>
+</ul>
+</li>
+<li>
+<p>官解</p>
+<ul>
+<li>
+<p>单调栈+二分查找</p>
+<p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/maximum-sum-queries/solutions/2524819/zui-da-he-cha-xun-by-leetcode-solution-jlk0/?envType=daily-question&amp;envId=2023-11-17">2736. 最大和查询 - 力扣（LeetCode）</a></p>
+<p>爬完山还是很累。。不想看了。</p>
 </li>
 </ul>
 </li>
