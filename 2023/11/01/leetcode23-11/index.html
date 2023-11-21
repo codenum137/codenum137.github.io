@@ -37,7 +37,7 @@
 <meta property="og:image" content="https://codenum137.github.io/2023/11/01/leetcode23-11/image-20231116120027193.png">
 <meta property="og:image" content="https://codenum137.github.io/2023/11/01/leetcode23-11/image-20231117093859444.png">
 <meta property="article:published_time" content="2023-11-01T01:51:49.000Z">
-<meta property="article:modified_time" content="2023-11-17T01:58:22.146Z">
+<meta property="article:modified_time" content="2023-11-21T02:52:58.306Z">
 <meta property="article:author" content="hey137">
 <meta property="article:tag" content="leetcode">
 <meta property="article:tag" content="算法">
@@ -235,7 +235,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          26k 字
+          28k 字
         
       </span>
     
@@ -246,7 +246,7 @@
         
         
         
-          218 分钟
+          231 分钟
         
       </span>
     
@@ -767,6 +767,65 @@ dp[i-1]+1 &amp; \text{nums[i]&lt;=threshold 且 nums[i] \% 2 != nums[i + 1] \% 2
 <p>爬完山还是很累。。不想看了。</p>
 </li>
 </ul>
+</li>
+</ul>
+<h2 id="53-最大子数组和"><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/maximum-subarray/">53. 最大子数组和</a></h2>
+<p>滑雪回来，重整旗鼓。</p>
+<blockquote>
+<p>给你一个整数数组 <code>nums</code> ，请你找出一个具有最大和的连续子数组（子数组最少包含一个元素），返回其最大和。</p>
+<p><strong>子数组</strong> 是数组中的一个连续部分。</p>
+</blockquote>
+<ul>
+<li>
+<p>个人思路</p>
+<p>好眼熟的题目。</p>
+<ul>
+<li>
+<p>贪心</p>
+<p>遍历数组，用一个变量<code>sum</code>累加，若<code>sum</code>变负了则置零重新开始累加，因为负了对加上这段将会使答案变小，因此抛弃，这就是贪心的思想。期间记录最大值，即为返回答案。</p>
+<p>要注意sum和res的初始值。</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs go"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">maxSubArray</span><span class="hljs-params">(nums []<span class="hljs-type">int</span>)</span></span> <span class="hljs-type">int</span> &#123;<br>	sum, res := <span class="hljs-number">0</span>, nums[<span class="hljs-number">0</span>]<br>	<span class="hljs-keyword">for</span> i := <span class="hljs-number">0</span>; i &lt; <span class="hljs-built_in">len</span>(nums); i++ &#123;<br>		sum += nums[i]<br>		<span class="hljs-keyword">if</span> res &lt; sum &#123;<br>			res = sum<br>		&#125;<br>		<span class="hljs-keyword">if</span> sum &lt; <span class="hljs-number">0</span> &#123;<br>			sum = <span class="hljs-number">0</span><br>		&#125;<br>	&#125;<br>	<span class="hljs-keyword">return</span> res<br>&#125;<br><br></code></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li>
+<p>官解</p>
+<ul>
+<li>
+<p>动态规划</p>
+<p>[经典动态规划问题（理解「无后效性」)](<a target="_blank" rel="noopener" href="https://leetcode.cn/problems/maximum-subarray/solutions/9058/dong-tai-gui-hua-fen-zhi-fa-python-dai-ma-java-dai/?envType=daily-question&amp;envId=2023-11-20">53. 最大子数组和 - 力扣（LeetCode）</a>)。</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="2216-美化数组的最少删除数"><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/minimum-deletions-to-make-array-beautiful/">2216. 美化数组的最少删除数</a></h2>
+<blockquote>
+<p>给你一个下标从 <strong>0</strong> 开始的整数数组 <code>nums</code> ，如果满足下述条件，则认为数组 <code>nums</code> 是一个 <strong>美丽数组</strong> ：</p>
+<ul>
+<li><code>nums.length</code> 为偶数</li>
+<li>对所有满足 <code>i % 2 == 0</code> 的下标 <code>i</code> ，<code>nums[i] != nums[i + 1]</code> 均成立</li>
+</ul>
+<p>注意，空数组同样认为是美丽数组。</p>
+<p>你可以从 <code>nums</code> 中删除任意数量的元素。当你删除一个元素时，被删除元素右侧的所有元素将会向左移动一个单位以填补空缺，而左侧的元素将会保持 <strong>不变</strong> 。</p>
+<p>返回使 <code>nums</code> 变为美丽数组所需删除的 <strong>最少</strong> 元素数目*。*</p>
+</blockquote>
+<ul>
+<li>
+<p>个人思路</p>
+<ul>
+<li>
+<p>直接解题法（</p>
+<p>依题意，直接遍历，若<code>nums[i]</code>和<code>nums[i+1]</code>一致就删除，且删除后要与<code>nums[i+2]</code>不一致。删除<code>nums[i]</code>或<code>nums[i+1]</code>即可，由于是遍历过来的，前面不会有一致的，若删除前面可能导致一致，且无论删除<code>nums[i]</code>或<code>nums[i+1]</code>还是i之前的，对大于i+1都是一样的，不用纠结。</p>
+<p>可以通过指针来模拟删除，而不是真的删除后位移数组。</p>
+<p>AC，注意对i+1，i+2的越界判断以及最后数组长度是否为偶数的判断。</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs go"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">minDeletion</span><span class="hljs-params">(nums []<span class="hljs-type">int</span>)</span></span> <span class="hljs-type">int</span> &#123;<br>	res := <span class="hljs-number">0</span><br>	<span class="hljs-keyword">for</span> i := <span class="hljs-number">0</span>; i &lt; <span class="hljs-built_in">len</span>(nums); &#123;<br>		<span class="hljs-keyword">if</span> i+<span class="hljs-number">1</span> &gt;= <span class="hljs-built_in">len</span>(nums) &#123;<br>			res++<br>			<span class="hljs-keyword">break</span><br>		&#125;<br>		<span class="hljs-keyword">if</span> nums[i] == nums[i+<span class="hljs-number">1</span>] &#123;<br>			<span class="hljs-keyword">if</span> i+<span class="hljs-number">2</span> &gt;= <span class="hljs-built_in">len</span>(nums) || nums[i] != nums[i+<span class="hljs-number">2</span>] || nums[i+<span class="hljs-number">1</span>] != nums[i+<span class="hljs-number">2</span>] &#123;<br>				i += <span class="hljs-number">3</span><br>			&#125; <span class="hljs-keyword">else</span> &#123;<br>				i += <span class="hljs-number">1</span><br>			&#125;<br>			res++<br>		&#125; <span class="hljs-keyword">else</span> &#123;<br>			i += <span class="hljs-number">2</span><br>		&#125;<br>	&#125;<br>	<span class="hljs-keyword">if</span> (<span class="hljs-built_in">len</span>(nums)-res)%<span class="hljs-number">2</span> == <span class="hljs-number">1</span> &#123;<br>		res++<br>	&#125;<br>	<span class="hljs-keyword">return</span> res<br>&#125;<br></code></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li>
+<p>官解</p>
+<p>额，个人思考中，删除后要与<code>nums[i+1]</code>不一致这一点多余了，因为要判断这一点时，<code>nums[i]</code>和<code>nums[i+1]</code>是相等的，直接删除即可。本人代码优化</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs go"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">minDeletion</span><span class="hljs-params">(nums []<span class="hljs-type">int</span>)</span></span> <span class="hljs-type">int</span> &#123;<br>	res := <span class="hljs-number">0</span><br>	<span class="hljs-keyword">for</span> i := <span class="hljs-number">0</span>; i &lt; <span class="hljs-built_in">len</span>(nums); &#123;<br>		<span class="hljs-keyword">if</span> i+<span class="hljs-number">1</span> &gt;= <span class="hljs-built_in">len</span>(nums) &#123;<br>			res++<br>			<span class="hljs-keyword">break</span><br>		&#125;<br>		<span class="hljs-keyword">if</span> nums[i] == nums[i+<span class="hljs-number">1</span>] &#123;<br>			i += <span class="hljs-number">1</span><br>			res++<br>		&#125; <span class="hljs-keyword">else</span> &#123;<br>			i += <span class="hljs-number">2</span><br>		&#125;<br>	&#125;<br>	<span class="hljs-keyword">return</span> res<br>&#125;<br></code></pre></td></tr></table></figure>
 </li>
 </ul>
 <link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
