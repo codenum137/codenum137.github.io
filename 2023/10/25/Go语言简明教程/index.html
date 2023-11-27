@@ -26,7 +26,7 @@
 <meta property="og:image" content="https://codenum137.github.io/2023/10/25/Go%E8%AF%AD%E8%A8%80%E7%AE%80%E6%98%8E%E6%95%99%E7%A8%8B/image-20231025170551590.png">
 <meta property="og:image" content="https://codenum137.github.io/2023/10/25/Go%E8%AF%AD%E8%A8%80%E7%AE%80%E6%98%8E%E6%95%99%E7%A8%8B/image-20231025171807679.png">
 <meta property="article:published_time" content="2023-10-25T08:19:22.000Z">
-<meta property="article:modified_time" content="2023-11-25T03:48:07.026Z">
+<meta property="article:modified_time" content="2023-11-27T03:58:24.841Z">
 <meta property="article:author" content="hey137">
 <meta property="article:tag" content="go">
 <meta name="twitter:card" content="summary_large_image">
@@ -234,7 +234,7 @@
         
         
         
-          122 分钟
+          123 分钟
         
       </span>
     
@@ -462,6 +462,7 @@
 <h3 id="字典（map）">字典（map）</h3>
 <p>ez</p>
 <figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs go"><span class="hljs-comment">// 仅声明</span><br>m1 := <span class="hljs-built_in">make</span>(<span class="hljs-keyword">map</span>[<span class="hljs-type">string</span>]<span class="hljs-type">int</span>)<br><span class="hljs-comment">// 声明时初始化</span><br>m2 := <span class="hljs-keyword">map</span>[<span class="hljs-type">string</span>]<span class="hljs-type">string</span>&#123;<br>	<span class="hljs-string">&quot;Sam&quot;</span>: <span class="hljs-string">&quot;Male&quot;</span>,<br>	<span class="hljs-string">&quot;Alice&quot;</span>: <span class="hljs-string">&quot;Female&quot;</span>,<br>&#125;<br><span class="hljs-comment">// 赋值/修改</span><br>m1[<span class="hljs-string">&quot;Tom&quot;</span>] = <span class="hljs-number">18</span><br></code></pre></td></tr></table></figure>
+<p>需要注意map是无序的。详见：<a target="_blank" rel="noopener" href="https://juejin.cn/post/7006197015319166990">【Golang】如何有序地遍历 Map - 掘金 (juejin.cn)</a></p>
 <h3 id="集合（set）">集合（set）</h3>
 <p>如何使用<code>map</code>表示集合，<code>struct&#123;&#125;</code>作用占位符，表示这里不需要一个值。</p>
 <figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs go"><span class="hljs-keyword">type</span> Set <span class="hljs-keyword">map</span>[<span class="hljs-type">string</span>]<span class="hljs-keyword">struct</span>&#123;&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">main</span><span class="hljs-params">()</span></span> &#123;<br>	set := <span class="hljs-built_in">make</span>(Set)<br><br>	<span class="hljs-keyword">for</span> _, item := <span class="hljs-keyword">range</span> []<span class="hljs-type">string</span>&#123;<span class="hljs-string">&quot;A&quot;</span>, <span class="hljs-string">&quot;A&quot;</span>, <span class="hljs-string">&quot;B&quot;</span>, <span class="hljs-string">&quot;C&quot;</span>&#125; &#123;<br>		set[item] = <span class="hljs-keyword">struct</span>&#123;&#125;&#123;&#125;<br>	&#125;<br>	fmt.Println(<span class="hljs-built_in">len</span>(set)) <span class="hljs-comment">// 3</span><br>	<span class="hljs-keyword">if</span> _, ok := set[<span class="hljs-string">&quot;A&quot;</span>]; ok &#123;<br>		fmt.Println(<span class="hljs-string">&quot;A exists&quot;</span>) <span class="hljs-comment">// A exists</span><br>	&#125;<br>&#125;<br></code></pre></td></tr></table></figure>
