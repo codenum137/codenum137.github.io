@@ -16,26 +16,30 @@
   <meta name="author" content="hey137">
   <meta name="keywords" content="">
   
-    <meta name="description" content="如何在windows下配置vscode的rust开发环境">
+    <meta name="description" content="bier-rust运行配置 仅以github项目中自带的拓扑为例。louisna&#x2F;bier-rust (github.com)  diamond.ntf（描述拓扑）和diamond_node_to_ipv6.ntf（loopback）如下  在该例中两者对应关系如下，经验证得来，但不知道具体是如何一一对应的，似乎还与输入顺序有关。 12edcba43210 在sonic路由器上克隆相关项目文件">
 <meta property="og:type" content="article">
-<meta property="og:title" content="配置vscode的rust开发环境">
-<meta property="og:url" content="https://codenum137.github.io/codenum137.github.io/2023/11/22/%E9%85%8D%E7%BD%AEvscode%E7%9A%84rust%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/index.html">
+<meta property="og:title" content="Hey~">
+<meta property="og:url" content="https://codenum137.github.io/codenum137.github.io/2023/11/27/bier-rust%E8%BF%90%E8%A1%8C%E9%85%8D%E7%BD%AE/index.html">
 <meta property="og:site_name" content="Hey~">
-<meta property="og:description" content="如何在windows下配置vscode的rust开发环境">
+<meta property="og:description" content="bier-rust运行配置 仅以github项目中自带的拓扑为例。louisna&#x2F;bier-rust (github.com)  diamond.ntf（描述拓扑）和diamond_node_to_ipv6.ntf（loopback）如下  在该例中两者对应关系如下，经验证得来，但不知道具体是如何一一对应的，似乎还与输入顺序有关。 12edcba43210 在sonic路由器上克隆相关项目文件">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://codenum137.github.io/2023/11/22/%E9%85%8D%E7%BD%AEvscode%E7%9A%84rust%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/image-20231122144043393.png">
-<meta property="article:published_time" content="2023-11-22T06:33:48.000Z">
-<meta property="article:modified_time" content="2023-11-24T05:46:45.145Z">
+<meta property="og:image" content="https://codenum137.github.io/2023/11/27/bier-rust%E8%BF%90%E8%A1%8C%E9%85%8D%E7%BD%AE/image-20231127145314417.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/11/27/bier-rust%E8%BF%90%E8%A1%8C%E9%85%8D%E7%BD%AE/image-20231127145535003.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/11/27/bier-rust%E8%BF%90%E8%A1%8C%E9%85%8D%E7%BD%AE/image-20231127153310667.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/11/27/bier-rust%E8%BF%90%E8%A1%8C%E9%85%8D%E7%BD%AE/image-20231127153411196.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/11/27/bier-rust%E8%BF%90%E8%A1%8C%E9%85%8D%E7%BD%AE/image-20231127154625560.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/11/27/bier-rust%E8%BF%90%E8%A1%8C%E9%85%8D%E7%BD%AE/image-20231127155855102.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/11/27/bier-rust%E8%BF%90%E8%A1%8C%E9%85%8D%E7%BD%AE/image-20231127161715439.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/11/27/bier-rust%E8%BF%90%E8%A1%8C%E9%85%8D%E7%BD%AE/image-20231127161740653.png">
+<meta property="article:published_time" content="2023-11-27T08:22:05.756Z">
+<meta property="article:modified_time" content="2023-11-27T08:24:10.266Z">
 <meta property="article:author" content="hey137">
-<meta property="article:tag" content="vscode">
-<meta property="article:tag" content="windows">
-<meta property="article:tag" content="rust">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://codenum137.github.io/2023/11/22/%E9%85%8D%E7%BD%AEvscode%E7%9A%84rust%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/image-20231122144043393.png">
+<meta name="twitter:image" content="https://codenum137.github.io/2023/11/27/bier-rust%E8%BF%90%E8%A1%8C%E9%85%8D%E7%BD%AE/image-20231127145314417.png">
   
   
   
-  <title>配置vscode的rust开发环境 - Hey~</title>
+  <title>Hey~</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -201,7 +205,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="配置vscode的rust开发环境"></span>
+            <span id="subtitle" data-typed-text=""></span>
           
         </div>
 
@@ -212,8 +216,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-11-22 14:33" pubdate>
-          2023年11月22日 下午
+        <time datetime="2023-11-27 16:22" pubdate>
+          2023年11月27日 下午
         </time>
       </span>
     
@@ -224,7 +228,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.6k 字
+          2.1k 字
         
       </span>
     
@@ -235,7 +239,7 @@
         
         
         
-          14 分钟
+          18 分钟
         
       </span>
     
@@ -272,79 +276,117 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">配置vscode的rust开发环境</h1>
+            <h1 id="seo-header"></h1>
             
             
               <div class="markdown-body">
                 
-                <h1>配置vscode的rust开发环境</h1>
-<h2 id="安装RUST">安装RUST</h2>
+                <h1>bier-rust运行配置</h1>
+<p>仅以github项目中自带的拓扑为例。<a target="_blank" rel="noopener" href="https://github.com/louisna/bier-rust">louisna/bier-rust (github.com)</a></p>
+<p><img src="/2023/11/27/bier-rust%E8%BF%90%E8%A1%8C%E9%85%8D%E7%BD%AE/image-20231127145314417.png" srcset="/img/loading.gif" lazyload alt="image-20231127145314417"></p>
+<p><code>diamond.ntf</code>（描述拓扑）和<code>diamond_node_to_ipv6.ntf</code>（loopback）如下</p>
+<p><img src="/2023/11/27/bier-rust%E8%BF%90%E8%A1%8C%E9%85%8D%E7%BD%AE/image-20231127145535003.png" srcset="/img/loading.gif" lazyload alt="image-20231127145535003"></p>
+<p>在该例中两者对应关系如下，经验证得来，但不知道具体是如何一一对应的，似乎还与输入顺序有关。</p>
+<figure class="highlight txt"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs txt">edcba<br>43210<br></code></pre></td></tr></table></figure>
+<h2 id="在sonic路由器上克隆相关项目文件">在sonic路由器上克隆相关项目文件</h2>
 <ol>
 <li>
-<p>从<a target="_blank" rel="noopener" href="https://www.rust-lang.org/zh-CN/learn/get-started">入门 - Rust 程序设计语言 (rust-lang.org)</a>下载<code>rustup-init.exe</code>。</p>
-<ul>
-<li>
-<p>若你使用linux，可先配置下载源</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs sh"><span class="hljs-built_in">export</span> RUSTUP_DIST_SERVER=https://mirrors.ustc.edu.cn/rust-static<br><span class="hljs-built_in">export</span> RUSTUP_UPDATE_ROOT=https://mirrors.ustc.edu.cn/rust-static/rustup<br></code></pre></td></tr></table></figure>
-<p>再下载</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">curl --proto <span class="hljs-string">&#x27;=https&#x27;</span> --tlsv1.2 -sSf https://sh.rustup.rs | sh<br></code></pre></td></tr></table></figure>
-</li>
-</ul>
+<p>将sonic路由器连接nat，确保能够联网。</p>
 </li>
 <li>
-<p><code>win</code>键，搜索<code>developer powershell for vs</code>。</p>
-</li>
-<li>
-<p>在打开的powershell中运行<code>rustup-init.exe</code>。</p>
+<p>运行以下命令进行克隆</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs sh">sudo apt-get update -y<br>sudo apt-get install git -y<br>git <span class="hljs-built_in">clone</span> https://gitee.com/hey137/bier-rust.git<br></code></pre></td></tr></table></figure>
 </li>
 </ol>
-<p><img src="/2023/11/22/%E9%85%8D%E7%BD%AEvscode%E7%9A%84rust%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/image-20231122144043393.png" srcset="/img/loading.gif" lazyload alt="image-20231122144043393"></p>
-<ol start="4">
-<li>
-<p>检查安装是否成功</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ rustc -V<br>rustc 1.56.1 (59eed8a2a 2021-11-01)<br><br>$ cargo -V<br>cargo 1.57.0 (b2e52d7ca 2021-10-21)<br></code></pre></td></tr></table></figure>
-</li>
-<li>
-<p><a target="_blank" rel="noopener" href="https://course.rs/first-try/slowly-downloading.html#%E8%A6%86%E7%9B%96%E9%BB%98%E8%AE%A4%E7%9A%84%E9%95%9C%E5%83%8F%E5%9C%B0%E5%9D%80">覆盖默认的镜像地址</a></p>
-<p>事实上，我们更推荐第二种方式，因为第一种方式在项目大了后，实在是很麻烦，全部修改后，万一以后不用这个镜像了，你又要全部修改成其它的。</p>
-<p>而第二种方式，则不需要修改 <code>Cargo.toml</code> 文件，<strong>因为它是直接使用新注册服务来替代默认的 <code>crates.io</code></strong>。</p>
-<p>在 <code>$HOME/.cargo/config.toml</code> 添加以下内容：</p>
-<figure class="highlight toml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs toml"><span class="hljs-section">[source.crates-io]</span><br><span class="hljs-attr">replace-with</span> = <span class="hljs-string">&#x27;ustc&#x27;</span><br><br><span class="hljs-section">[source.ustc]</span><br><span class="hljs-attr">registry</span> = <span class="hljs-string">&quot;git://mirrors.ustc.edu.cn/crates.io-index&quot;</span><br></code></pre></td></tr></table></figure>
-<p>首先，创建一个新的镜像源 <code>[source.ustc]</code>，然后将默认的 <code>crates-io</code> 替换成新的镜像源: <code>replace-with = 'ustc'</code>。</p>
-<p>简单吧？只要这样配置后，以往需要去 <code>crates.io</code> 下载的包，会全部从科大的镜像地址下载，速度刷刷的… 我的 300M 大刀( 宽带 )终于有了用武之地。</p>
-<p><strong>这里强烈推荐大家在学习完后面的基本章节后，看一下 <a target="_blank" rel="noopener" href="https://course.rs/cargo/intro.html">Cargo 使用指南章节</a>，对于你的 Rust 之旅会有莫大的帮助！</strong></p>
-</li>
-<li>
-<p>若出现连接问题</p>
-<blockquote>
-<p><a target="_blank" rel="noopener" href="https://course.rs/first-try/installation.html#%E5%AE%89%E8%A3%85-c-%E8%AF%AD%E8%A8%80%E7%BC%96%E8%AF%91%E5%99%A8%E9%9D%9E%E5%BF%85%E9%9C%80">安装 C 语言编译器：（非必需）</a></p>
-<p>Rust 对运行环境的依赖和 Go 语言很像，几乎所有环境都可以无需安装任何依赖直接运行。但是，Rust 会依赖 <code>libc</code> 和链接器 <code>linker</code>。所以如果遇到了提示链接器无法执行的错误，你需要再手动安装一个 C 语言编译器：</p>
-<p><strong>macOS 下：</strong></p>
-<figure class="highlight console"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs console"><span class="hljs-meta prompt_">$ </span><span class="language-bash">xcode-select --install</span><br></code></pre></td></tr></table></figure>
-<p><strong>Linux 下：</strong></p>
-<p>Linux 用户一般应按照相应发行版的文档来安装 <code>GCC</code> 或 <code>Clang</code>。</p>
-<p>例如，如果你使用 Ubuntu，则可安装 <code>build-essential</code>。</p>
-</blockquote>
-</li>
-</ol>
-<h2 id="VSCODE">VSCODE</h2>
+<h2 id="配置sonic中loopback地址">配置sonic中loopback地址</h2>
+<p>在已有gns3中sonic路由器网络配置基础上，需要增加对loopback的ip配置</p>
+<p>如对a号sonic路由器（即<code>diamond_node_to_ipv6.ntf</code>文件中的<code>0</code>号节点）需要配置loopback为<code>2023:0:1/64</code></p>
 <ol>
-<li>下载如下扩展。
+<li>
+<p>使用下列命令配置ip地址。</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs sh">sudo config interface ip add Loopback0 2023:0::1/64<br>sudo config interface mtu Loopback0 1500<br>sudo config interface startup Loopback0<br>sudo config save -y<br></code></pre></td></tr></table></figure>
+</li>
+<li>
+<p>进入<code>vtysh</code>模式对Loopback0端口配置isis协议</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs sh">config<br>interface Loopback0<br>ipv6 ro isis sonic<br><span class="hljs-built_in">exit</span><br>end<br>write<br></code></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>这部分可以直接在脚本中进行编辑，或者直接复制项目中<code>bier-rust/bin/sh/bier</code>中的配置脚本。</p>
+<h2 id="bier程序运行解释">bier程序运行解释</h2>
+<p>这些程序都被我放入<code>bier-rust/bin</code>目录下，需要先进入该文件夹，并进入root权限模式。</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs sh"><span class="hljs-built_in">cd</span> bier-rust/bin<br>sudo -s<br></code></pre></td></tr></table></figure>
+<p>在运行前，先输入以下命令以输入调试信息</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh"><span class="hljs-built_in">export</span> RUST_LOG=debug<br></code></pre></td></tr></table></figure>
+<ol>
+<li>
+<p>bier-config</p>
+<p><img src="/2023/11/27/bier-rust%E8%BF%90%E8%A1%8C%E9%85%8D%E7%BD%AE/image-20231127153310667.png" srcset="/img/loading.gif" lazyload alt="image-20231127153310667"></p>
 <ul>
-<li><code>Rust-Analyzer</code>，编译rust。</li>
-<li><strong><code>CodeLLDB</code></strong>，用于debug。</li>
-<li><code>Catppuccin Noctis</code>，vscode主题</li>
-<li><code>crates</code>，Helps Rust developers managing dependencies with Cargo.toml.</li>
-<li><code>Error Lens</code>，Improve highlighting of errors, warnings and other language diagnostics.</li>
-<li><code>Even Better TOML</code>，支持 .toml 文件完整特性</li>
-<li><code>Project Manager</code>(收藏、识别和管理你的工作空间和项目文件夹)</li>
+<li><code>directory</code>参数是输出文件目录，需要提前创建。</li>
+</ul>
+<p>运行命令，<code>out</code>文件夹需要提前创建。</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">./bier-config -f diamond.ntf -i diamond_node_to_ipv6.ntf -d out<br></code></pre></td></tr></table></figure>
+</li>
+<li>
+<p>receiver   模拟收包程序</p>
+<p><img src="/2023/11/27/bier-rust%E8%BF%90%E8%A1%8C%E9%85%8D%E7%BD%AE/image-20231127153411196.png" srcset="/img/loading.gif" lazyload alt="image-20231127153411196"></p>
+<ul>
+<li><code>unix-path</code>参数是unix套接字文件路径，该文件在<code>receiver</code>程序运行前不能存在，否则会报错。</li>
+</ul>
+<p>运行命令，<code>r.sock</code>运行前不能存在，<code>&amp;</code>以便其在后台运行。</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">./receiver -u r.sock -n 100 &amp;<br></code></pre></td></tr></table></figure>
+</li>
+<li>
+<p>bier-rust   bier守护程序</p>
+<p><img src="/2023/11/27/bier-rust%E8%BF%90%E8%A1%8C%E9%85%8D%E7%BD%AE/image-20231127154625560.png" srcset="/img/loading.gif" lazyload alt="image-20231127154625560"></p>
+<ul>
+<li><code>config</code>参数是之前生成的配置文件。</li>
+<li><code>default</code>参数是若自己是组播报文的目的地址，将报文发送给哪一个unix套接字文件路径。这里是<code>receiver</code>程序中指定的<code>unix-path</code>参数。</li>
+</ul>
+<p>运行命令，以a主机为例，配置文件对应<code>out/diamond-0.json</code>，运行前需进入root模式，<code>bierd.sock</code>运行前可以不存在，也可以存在。</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">./bier-rust -c out/diamond-0.json -d r.sock --bier-path bierd.sock &amp;<br></code></pre></td></tr></table></figure>
+</li>
+<li>
+<p>sender    模拟发包程序</p>
+<p><img src="/2023/11/27/bier-rust%E8%BF%90%E8%A1%8C%E9%85%8D%E7%BD%AE/image-20231127155855102.png" srcset="/img/loading.gif" lazyload alt="image-20231127155855102"></p>
+<ul>
+<li>
+<p><code>bier</code>是守护程序路径，即<code>bier-rust</code>程序指定的<code>bier-path</code>参数。</p>
+</li>
+<li>
+<p><code>multicast-address</code>是组播地址。在本例中，对应关系如下</p>
+<figure class="highlight txt"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs txt">edcba<br>43210<br></code></pre></td></tr></table></figure>
+<p>若希望给某主机发送报文，则对应位上应该是1。如</p>
+<ul>
+<li><code>11110</code>，表示给<code>e</code>、<code>d</code>、<code>c</code>、<code>b</code>发包。</li>
+<li><code>10101</code>，表示给<code>e</code>、<code>c</code>、<code>a</code>发包。</li>
 </ul>
 </li>
-<li>然后在vscode内置终端或系统终端中运行<code>cargo build</code>或<code>cargo run</code>即可。</li>
+</ul>
+<p>运行命令，在a号路由器发包。</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">./sender -b bierd.sock -a 11110<br></code></pre></td></tr></table></figure>
+</li>
+<li>
+<p>运行结果</p>
+<p>a号路由器</p>
+<p><img src="/2023/11/27/bier-rust%E8%BF%90%E8%A1%8C%E9%85%8D%E7%BD%AE/image-20231127161715439.png" srcset="/img/loading.gif" lazyload alt="image-20231127161715439"></p>
+<p>其他路由器</p>
+<p><img src="/2023/11/27/bier-rust%E8%BF%90%E8%A1%8C%E9%85%8D%E7%BD%AE/image-20231127161740653.png" srcset="/img/loading.gif" lazyload alt="image-20231127161740653"></p>
+</li>
 </ol>
-<h2 id="参考">参考</h2>
-<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/657234679">Visual Studio Code 配置和使用 Rust 开发环境的最佳实践(VSCode + RA) - 知乎 (zhihu.com)</a></p>
-<p><a target="_blank" rel="noopener" href="https://course.rs/first-try/slowly-downloading.html">下载依赖太慢了？ - Rust语言圣经(Rust Course)</a></p>
+<h2 id="rust相关">rust相关</h2>
+<ul>
+<li>
+<p>配置rust环境</p>
+<p>在<code>bier-rust/bin/sh/rust-init.sh</code>文件中，主要命令如下</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs sh">sudo apt-get update -y<br>sudo apt-get install build-essential -y<br><span class="hljs-built_in">export</span> RUSTUP_DIST_SERVER=https://mirrors.ustc.edu.cn/rust-static<br><span class="hljs-built_in">export</span> RUSTUP_UPDATE_ROOT=https://mirrors.ustc.edu.cn/rust-static/rustup<br>curl --proto <span class="hljs-string">&#x27;=https&#x27;</span> --tlsv1.2 https://sh.rustup.rs -sSf | sh -s -- -y<br><span class="hljs-built_in">source</span> <span class="hljs-string">&quot;<span class="hljs-variable">$HOME</span>/.cargo/env&quot;</span><br></code></pre></td></tr></table></figure>
+</li>
+<li>
+<p>运行程序</p>
+<p>在<code>bier-rust/bin/sh/cargo-cmd.txt</code>文件中，主要命令如下</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs sh">cargo run --bin bier-config -- -d configs -f ./configs/diamond.ntf -i ./configs/diamond_node_to_ipv6.ntf<br>cargo build --bin bier-rust<br>cargo build --example receiver<br>cargo build --example sender<br></code></pre></td></tr></table></figure>
+</li>
+</ul>
 <link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
                 
               </div>
@@ -353,45 +395,6 @@
             <div>
               <div class="post-metas my-3">
   
-    <div class="post-meta mr-3 d-flex align-items-center">
-      <i class="iconfont icon-category"></i>
-      
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/%E5%AD%A6%E4%B9%A0/" class="category-chain-item">学习</a>
-  
-  
-    <span>></span>
-    
-  <a href="/categories/%E5%AD%A6%E4%B9%A0/rust/" class="category-chain-item">rust</a>
-  
-  
-
-  
-
-      </span>
-    
-  
-</span>
-
-    </div>
-  
-  
-    <div class="post-meta">
-      <i class="iconfont icon-tags"></i>
-      
-        <a href="/tags/vscode/" class="print-no-link">#vscode</a>
-      
-        <a href="/tags/windows/" class="print-no-link">#windows</a>
-      
-        <a href="/tags/rust/" class="print-no-link">#rust</a>
-      
-    </div>
   
 </div>
 
@@ -401,8 +404,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>配置vscode的rust开发环境</div>
-      <div>https://codenum137.github.io/codenum137.github.io/2023/11/22/配置vscode的rust开发环境/</div>
+      <div></div>
+      <div>https://codenum137.github.io/codenum137.github.io/2023/11/27/bier-rust运行配置/</div>
     </div>
     <div class="license-meta">
       
@@ -414,7 +417,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2023年11月22日</div>
+          <div>2023年11月27日</div>
         </div>
       
       
@@ -446,18 +449,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/11/27/ubuntu%E8%AE%BE%E7%BD%AE%E5%BC%80%E6%9C%BA%E8%87%AA%E5%8A%A8%E7%99%BB%E5%BD%95%E5%B9%B6%E5%8F%96%E6%B6%88%E8%87%AA%E5%8A%A8%E9%94%81%E5%B1%8F/" title="ubuntu设置开机自动登录并取消自动锁屏">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">ubuntu设置开机自动登录并取消自动锁屏</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/11/17/%E9%A9%AC%E5%85%8B%E6%80%9D%E7%9A%84%E5%93%B2%E5%AD%A6%E9%9D%A9%E5%91%BD%E5%8F%8A%E5%85%B6%E5%BD%93%E4%BB%A3%E6%84%8F%E4%B9%89%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/" title="马克思的哲学革命及其当代意义学习记录">
-                        <span class="hidden-mobile">马克思的哲学革命及其当代意义学习记录</span>
+                      <a href="/2023/11/27/ubuntu%E8%AE%BE%E7%BD%AE%E5%BC%80%E6%9C%BA%E8%87%AA%E5%8A%A8%E7%99%BB%E5%BD%95%E5%B9%B6%E5%8F%96%E6%B6%88%E8%87%AA%E5%8A%A8%E9%94%81%E5%B1%8F/" title="ubuntu设置开机自动登录并取消自动锁屏">
+                        <span class="hidden-mobile">ubuntu设置开机自动登录并取消自动锁屏</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
