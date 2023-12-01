@@ -40,8 +40,9 @@
 <meta property="og:image" content="https://codenum137.github.io/2023/11/01/leetcode23-11/image-20231123103327078.png">
 <meta property="og:image" content="https://codenum137.github.io/2023/11/01/leetcode23-11/image-20231125100659250.png">
 <meta property="og:image" content="https://codenum137.github.io/2023/11/01/leetcode23-11/image-20231127122859159.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/11/01/leetcode23-11/image-20231130100552783.png">
 <meta property="article:published_time" content="2023-11-01T01:51:49.000Z">
-<meta property="article:modified_time" content="2023-11-29T03:22:24.097Z">
+<meta property="article:modified_time" content="2023-11-30T02:06:18.319Z">
 <meta property="article:author" content="hey137">
 <meta property="article:tag" content="leetcode">
 <meta property="article:tag" content="算法">
@@ -239,7 +240,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          43k 字
+          44k 字
         
       </span>
     
@@ -250,7 +251,7 @@
         
         
         
-          357 分钟
+          363 分钟
         
       </span>
     
@@ -1097,6 +1098,39 @@ dp[i-1]+1 &amp; \text{nums[i]&lt;=threshold 且 nums[i] \% 2 != nums[i + 1] \% 2
 <p>官解</p>
 <p>卑鄙的官解使用库函数，而且利用了题目中操作不会大于1000的条件，这样才可以使用<code>thres</code>记录最小值。</p>
 <figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><code class="hljs go"><span class="hljs-keyword">type</span> SmallestInfiniteSet <span class="hljs-keyword">struct</span> &#123;<br>    thres <span class="hljs-type">int</span><br>    s *treeset.Set<br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">Constructor</span><span class="hljs-params">()</span></span> SmallestInfiniteSet &#123;<br>    <span class="hljs-keyword">return</span> SmallestInfiniteSet&#123;<br>        thres:<span class="hljs-number">1</span>,<br>        s:treeset.NewWithIntComparator(),<br>    &#125;<br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-params">(this *SmallestInfiniteSet)</span></span> PopSmallest() <span class="hljs-type">int</span> &#123;<br>    <span class="hljs-keyword">if</span> this.s.Empty() &#123;<br>        ans := this.thres<br>        this.thres++<br>        <span class="hljs-keyword">return</span> ans<br>    &#125;<br>    it := this.s.Iterator()<br>    it.Next()<br>    ans := it.Value().(<span class="hljs-type">int</span>)<br>    this.s.Remove(ans)<br>    <span class="hljs-keyword">return</span> ans<br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-params">(this *SmallestInfiniteSet)</span></span> AddBack(num <span class="hljs-type">int</span>)  &#123;<br>    <span class="hljs-keyword">if</span> num &lt; this.thres &#123;<br>        this.s.Add(num)<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="1657-确定两个字符串是否接近"><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/determine-if-two-strings-are-close/">1657. 确定两个字符串是否接近</a></h2>
+<blockquote>
+<p>如果可以使用以下操作从一个字符串得到另一个字符串，则认为两个字符串 <strong>接近</strong> ：</p>
+<ul>
+<li>
+<p>操作 1：交换任意两个</p>
+<p>现有</p>
+<p>字符。</p>
+<ul>
+<li>例如，<code>a**b**cd**e** -&gt; a**e**cd**b**</code></li>
+</ul>
+</li>
+<li>
+<p>操作 2：将一个</p>
+<p>现有</p>
+<p>字符的每次出现转换为另一个</p>
+<p>现有</p>
+<p>字符，并对另一个字符执行相同的操作。</p>
+<ul>
+<li>例如，<code>**aa**c**abb** -&gt; **bb**c**baa**</code>（所有 <code>a</code> 转化为 <code>b</code> ，而所有的 <code>b</code> 转换为 <code>a</code> ）</li>
+</ul>
+</li>
+</ul>
+<p>你可以根据需要对任意一个字符串多次使用这两种操作。</p>
+<p>给你两个字符串，<code>word1</code> 和 <code>word2</code> 。如果 <code>word1</code> 和 <code>word2</code> <strong>接近</strong> ，就返回 <code>true</code> ；否则，返回 <code>false</code> 。</p>
+</blockquote>
+<ul>
+<li>
+<p>官解</p>
+<p><img src="/2023/11/01/leetcode23-11/image-20231130100552783.png" srcset="/img/loading.gif" lazyload alt="image-20231130100552783"></p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs go"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">closeStrings</span><span class="hljs-params">(word1 <span class="hljs-type">string</span>, word2 <span class="hljs-type">string</span>)</span></span> <span class="hljs-type">bool</span> &#123;<br>    count1, count2 := <span class="hljs-built_in">make</span>([]<span class="hljs-type">int</span>, <span class="hljs-number">26</span>), <span class="hljs-built_in">make</span>([]<span class="hljs-type">int</span>, <span class="hljs-number">26</span>)<br>    <span class="hljs-keyword">for</span> _, c := <span class="hljs-keyword">range</span> word1 &#123;<br>        count1[c - <span class="hljs-string">&#x27;a&#x27;</span>]++<br>    &#125;<br>    <span class="hljs-keyword">for</span> _, c := <span class="hljs-keyword">range</span> word2 &#123;<br>        count2[c - <span class="hljs-string">&#x27;a&#x27;</span>]++<br>    &#125;<br>    <span class="hljs-keyword">for</span> i := <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">26</span>; i++ &#123;<br>        <span class="hljs-keyword">if</span> count1[i] &gt; <span class="hljs-number">0</span> &amp;&amp; count2[i] == <span class="hljs-number">0</span> || count1[i] == <span class="hljs-number">0</span> &amp;&amp; count2[i] &gt; <span class="hljs-number">0</span> &#123;<br>            <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span><br>        &#125;<br>    &#125;<br>    sort.Ints(count1)<br>    sort.Ints(count2)<br>    <span class="hljs-keyword">return</span> reflect.DeepEqual(count1, count2)<br>&#125;<br></code></pre></td></tr></table></figure>
 </li>
 </ul>
 <link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
