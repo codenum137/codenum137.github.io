@@ -40,7 +40,7 @@
 <meta property="og:image" content="https://codenum137.github.io/2023/10/23/%E8%B7%AF%E7%94%B1%E6%A0%87%E8%AF%86%E9%A1%B9%E7%9B%AE%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/image-20231107130825682.png">
 <meta property="og:image" content="https://codenum137.github.io/2023/10/23/%E8%B7%AF%E7%94%B1%E6%A0%87%E8%AF%86%E9%A1%B9%E7%9B%AE%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/image-20231120152630696.png">
 <meta property="article:published_time" content="2023-10-23T03:00:14.000Z">
-<meta property="article:modified_time" content="2023-12-10T06:15:59.695Z">
+<meta property="article:modified_time" content="2023-12-13T09:52:32.817Z">
 <meta property="article:author" content="hey137">
 <meta property="article:tag" content="linux">
 <meta property="article:tag" content="shell">
@@ -276,7 +276,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          16k 字
+          17k 字
         
       </span>
     
@@ -287,7 +287,7 @@
         
         
         
-          132 分钟
+          142 分钟
         
       </span>
     
@@ -705,6 +705,28 @@ VMware会在主机上建立单独的专用网络，用以在主机和虚拟机�
 <p>ssh连接路由器和终端</p>
 </li>
 </ol>
+<hr>
+<p>会出现ping不通但能ssh通的情况，这是防ping策略。</p>
+<h3 id="NAT">NAT</h3>
+<p>gns3NAT自带云中所分配的ip和virbr0所属同一个网段。修改可参考下面网站</p>
+<p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/9cce35733e00">命令行如何修改KVM生产的virbr0的地址 - 简书 (jianshu.com)</a></p>
+<ol>
+<li>
+<p>default.xml文件</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs xml"> vim /etc/libvirt/qemu/networks/default.xml<br><span class="hljs-tag">&lt;<span class="hljs-name">network</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">name</span>&gt;</span>default<span class="hljs-tag">&lt;/<span class="hljs-name">name</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">uuid</span>&gt;</span>d63fbb69-44f0-4f7a-a001-af50092204e8<span class="hljs-tag">&lt;/<span class="hljs-name">uuid</span>&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">forward</span> <span class="hljs-attr">mode</span>=<span class="hljs-string">&#x27;nat&#x27;</span>/&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">bridge</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&#x27;virbr0&#x27;</span> <span class="hljs-attr">stp</span>=<span class="hljs-string">&#x27;on&#x27;</span> <span class="hljs-attr">delay</span>=<span class="hljs-string">&#x27;0&#x27;</span>/&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">mac</span> <span class="hljs-attr">address</span>=<span class="hljs-string">&#x27;52:54:00:36:44:41&#x27;</span>/&gt;</span><br>  <span class="hljs-tag">&lt;<span class="hljs-name">ip</span> <span class="hljs-attr">address</span>=<span class="hljs-string">&#x27;192.168.122.1&#x27;</span> <span class="hljs-attr">netmask</span>=<span class="hljs-string">&#x27;255.255.255.0&#x27;</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">dhcp</span>&gt;</span><br>      <span class="hljs-tag">&lt;<span class="hljs-name">range</span> <span class="hljs-attr">start</span>=<span class="hljs-string">&#x27;192.168.122.2&#x27;</span> <span class="hljs-attr">end</span>=<span class="hljs-string">&#x27;192.168.122.254&#x27;</span>/&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">dhcp</span>&gt;</span><br>  <span class="hljs-tag">&lt;/<span class="hljs-name">ip</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">network</span>&gt;</span><br></code></pre></td></tr></table></figure>
+</li>
+<li>
+<p>修改并生效</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs sh"><span class="hljs-comment">#修改配置文件</span><br>sed -i <span class="hljs-string">&#x27;s/192.168.122/192.168.8/g&#x27;</span> /etc/libvirt/qemu/networks/default.xml<br><span class="hljs-comment">#定义网络</span><br>virsh  net-define /etc/libvirt/qemu/network/default.xml<br><span class="hljs-comment">#停止default网络</span><br>virsh  net-destroy default  <br><span class="hljs-comment">#启动default网络</span><br>virsh  net-start  default<br><span class="hljs-comment">#重启libvirtd</span><br>systemctl restart libvirtd<br></code></pre></td></tr></table></figure>
+</li>
+</ol>
+<hr>
+<p>xml文件的相关解释</p>
+<p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/eac28b175161">libvirt xml文件解析 – Devices - 简书 (jianshu.com)</a></p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://documentation.suse.com/zh-cn/sles/15-SP2/html/SLES-all/cha-libvirt-networks.html">SLES 15 SP2 | 虚拟化指南 | 管理网络 (suse.com)</a></p>
+<p>包含 <forward> 元素表示该虚拟网络将连接到物理 LAN。<code>mode</code> 属性指定转发方法。最常用的模式为“nat”（默认模式，表示网络地址转换）、“route”（直接转发到物理网络，不执行地址转换）和“bridge”（在 <code>libvirt</code> 外部配置的网桥）。如果不指定 <forward> 元素，虚拟网络将与其他网络相隔离。有关转发模式的完整列表，请参见 <a target="_blank" rel="noopener" href="http://libvirt.org/formatnetwork.html#elementsConnect%E3%80%82">http://libvirt.org/formatnetwork.html#elementsConnect。</a></forward></forward></p>
+</blockquote>
 <h3 id="疑难杂症">疑难杂症</h3>
 <ol>
 <li>
