@@ -28,8 +28,9 @@
 <meta property="og:image" content="https://codenum137.github.io/2023/12/08/leetcode23-12/image-20231212110319783.png">
 <meta property="og:image" content="https://codenum137.github.io/2023/12/08/leetcode23-12/image-20231212110643288.png">
 <meta property="og:image" content="https://codenum137.github.io/2023/12/08/leetcode23-12/image-20231212113255727.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/12/08/leetcode23-12/image-20231214101716935.png">
 <meta property="article:published_time" content="2023-12-08T07:13:28.000Z">
-<meta property="article:modified_time" content="2023-12-13T02:33:38.759Z">
+<meta property="article:modified_time" content="2023-12-14T02:24:37.932Z">
 <meta property="article:author" content="hey137">
 <meta property="article:tag" content="leetcode">
 <meta property="article:tag" content="算法">
@@ -261,7 +262,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          14k 字
+          16k 字
         
       </span>
     
@@ -272,7 +273,7 @@
         
         
         
-          117 分钟
+          131 分钟
         
       </span>
     
@@ -549,6 +550,56 @@
 <p>官解</p>
 <p>更优美且高效的写法</p>
 <figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs go"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">makeSmallestPalindrome</span><span class="hljs-params">(s <span class="hljs-type">string</span>)</span></span> <span class="hljs-type">string</span> &#123;<br>    left, right := <span class="hljs-number">0</span>, <span class="hljs-built_in">len</span>(s) - <span class="hljs-number">1</span><br>    t := []<span class="hljs-type">byte</span>(s)<br>    <span class="hljs-keyword">for</span> left &lt; right &#123;<br>        <span class="hljs-keyword">if</span> s[left] != s[right] &#123;<br>            t[left] = min(s[left], s[right])<br>            t[right] = t[left]<br>        &#125;<br>        left++<br>        right--<br>    &#125;<br>    <span class="hljs-keyword">return</span> <span class="hljs-type">string</span>(t)<br>&#125;<br></code></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="2132-用邮票贴满网格图"><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/stamping-the-grid/">2132. 用邮票贴满网格图</a></h2>
+<blockquote>
+<p>给你一个 <code>m x n</code> 的二进制矩阵 <code>grid</code> ，每个格子要么为 <code>0</code> （空）要么为 <code>1</code> （被占据）。</p>
+<p>给你邮票的尺寸为 <code>stampHeight x stampWidth</code> 。我们想将邮票贴进二进制矩阵中，且满足以下 <strong>限制</strong> 和 <strong>要求</strong> ：</p>
+<ol>
+<li>覆盖所有 <strong>空</strong> 格子。</li>
+<li>不覆盖任何 <strong>被占据</strong> 的格子。</li>
+<li>我们可以放入任意数目的邮票。</li>
+<li>邮票可以相互有 <strong>重叠</strong> 部分。</li>
+<li>邮票不允许 <strong>旋转</strong> 。</li>
+<li>邮票必须完全在矩阵 <strong>内</strong> 。</li>
+</ol>
+<p>如果在满足上述要求的前提下，可以放入邮票，请返回 <code>true</code> ，否则返回 <code>false</code> 。</p>
+</blockquote>
+<ul>
+<li>
+<p>个人思路</p>
+<p>我直接学习！</p>
+</li>
+<li>
+<p>官解</p>
+<ul>
+<li>
+<p>二维前缀和和二维差分</p>
+<p>今天的题解十分清晰。</p>
+<p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/stamping-the-grid/solutions/2562069/yong-you-piao-tie-man-wang-ge-tu-by-leet-kiaq/?envType=daily-question&amp;envId=2023-12-14">2132. 用邮票贴满网格图 - 力扣（LeetCode）</a></p>
+<p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/stamping-the-grid/solutions/1199642/wu-nao-zuo-fa-er-wei-qian-zhui-he-er-wei-zwiu/?envType=daily-question&amp;envId=2023-12-14">2132. 用邮票贴满网格图 - 力扣（LeetCode）</a></p>
+<blockquote>
+<p>题目要求使用固定尺寸的邮票贴进二进制矩阵中，由于邮票之间可以重叠，因此我们本着能放就放的原则，遍历每个空格作为邮票左上角，如果右下角形状为 stampHeight×stampWidth 的范围内都是空格子，那么就在这贴一个邮票。</p>
+<p>最后，如果有空格子没有被邮票覆盖，则说明无法满足题目要求，返回 false\text{false}false，反之如果所有的空格子都被邮票覆盖，返回 true\text{true}true。</p>
+<p>在这个算法中，我们需要解决两个问题：</p>
+<ol>
+<li>贴邮票时，如何快速判断右下角固定范围内不存在被占据的格子，而都是空格子呢？</li>
+<li>最后做检查时，如何快速判断每个空格子都被邮票覆盖呢？</li>
+</ol>
+</blockquote>
+<ul>
+<li>
+<p>对于第一个问题，采用二维前缀和，被占据的格子是1，未被占据的格子是0，如果该区域的前缀和是0，则说明该区域内不存在被占据的格子，该前缀和可以一开始就被计算出来。</p>
+</li>
+<li>
+<p>对于第二个问题，我们首先要想清楚如何快速的把邮票放在格子中（即如何快速的给二维区域+1），所以使用二维差分。最后如何检查，需要对二维差分数组求前缀和，还原成表示格子的数组，再看是否还有为0的格子。</p>
+<p><img src="/2023/12/08/leetcode23-12/image-20231214101716935.png" srcset="/img/loading.gif" lazyload alt="image-20231214101716935"></p>
+</li>
+</ul>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><code class="hljs go"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">possibleToStamp</span><span class="hljs-params">(grid [][]<span class="hljs-type">int</span>, stampHeight, stampWidth <span class="hljs-type">int</span>)</span></span> <span class="hljs-type">bool</span> &#123;<br>    m, n := <span class="hljs-built_in">len</span>(grid), <span class="hljs-built_in">len</span>(grid[<span class="hljs-number">0</span>])<br><br>    <span class="hljs-comment">// 1. 计算 grid 的二维前缀和</span><br>    s := <span class="hljs-built_in">make</span>([][]<span class="hljs-type">int</span>, m+<span class="hljs-number">1</span>)<br>    s[<span class="hljs-number">0</span>] = <span class="hljs-built_in">make</span>([]<span class="hljs-type">int</span>, n+<span class="hljs-number">1</span>)<br>    <span class="hljs-keyword">for</span> i, row := <span class="hljs-keyword">range</span> grid &#123;<br>        s[i+<span class="hljs-number">1</span>] = <span class="hljs-built_in">make</span>([]<span class="hljs-type">int</span>, n+<span class="hljs-number">1</span>)<br>        <span class="hljs-keyword">for</span> j, v := <span class="hljs-keyword">range</span> row &#123;<br>            s[i+<span class="hljs-number">1</span>][j+<span class="hljs-number">1</span>] = s[i+<span class="hljs-number">1</span>][j] + s[i][j+<span class="hljs-number">1</span>] - s[i][j] + v<br>        &#125;<br>    &#125;<br><br>    <span class="hljs-comment">// 2. 计算二维差分</span><br>    <span class="hljs-comment">// 为方便第 3 步的计算，在 d 数组的最上面和最左边各加了一行（列），所以下标要 +1</span><br>    d := <span class="hljs-built_in">make</span>([][]<span class="hljs-type">int</span>, m+<span class="hljs-number">2</span>)<br>    <span class="hljs-keyword">for</span> i := <span class="hljs-keyword">range</span> d &#123;<br>        d[i] = <span class="hljs-built_in">make</span>([]<span class="hljs-type">int</span>, n+<span class="hljs-number">2</span>)<br>    &#125;<br>    <span class="hljs-keyword">for</span> i2 := stampHeight; i2 &lt;= m; i2++ &#123;<br>        <span class="hljs-keyword">for</span> j2 := stampWidth; j2 &lt;= n; j2++ &#123;<br>            i1 := i2 - stampHeight + <span class="hljs-number">1</span><br>            j1 := j2 - stampWidth + <span class="hljs-number">1</span><br>            <span class="hljs-keyword">if</span> s[i2][j2]-s[i2][j1<span class="hljs-number">-1</span>]-s[i1<span class="hljs-number">-1</span>][j2]+s[i1<span class="hljs-number">-1</span>][j1<span class="hljs-number">-1</span>] == <span class="hljs-number">0</span> &#123;<br>                d[i1][j1]++<br>                d[i1][j2+<span class="hljs-number">1</span>]--<br>                d[i2+<span class="hljs-number">1</span>][j1]--<br>                d[i2+<span class="hljs-number">1</span>][j2+<span class="hljs-number">1</span>]++<br>            &#125;<br>        &#125;<br>    &#125;<br><br>    <span class="hljs-comment">// 3. 还原二维差分矩阵对应的计数矩阵（原地计算）</span><br>    <span class="hljs-keyword">for</span> i, row := <span class="hljs-keyword">range</span> grid &#123;<br>        <span class="hljs-keyword">for</span> j, v := <span class="hljs-keyword">range</span> row &#123;<br>            d[i+<span class="hljs-number">1</span>][j+<span class="hljs-number">1</span>] += d[i+<span class="hljs-number">1</span>][j] + d[i][j+<span class="hljs-number">1</span>] - d[i][j]<br>            <span class="hljs-keyword">if</span> v == <span class="hljs-number">0</span> &amp;&amp; d[i+<span class="hljs-number">1</span>][j+<span class="hljs-number">1</span>] == <span class="hljs-number">0</span> &#123;<br>                <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span><br>            &#125;<br>        &#125;<br>    &#125;<br>    <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span><br>&#125;<br></code></pre></td></tr></table></figure>
+</li>
+</ul>
 </li>
 </ul>
 <link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
