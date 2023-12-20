@@ -26,6 +26,7 @@
 <meta property="og:image" content="https://codenum137.github.io/2023/10/23/%E8%B7%AF%E7%94%B1%E6%A0%87%E8%AF%86%E9%A1%B9%E7%9B%AE%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/image-20231207191205122.png">
 <meta property="og:image" content="https://codenum137.github.io/2023/10/23/%E8%B7%AF%E7%94%B1%E6%A0%87%E8%AF%86%E9%A1%B9%E7%9B%AE%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/image-20231018170506585.png">
 <meta property="og:image" content="https://codenum137.github.io/2023/10/23/%E8%B7%AF%E7%94%B1%E6%A0%87%E8%AF%86%E9%A1%B9%E7%9B%AE%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/image-20231023135106710.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/10/23/%E8%B7%AF%E7%94%B1%E6%A0%87%E8%AF%86%E9%A1%B9%E7%9B%AE%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/image-20231218153819693.png">
 <meta property="og:image" content="https://codenum137.github.io/2023/10/23/%E8%B7%AF%E7%94%B1%E6%A0%87%E8%AF%86%E9%A1%B9%E7%9B%AE%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/image-20231102132525764.png">
 <meta property="og:image" content="https://codenum137.github.io/2023/10/23/%E8%B7%AF%E7%94%B1%E6%A0%87%E8%AF%86%E9%A1%B9%E7%9B%AE%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/image-20231102132612024.png">
 <meta property="og:image" content="https://codenum137.github.io/2023/10/23/%E8%B7%AF%E7%94%B1%E6%A0%87%E8%AF%86%E9%A1%B9%E7%9B%AE%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/image-20231110133046953.png">
@@ -41,7 +42,7 @@
 <meta property="og:image" content="https://codenum137.github.io/2023/10/23/%E8%B7%AF%E7%94%B1%E6%A0%87%E8%AF%86%E9%A1%B9%E7%9B%AE%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/image-20231107130825682.png">
 <meta property="og:image" content="https://codenum137.github.io/2023/10/23/%E8%B7%AF%E7%94%B1%E6%A0%87%E8%AF%86%E9%A1%B9%E7%9B%AE%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/image-20231120152630696.png">
 <meta property="article:published_time" content="2023-10-23T03:00:14.000Z">
-<meta property="article:modified_time" content="2023-12-15T14:12:31.593Z">
+<meta property="article:modified_time" content="2023-12-18T07:38:26.274Z">
 <meta property="article:author" content="hey137">
 <meta property="article:tag" content="linux">
 <meta property="article:tag" content="shell">
@@ -574,6 +575,9 @@
 <li>使用 <code>ip rule show</code> 命令来查看PBR规则是否正确设置。确保除了10.0.0.0/8的其他网络有一个规则指定使用新创建的路由表（table 100）。</li>
 <li>使用 <code>ip route show table 100</code> 命令来查看新创建的路由表中是否包含了正确的默认路由，指向eth0网关。</li>
 </ol>
+<h3 id="FRR">FRR</h3>
+<p><a target="_blank" rel="noopener" href="https://docs.frrouting.org/en/latest/isisd.html#isis-interface">ISIS — FRR latest documentation (frrouting.org)</a></p>
+<p><img src="/2023/10/23/%E8%B7%AF%E7%94%B1%E6%A0%87%E8%AF%86%E9%A1%B9%E7%9B%AE%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/image-20231218153819693.png" srcset="/img/loading.gif" lazyload alt="image-20231218153819693"></p>
 <h2 id="GNS3与vmware">GNS3与vmware</h2>
 <h3 id="vmware的各种连接模式">vmware的各种连接模式</h3>
 <p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_46709219/article/details/108590498">虚拟机连网（多台虚拟机互联、虚拟机与真机互联、虚拟机上网）_多台主机的虚拟机互通必须要有网络吗-CSDN博客</a></p>

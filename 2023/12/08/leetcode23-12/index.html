@@ -31,7 +31,7 @@
 <meta property="og:image" content="https://codenum137.github.io/2023/12/08/leetcode23-12/image-20231214101716935.png">
 <meta property="og:image" content="https://codenum137.github.io/2023/12/08/leetcode23-12/image-20231216101304894.png">
 <meta property="article:published_time" content="2023-12-08T07:13:28.000Z">
-<meta property="article:modified_time" content="2023-12-16T02:29:34.463Z">
+<meta property="article:modified_time" content="2023-12-20T01:56:00.184Z">
 <meta property="article:author" content="hey137">
 <meta property="article:tag" content="leetcode">
 <meta property="article:tag" content="算法">
@@ -263,7 +263,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          19k 字
+          23k 字
         
       </span>
     
@@ -274,7 +274,7 @@
         
         
         
-          162 分钟
+          188 分钟
         
       </span>
     
@@ -676,6 +676,105 @@
 <figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs go"><span class="hljs-keyword">type</span> CountIntervals <span class="hljs-keyword">struct</span> &#123;<br>	left, right *CountIntervals<br>	l, r, cnt   <span class="hljs-type">int</span><br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">Constructor</span><span class="hljs-params">()</span></span> CountIntervals &#123; <span class="hljs-keyword">return</span> CountIntervals&#123;l: <span class="hljs-number">1</span>, r: <span class="hljs-number">1e9</span>&#125; &#125;<br><br><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-params">(o *CountIntervals)</span></span> Add(l, r <span class="hljs-type">int</span>) &#123;<br>	<span class="hljs-keyword">if</span> o.cnt == o.r-o.l+<span class="hljs-number">1</span> &#123; <span class="hljs-keyword">return</span> &#125; <span class="hljs-comment">// o 已被完整覆盖，无需执行任何操作</span><br>	<span class="hljs-keyword">if</span> l &lt;= o.l &amp;&amp; o.r &lt;= r &#123; <span class="hljs-comment">// 当前节点已被区间 [l,r] 完整覆盖，不再继续递归</span><br>		o.cnt = o.r - o.l + <span class="hljs-number">1</span><br>		<span class="hljs-keyword">return</span><br>	&#125;<br>	mid := (o.l + o.r) &gt;&gt; <span class="hljs-number">1</span><br>	<span class="hljs-keyword">if</span> o.left == <span class="hljs-literal">nil</span> &#123; o.left = &amp;CountIntervals&#123;l: o.l, r: mid&#125; &#125; <span class="hljs-comment">// 动态开点</span><br>	<span class="hljs-keyword">if</span> o.right == <span class="hljs-literal">nil</span> &#123; o.right = &amp;CountIntervals&#123;l: mid + <span class="hljs-number">1</span>, r: o.r&#125; &#125; <span class="hljs-comment">// 动态开点</span><br>	<span class="hljs-keyword">if</span> l &lt;= mid &#123; o.left.Add(l, r)&#125;<br>	<span class="hljs-keyword">if</span> mid &lt; r &#123; o.right.Add(l, r) &#125;<br>	o.cnt = o.left.cnt + o.right.cnt<br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-params">(o *CountIntervals)</span></span> Count() <span class="hljs-type">int</span> &#123; <span class="hljs-keyword">return</span> o.cnt &#125;<br></code></pre></td></tr></table></figure>
 </li>
 </ul>
+</li>
+</ul>
+<h2 id="746-使用最小花费爬楼梯"><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/min-cost-climbing-stairs/">746. 使用最小花费爬楼梯</a></h2>
+<blockquote>
+<p>给你一个整数数组 <code>cost</code> ，其中 <code>cost[i]</code> 是从楼梯第 <code>i</code> 个台阶向上爬需要支付的费用。一旦你支付此费用，即可选择向上爬一个或者两个台阶。</p>
+<p>你可以选择从下标为 <code>0</code> 或下标为 <code>1</code> 的台阶开始爬楼梯。</p>
+<p>请你计算并返回达到楼梯顶部的最低花费。</p>
+</blockquote>
+<ul>
+<li>
+<p>个人思路</p>
+<ul>
+<li>
+<p>dp</p>
+<p>一眼dp，用<code>dp[n]</code>表示上到第<code>n</code>阶阶梯所花费的最低价格，则</p>
+<p><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>d</mi><mi>p</mi><mo stretchy="false">[</mo><mi>n</mi><mo stretchy="false">]</mo><mo>=</mo><mi>m</mi><mi>i</mi><mi>n</mi><mo stretchy="false">(</mo><mi>d</mi><mi>p</mi><mo stretchy="false">[</mo><mi>n</mi><mo>−</mo><mn>1</mn><mo stretchy="false">]</mo><mo>+</mo><mi>c</mi><mi>o</mi><mi>s</mi><mi>t</mi><mo stretchy="false">[</mo><mi>n</mi><mo>−</mo><mn>1</mn><mo stretchy="false">]</mo><mo separator="true">,</mo><mi>d</mi><mi>p</mi><mo stretchy="false">[</mo><mi>n</mi><mo>−</mo><mn>2</mn><mo stretchy="false">]</mo><mo>+</mo><mi>c</mi><mi>o</mi><mi>s</mi><mi>t</mi><mo stretchy="false">[</mo><mi>n</mi><mo>−</mo><mn>2</mn><mo stretchy="false">]</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">dp[n]=min(dp[n-1]+cost[n-1],dp[n-2]+cost[n-2])</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">d</span><span class="mord mathnormal">p</span><span class="mopen">[</span><span class="mord mathnormal">n</span><span class="mclose">]</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">min</span><span class="mopen">(</span><span class="mord mathnormal">d</span><span class="mord mathnormal">p</span><span class="mopen">[</span><span class="mord mathnormal">n</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mclose">]</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">cos</span><span class="mord mathnormal">t</span><span class="mopen">[</span><span class="mord mathnormal">n</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mclose">]</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal">d</span><span class="mord mathnormal">p</span><span class="mopen">[</span><span class="mord mathnormal">n</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">2</span><span class="mclose">]</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">cos</span><span class="mord mathnormal">t</span><span class="mopen">[</span><span class="mord mathnormal">n</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">2</span><span class="mclose">])</span></span></span></span></p>
+<p>AC，注意下标的对应关系</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs go"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">minCostClimbingStairs</span><span class="hljs-params">(cost []<span class="hljs-type">int</span>)</span></span> <span class="hljs-type">int</span> &#123;<br>	n := <span class="hljs-built_in">len</span>(cost)<br>	dp := <span class="hljs-built_in">make</span>([]<span class="hljs-type">int</span>, n+<span class="hljs-number">1</span>)<br>	<span class="hljs-keyword">for</span> i := <span class="hljs-number">2</span>; i &lt;= n; i++ &#123;<br>		dp[i] = math.MaxInt<br>	&#125;<br>	<span class="hljs-keyword">for</span> i := <span class="hljs-number">2</span>; i &lt;= n; i++ &#123;<br>		dp[i] = min(dp[i], dp[i<span class="hljs-number">-1</span>]+cost[i<span class="hljs-number">-1</span>])<br>		dp[i] = min(dp[i], dp[i<span class="hljs-number">-2</span>]+cost[i<span class="hljs-number">-2</span>])<br>	&#125;<br>	<span class="hljs-keyword">return</span> dp[n]<br>&#125;<br><br></code></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li>
+<p>官解</p>
+<ul>
+<li>
+<p>dp</p>
+<p>可进一步优化空间，因为<code>dp[i]</code>仅与<code>dp[i-1]</code>和<code>dp[i-2]</code>有关。</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs go"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">minCostClimbingStairs</span><span class="hljs-params">(cost []<span class="hljs-type">int</span>)</span></span> <span class="hljs-type">int</span> &#123;<br>    n := <span class="hljs-built_in">len</span>(cost)<br>    pre, cur := <span class="hljs-number">0</span>, <span class="hljs-number">0</span><br>    <span class="hljs-keyword">for</span> i := <span class="hljs-number">2</span>; i &lt;= n; i++ &#123;<br>        pre, cur = cur, min(cur+cost[i<span class="hljs-number">-1</span>], pre+cost[i<span class="hljs-number">-2</span>])<br>    &#125;<br>    <span class="hljs-keyword">return</span> cur<br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">min</span><span class="hljs-params">(a, b <span class="hljs-type">int</span>)</span></span> <span class="hljs-type">int</span> &#123;<br>    <span class="hljs-keyword">if</span> a &lt; b &#123;<br>        <span class="hljs-keyword">return</span> a<br>    &#125;<br>    <span class="hljs-keyword">return</span> b<br>&#125;<br></code></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="162-寻找峰值"><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/find-peak-element/">162. 寻找峰值</a></h2>
+<blockquote>
+<p>峰值元素是指其值严格大于左右相邻值的元素。</p>
+<p>给你一个整数数组 <code>nums</code>，找到峰值元素并返回其索引。数组可能包含多个峰值，在这种情况下，返回 <strong>任何一个峰值</strong> 所在位置即可。</p>
+<p>你可以假设 <code>nums[-1] = nums[n] = -∞</code> 。</p>
+<p>你必须实现时间复杂度为 <code>O(log n)</code> 的算法来解决此问题。</p>
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>1 &lt;= nums.length &lt;= 1000</code></li>
+<li><code>-231 &lt;= nums[i] &lt;= 231 - 1</code></li>
+<li>对于所有有效的 <code>i</code> 都有 <code>nums[i] != nums[i + 1]</code></li>
+</ul>
+</blockquote>
+<ul>
+<li>
+<p>个人思路</p>
+<p>logn的算法。no idea</p>
+</li>
+<li>
+<p>官解</p>
+<p>logn就是二分呀。重点在于峰值一定存在</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><code class="hljs go"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">findPeakElement</span><span class="hljs-params">(nums []<span class="hljs-type">int</span>)</span></span> <span class="hljs-type">int</span> &#123;<br>    n := <span class="hljs-built_in">len</span>(nums)<br><br>    <span class="hljs-comment">// 辅助函数，输入下标 i，返回 nums[i] 的值</span><br>    <span class="hljs-comment">// 方便处理 nums[-1] 以及 nums[n] 的边界情况</span><br>    get := <span class="hljs-function"><span class="hljs-keyword">func</span><span class="hljs-params">(i <span class="hljs-type">int</span>)</span></span> <span class="hljs-type">int</span> &#123;<br>        <span class="hljs-keyword">if</span> i == <span class="hljs-number">-1</span> || i == n &#123;<br>            <span class="hljs-keyword">return</span> math.MinInt64<br>        &#125;<br>        <span class="hljs-keyword">return</span> nums[i]<br>    &#125;<br><br>    left, right := <span class="hljs-number">0</span>, n<span class="hljs-number">-1</span><br>    <span class="hljs-keyword">for</span> &#123;<br>        mid := (left + right) / <span class="hljs-number">2</span><br>        <span class="hljs-keyword">if</span> get(mid<span class="hljs-number">-1</span>) &lt; get(mid) &amp;&amp; get(mid) &gt; get(mid+<span class="hljs-number">1</span>) &#123;<br>            <span class="hljs-keyword">return</span> mid<br>        &#125;<br>        <span class="hljs-keyword">if</span> get(mid) &lt; get(mid+<span class="hljs-number">1</span>) &#123;<br>            left = mid + <span class="hljs-number">1</span><br>        &#125; <span class="hljs-keyword">else</span> &#123;<br>            right = mid - <span class="hljs-number">1</span><br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="1901-寻找峰值-II"><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/find-a-peak-element-ii/">1901. 寻找峰值 II</a></h2>
+<blockquote>
+<p>一个 2D 网格中的 <strong>峰值</strong> 是指那些 <strong>严格大于</strong> 其相邻格子(上、下、左、右)的元素。</p>
+<p>给你一个 <strong>从 0 开始编号</strong> 的 <code>m x n</code> 矩阵 <code>mat</code> ，其中任意两个相邻格子的值都 <strong>不相同</strong> 。找出 <strong>任意一个 峰值</strong> <code>mat[i][j]</code> 并 <strong>返回其位置</strong> <code>[i,j]</code> 。</p>
+<p>你可以假设整个矩阵周边环绕着一圈值为 <code>-1</code> 的格子。</p>
+<p>要求必须写出时间复杂度为 <code>O(m log(n))</code> 或 <code>O(n log(m))</code> 的算法</p>
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>m == mat.length</code></li>
+<li><code>n == mat[i].length</code></li>
+<li><code>1 &lt;= m, n &lt;= 500</code></li>
+<li><code>1 &lt;= mat[i][j] &lt;= 105</code></li>
+<li>任意两个相邻元素均不相等.</li>
+</ul>
+</blockquote>
+<ul>
+<li>
+<p>个人思路</p>
+<p><code>O(m log(n))</code> 或 <code>O(n log(m))</code>？那不是说明一次遍历，一次二分？</p>
+<p>懒了</p>
+</li>
+<li>
+<p>官解</p>
+<p>确实如此，但要对答案的存在性有一定理解。</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><code class="hljs go"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">maxElement</span><span class="hljs-params">(row []<span class="hljs-type">int</span>)</span></span> <span class="hljs-type">int</span> &#123;<br>    i := <span class="hljs-number">0</span><br>    <span class="hljs-keyword">for</span> j := <span class="hljs-keyword">range</span> row &#123;<br>        <span class="hljs-keyword">if</span> row[i] &lt; row[j] &#123;<br>            i = j<br>        &#125;<br>    &#125;<br>    <span class="hljs-keyword">return</span> i<br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">findPeakGrid</span><span class="hljs-params">(mat [][]<span class="hljs-type">int</span>)</span></span> []<span class="hljs-type">int</span> &#123;<br>    m := <span class="hljs-built_in">len</span>(mat)<br>    low, high := <span class="hljs-number">0</span>, m - <span class="hljs-number">1</span><br>    <span class="hljs-keyword">for</span> low &lt;= high &#123;<br>        i := (low + high) / <span class="hljs-number">2</span><br>        j := maxElement(mat[i])<br>        <span class="hljs-keyword">if</span> i - <span class="hljs-number">1</span> &gt;= <span class="hljs-number">0</span> &amp;&amp; mat[i][j] &lt; mat[i - <span class="hljs-number">1</span>][j] &#123;<br>            high = i - <span class="hljs-number">1</span><br>            <span class="hljs-keyword">continue</span><br>        &#125;<br>        <span class="hljs-keyword">if</span> i + <span class="hljs-number">1</span> &lt; m &amp;&amp; mat[i][j] &lt; mat[i + <span class="hljs-number">1</span>][j] &#123;<br>            low = i + <span class="hljs-number">1</span><br>            <span class="hljs-keyword">continue</span><br>        &#125;<br>        <span class="hljs-keyword">return</span> []<span class="hljs-type">int</span>&#123;i, j&#125;<br>    &#125;<br>    <span class="hljs-keyword">return</span> <span class="hljs-literal">nil</span> <span class="hljs-comment">// impossible</span><br>&#125;<br></code></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="2828-判别首字母缩略词"><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/check-if-a-string-is-an-acronym-of-words/">2828. 判别首字母缩略词</a></h2>
+<blockquote>
+<p>给你一个字符串数组 <code>words</code> 和一个字符串 <code>s</code> ，请你判断 <code>s</code> 是不是 <code>words</code> 的 <strong>首字母缩略词</strong> 。</p>
+<p>如果可以按顺序串联 <code>words</code> 中每个字符串的第一个字符形成字符串 <code>s</code> ，则认为 <code>s</code> 是 <code>words</code> 的首字母缩略词。例如，<code>&quot;ab&quot;</code> 可以由 <code>[&quot;apple&quot;, &quot;banana&quot;]</code> 形成，但是无法从 <code>[&quot;bear&quot;, &quot;aardvark&quot;]</code> 形成。</p>
+<p>如果 <code>s</code> 是 <code>words</code> 的首字母缩略词，返回 <code>true</code> ；否则，返回 <code>false</code> 。</p>
+</blockquote>
+<ul>
+<li>
+<p>个人思路</p>
+<p>EZ AC</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs go"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">isAcronym</span><span class="hljs-params">(words []<span class="hljs-type">string</span>, s <span class="hljs-type">string</span>)</span></span> <span class="hljs-type">bool</span> &#123;<br>	acro := <span class="hljs-string">&quot;&quot;</span><br>	<span class="hljs-keyword">for</span> i := <span class="hljs-number">0</span>; i &lt; <span class="hljs-built_in">len</span>(words); i++ &#123;<br>		acro += <span class="hljs-type">string</span>(words[i][<span class="hljs-number">0</span>])<br>	&#125;<br>	<span class="hljs-keyword">if</span> acro == s &#123;<br>		<span class="hljs-keyword">return</span> <span class="hljs-literal">true</span><br>	&#125;<br>	<span class="hljs-keyword">return</span> <span class="hljs-literal">false</span><br>&#125;<br></code></pre></td></tr></table></figure>
+</li>
+<li>
+<p>官解</p>
+<p>遍历的思路，有一开始检查长度的优化。</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs go">class Solution &#123;<br>public:<br>    <span class="hljs-type">bool</span> isAcronym(vector&lt;<span class="hljs-type">string</span>&gt;&amp; words, <span class="hljs-type">string</span> s) &#123;<br>        <span class="hljs-keyword">if</span> (s.size() != words.size()) &#123;<br>            <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>        &#125;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; s.size(); i++) &#123;<br>            <span class="hljs-keyword">if</span> (words[i][<span class="hljs-number">0</span>] != s[i]) &#123;<br>                <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
 </li>
 </ul>
 <link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
