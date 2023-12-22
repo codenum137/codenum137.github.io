@@ -4,6 +4,35 @@
   
     
     <entry>
+      <title>windows重装ubuntu单系统</title>
+      <link href="/2023/12/22/windows%E9%87%8D%E8%A3%85ubuntu%E5%8D%95%E7%B3%BB%E7%BB%9F/"/>
+      <url>/2023/12/22/windows%E9%87%8D%E8%A3%85ubuntu%E5%8D%95%E7%B3%BB%E7%BB%9F/</url>
+      
+        <content type="html"><![CDATA[<h1>windows重装ubuntu单系统</h1><h2 id="制作系统镜像启动安装盘">制作系统镜像启动安装盘</h2><ol><li>Ubuntu官网<a href="https://cn.ubuntu.com/download">https://cn.ubuntu.com/download</a> 下载系统镜像（.iso）文件。</li><li>UltralSO官网：<a href="https://filehippo.com/download_ultra-iso/%E7%9B%B4%E6%8E%A5%E4%B8%8B%E8%BD%BD%E5%85%8D%E8%B4%B9%E8%AF%95%E7%94%A8%E7%89%88%E6%9C%AC%E3%80%82">https://filehippo.com/download_ultra-iso/直接下载免费试用版本。</a></li><li>制作启动盘<ol><li>UltraISO中打开之前下载好的Ubuntu镜像</li><li>启动-&gt;写入硬盘映像</li><li>写入方式-&gt; USB-HDD+</li><li>便捷启动——&gt;写入新的硬盘引导记录(MBR)——&gt;USB-HDD+</li><li>格式化</li><li>写入</li></ol></li></ol><h2 id="安装Ubuntu">安装Ubuntu</h2><ol><li><p>战神笔记本重启，按<code>F2</code>进入BIOS。</p><p><img src="/2023/12/22/windows%E9%87%8D%E8%A3%85ubuntu%E5%8D%95%E7%B3%BB%E7%BB%9F/CDCE28EAD22B39F996D4DC2EFF6EF405.jpg" alt="img"></p></li><li><p>Boot Manager-&gt;Linpus lite(Flash)</p><p><img src="/2023/12/22/windows%E9%87%8D%E8%A3%85ubuntu%E5%8D%95%E7%B3%BB%E7%BB%9F/97AD853BC443D68D8E5AE96B6B5F2F46.jpg" alt="img"></p></li><li><p>选中Ubuntu（safe graphics），按e，不要按enter。</p><p><img src="/2023/12/22/windows%E9%87%8D%E8%A3%85ubuntu%E5%8D%95%E7%B3%BB%E7%BB%9F/5F257005A144FAA28695D11FE175B2CD.jpg" alt="img"></p></li><li><p>在<code>quiet splash</code>后增加<code>nomodeset</code>。</p><p><img src="/2023/12/22/windows%E9%87%8D%E8%A3%85ubuntu%E5%8D%95%E7%B3%BB%E7%BB%9F/BD899F4A12A0746978097F8D0B93CC62.jpg" alt="img"></p></li><li><p>按<code>F10</code>，进入ubuntu安装界面。正常安装即可。</p></li></ol><p>随便记录一下，校园网登录信息类型是受保护的EAP（PEAP）</p><p><img src="/2023/12/22/windows%E9%87%8D%E8%A3%85ubuntu%E5%8D%95%E7%B3%BB%E7%BB%9F/image-20231222115359007.png" alt="image-20231222115359007"></p><h2 id="Ubuntu自定义分区">Ubuntu自定义分区</h2><p>感觉这块比较重要，单独分出来记录。</p><ol><li><p>安装类型这里选择其他选项</p><p><img src="/2023/12/22/windows%E9%87%8D%E8%A3%85ubuntu%E5%8D%95%E7%B3%BB%E7%BB%9F/B79AE3D037A15F085E1B3D23EFBB2F45.jpg" alt="img"></p></li><li><p>将原有分区全部删除（选择分区，点击左下角的<code>-</code>号）。</p><p><img src="/2023/12/22/windows%E9%87%8D%E8%A3%85ubuntu%E5%8D%95%E7%B3%BB%E7%BB%9F/2443062DAA7A719E8C1B81BAC81EDDB6.jpg" alt="img"></p><p><img src="/2023/12/22/windows%E9%87%8D%E8%A3%85ubuntu%E5%8D%95%E7%B3%BB%E7%BB%9F/45A61C6AD6F20765BAA2DDFE0E72B66F.jpg" alt="img"></p></li><li><p>选择空闲，点击<code>+</code>号，用于选择<code>EFI系统分区</code>，分配330MB，主分区，空间起始位置，<code>EFI系统分区</code>。</p><p><img src="/2023/12/22/windows%E9%87%8D%E8%A3%85ubuntu%E5%8D%95%E7%B3%BB%E7%BB%9F/BD4EE859FF46B3D4ABB390AA3B25D4DF.jpg" alt="img"></p></li><li><p><code>/boot</code>，1G，逻辑分区，空间起始位置，Ext4</p><p><img src="/2023/12/22/windows%E9%87%8D%E8%A3%85ubuntu%E5%8D%95%E7%B3%BB%E7%BB%9F/76CA24B5F47E3794BC842E853D6E07C0.jpg" alt="img"></p></li><li><p><code>/swap</code>，16G（16384MB），逻辑分区，空间起始位置，交换空间。</p><p><img src="/2023/12/22/windows%E9%87%8D%E8%A3%85ubuntu%E5%8D%95%E7%B3%BB%E7%BB%9F/BE1C6FEAD8CFEF45ACC2D6CC7E0CF8D7.jpg" alt="img"></p></li><li><p><code>/</code>，根目录，160G(163840MB)，主分区，空间起始位置，Ext4，挂载点<code>/</code>。</p></li><li><p><code>/tmp</code>，存放临时文件，5G（5120MB），逻辑分区，空间起始位置，Ext4，挂载点<code>/tmp</code>。</p></li><li><p><code>/home</code>，尽可能大，剩余空间，逻辑分区，空间起始位置，Ext4，挂载点<code>/home</code>。</p></li><li><p>最终截图，引导器选择<code>EFI系统分区</code>，这里是<code>/dev/sda1</code>继续则完成。</p><p><img src="/2023/12/22/windows%E9%87%8D%E8%A3%85ubuntu%E5%8D%95%E7%B3%BB%E7%BB%9F/3E4DBB41B77811FAA95EEE96D6FE6807.jpg" alt="img"></p></li></ol><link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>]]></content>
+      
+      
+      <categories>
+          
+          <category> 随记 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> ubuntu </tag>
+            
+            <tag> bios </tag>
+            
+            <tag> 神舟战神 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>算法笔记</title>
       <link href="/2023/12/12/%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0/"/>
       <url>/2023/12/12/%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0/</url>
