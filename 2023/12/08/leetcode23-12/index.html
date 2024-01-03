@@ -31,7 +31,7 @@
 <meta property="og:image" content="https://codenum137.github.io/2023/12/08/leetcode23-12/image-20231214101716935.png">
 <meta property="og:image" content="https://codenum137.github.io/2023/12/08/leetcode23-12/image-20231216101304894.png">
 <meta property="article:published_time" content="2023-12-08T07:13:28.000Z">
-<meta property="article:modified_time" content="2023-12-27T04:26:51.321Z">
+<meta property="article:modified_time" content="2024-01-03T08:10:24.717Z">
 <meta property="article:author" content="hey137">
 <meta property="article:tag" content="leetcode">
 <meta property="article:tag" content="算法">
@@ -274,7 +274,7 @@
         
         
         
-          198 分钟
+          201 分钟
         
       </span>
     
@@ -826,6 +826,19 @@
 <p>个人思路</p>
 <p>EZAC</p>
 <figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><code class="hljs go"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">getScore</span><span class="hljs-params">(player []<span class="hljs-type">int</span>)</span></span> <span class="hljs-type">int</span> &#123;<br>	score, full_sign := <span class="hljs-number">0</span>, <span class="hljs-number">0</span><br>	<span class="hljs-keyword">for</span> i := <span class="hljs-number">0</span>; i &lt; <span class="hljs-built_in">len</span>(player); i++ &#123;<br>		<span class="hljs-keyword">if</span> full_sign &gt; <span class="hljs-number">0</span> &#123;<br>			score += player[i] * <span class="hljs-number">2</span><br>		&#125; <span class="hljs-keyword">else</span> &#123;<br>			score += player[i]<br>		&#125;<br>		<span class="hljs-keyword">if</span> player[i] == <span class="hljs-number">10</span> &#123;<br>			full_sign = <span class="hljs-number">2</span><br>		&#125; <span class="hljs-keyword">else</span> &#123;<br>			full_sign--<br>		&#125;<br>	&#125;<br>	<span class="hljs-keyword">return</span> score<br>&#125;<br><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">isWinner</span><span class="hljs-params">(player1 []<span class="hljs-type">int</span>, player2 []<span class="hljs-type">int</span>)</span></span> <span class="hljs-type">int</span> &#123;<br>	ascore, bscore := <span class="hljs-number">0</span>, <span class="hljs-number">0</span><br>	ascore = getScore(player1)<br>	bscore = getScore(player2)<br>	<span class="hljs-keyword">if</span> ascore &gt; bscore &#123;<br>		<span class="hljs-keyword">return</span> <span class="hljs-number">1</span><br>	&#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> ascore &lt; bscore &#123;<br>		<span class="hljs-keyword">return</span> <span class="hljs-number">2</span><br>	&#125; <span class="hljs-keyword">else</span> &#123;<br>		<span class="hljs-keyword">return</span> <span class="hljs-number">0</span><br>	&#125;<br><br>&#125;<br></code></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="2706-购买两块巧克力"><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/buy-two-chocolates/">2706. 购买两块巧克力</a></h2>
+<blockquote>
+<p>给你一个整数数组 <code>prices</code> ，它表示一个商店里若干巧克力的价格。同时给你一个整数 <code>money</code> ，表示你一开始拥有的钱数。</p>
+<p>你必须购买 <strong>恰好</strong> 两块巧克力，而且剩余的钱数必须是 <strong>非负数</strong> 。同时你想最小化购买两块巧克力的总花费。</p>
+<p>请你返回在购买两块巧克力后，最多能剩下多少钱。如果购买任意两块巧克力都超过了你拥有的钱，请你返回 <code>money</code> 。注意剩余钱数必须是非负数。</p>
+</blockquote>
+<ul>
+<li>
+<p>个人思路</p>
+<p>EZAC</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs go"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">buyChoco</span><span class="hljs-params">(prices []<span class="hljs-type">int</span>, money <span class="hljs-type">int</span>)</span></span> <span class="hljs-type">int</span> &#123;<br>	sort.Ints(prices)<br>	ans := money - prices[<span class="hljs-number">0</span>] - prices[<span class="hljs-number">1</span>]<br>	<span class="hljs-keyword">if</span> ans &gt;= <span class="hljs-number">0</span> &#123;<br>		<span class="hljs-keyword">return</span> ans<br>	&#125; <span class="hljs-keyword">else</span> &#123;<br>		<span class="hljs-keyword">return</span> money<br>	&#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 </li>
 </ul>
 <link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
