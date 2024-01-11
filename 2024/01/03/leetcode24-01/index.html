@@ -28,7 +28,7 @@
 <meta property="og:image" content="https://codenum137.github.io/2024/01/03/leetcode24-01/image-20240105094754063.png">
 <meta property="og:image" content="https://codenum137.github.io/2024/01/03/leetcode24-01/image-20240110093759531.png">
 <meta property="article:published_time" content="2024-01-03T08:08:11.000Z">
-<meta property="article:modified_time" content="2024-01-10T01:57:11.257Z">
+<meta property="article:modified_time" content="2024-01-11T01:50:17.910Z">
 <meta property="article:author" content="hey137">
 <meta property="article:tag" content="leetcode">
 <meta property="article:tag" content="算法">
@@ -260,7 +260,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          10k 字
+          13k 字
         
       </span>
     
@@ -271,7 +271,7 @@
         
         
         
-          87 分钟
+          105 分钟
         
       </span>
     
@@ -558,6 +558,52 @@
 <p>栈</p>
 <p>消消乐</p>
 <figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs go"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">minLength</span><span class="hljs-params">(s <span class="hljs-type">string</span>)</span></span> <span class="hljs-type">int</span> &#123;<br>    <span class="hljs-keyword">var</span> stack []<span class="hljs-type">byte</span><br>    <span class="hljs-keyword">for</span> i := <span class="hljs-keyword">range</span> s &#123;<br>        stack = <span class="hljs-built_in">append</span>(stack, s[i])<br>        m := <span class="hljs-built_in">len</span>(stack)<br>        <span class="hljs-keyword">if</span> m &gt;= <span class="hljs-number">2</span> &amp;&amp; (<span class="hljs-type">string</span>(stack[m<span class="hljs-number">-2</span>:]) == <span class="hljs-string">&quot;AB&quot;</span> || <span class="hljs-type">string</span>(stack[m - <span class="hljs-number">2</span>:]) == <span class="hljs-string">&quot;CD&quot;</span>) &#123;<br>            stack = stack[:m<span class="hljs-number">-2</span>]<br>        &#125;<br>    &#125;<br>    <span class="hljs-keyword">return</span> <span class="hljs-built_in">len</span>(stack)<br>&#125;<br></code></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="2645-构造有效字符串的最少插入数"><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/minimum-additions-to-make-valid-string/">2645. 构造有效字符串的最少插入数</a></h2>
+<blockquote>
+<p>给你一个字符串 <code>word</code> ，你可以向其中任何位置插入 “a”、“b” 或 “c” 任意次，返回使 <code>word</code> <strong>有效</strong> 需要插入的最少字母数。</p>
+<p>如果字符串可以由 “abc” 串联多次得到，则认为该字符串 <strong>有效</strong> 。</p>
+</blockquote>
+<ul>
+<li>
+<p>个人思路</p>
+<p>用栈的角度思考，玩消消乐。遍历读入字符</p>
+<ul>
+<li>a，入栈。</li>
+<li>b，入栈。检查前面的字符是否是a，不是则添加一个字符’a’。</li>
+<li>c，入栈。检查前面的字符顺序是否是b(b的前面必然有a），是则直接消去；不是则检查是否是a，是则添加b消去，不是则添加ab，消去。</li>
+</ul>
+<p>遍历完成，最后<strong>退栈</strong>添加相应字母将栈中元素全部消除（不能简单的判断有多少a多少b。栈中元素不会有c</p>
+<ul>
+<li>a，添加b、c，消去。</li>
+<li>b，添加c，消去。</li>
+</ul>
+<p>期间统计插入字符数，即为最少字母数。</p>
+<p>WA</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><code class="hljs go"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">addMinimum</span><span class="hljs-params">(word <span class="hljs-type">string</span>)</span></span> <span class="hljs-type">int</span> &#123;<br>	stack, res := <span class="hljs-built_in">make</span>([]<span class="hljs-type">byte</span>, <span class="hljs-number">0</span>, <span class="hljs-number">2</span>*<span class="hljs-built_in">len</span>(word)), <span class="hljs-number">0</span><br>	<span class="hljs-keyword">for</span> _, ch := <span class="hljs-keyword">range</span> word &#123;<br>		<span class="hljs-keyword">if</span> ch == <span class="hljs-string">&#x27;a&#x27;</span> &#123;<br>			stack = <span class="hljs-built_in">append</span>(stack, <span class="hljs-string">&#x27;a&#x27;</span>)<br>		&#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> ch == <span class="hljs-string">&#x27;b&#x27;</span> &#123;<br>			top := <span class="hljs-built_in">len</span>(stack) - <span class="hljs-number">1</span><br>			<span class="hljs-keyword">if</span> top &lt; <span class="hljs-number">0</span> || stack[top] != <span class="hljs-string">&#x27;a&#x27;</span> &#123;<br>				stack = <span class="hljs-built_in">append</span>(stack, <span class="hljs-string">&#x27;a&#x27;</span>)<br>				res++<br>			&#125;<br>			stack = <span class="hljs-built_in">append</span>(stack, <span class="hljs-string">&#x27;b&#x27;</span>)<br>		&#125; <span class="hljs-keyword">else</span> &#123;<br>			top := <span class="hljs-built_in">len</span>(stack) - <span class="hljs-number">1</span><br>			<span class="hljs-keyword">if</span> top &gt;= <span class="hljs-number">0</span> &amp;&amp; stack[top] == <span class="hljs-string">&#x27;b&#x27;</span> &#123;<br>				stack = stack[:top<span class="hljs-number">-1</span>]<br>			&#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> top &gt;= <span class="hljs-number">0</span> &#123;<br>				stack = stack[:top]<br>				res++ <span class="hljs-comment">//add &#x27;b&#x27;</span><br>			&#125; <span class="hljs-keyword">else</span> &#123;<br>				res += <span class="hljs-number">2</span><br>			&#125;<br>		&#125;<br>	&#125;<br>	<span class="hljs-keyword">for</span> top := <span class="hljs-built_in">len</span>(stack) - <span class="hljs-number">1</span>; top &gt;= <span class="hljs-number">0</span>; &#123;<br>		<span class="hljs-keyword">if</span> stack[top] == <span class="hljs-string">&#x27;b&#x27;</span> &#123;<br>			res++<br>			top -= <span class="hljs-number">2</span><br>		&#125; <span class="hljs-keyword">else</span> &#123;<br>			res += <span class="hljs-number">2</span><br>			top--<br>		&#125;<br>	&#125;<br>	<span class="hljs-keyword">return</span> res<br>&#125;<br></code></pre></td></tr></table></figure>
+<hr>
+<p>错误的，这题不是消消乐。例如 aabcc，需要添加4个字母成abcabcabc才符合题目，不是把中间的消了加个b就行。那一次遍历判断该加加，不就得了？</p>
+<p>用state去标识状态。AC</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><code class="hljs go"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">addMinimum</span><span class="hljs-params">(word <span class="hljs-type">string</span>)</span></span> <span class="hljs-type">int</span> &#123;<br>	state, res := <span class="hljs-number">0</span>, <span class="hljs-number">0</span><br>	<span class="hljs-comment">//state : 0 - nil,1 - a,2 - ab</span><br>	<span class="hljs-keyword">for</span> _, ch := <span class="hljs-keyword">range</span> word &#123;<br>		<span class="hljs-keyword">if</span> ch == <span class="hljs-string">&#x27;a&#x27;</span> &#123;<br>			<span class="hljs-keyword">if</span> state == <span class="hljs-number">1</span> &#123;<br>				res += <span class="hljs-number">2</span><br>			&#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> state == <span class="hljs-number">2</span> &#123;<br>				res++<br>			&#125;<br>			state = <span class="hljs-number">1</span><br>		&#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> ch == <span class="hljs-string">&#x27;b&#x27;</span> &#123;<br>			<span class="hljs-keyword">if</span> state == <span class="hljs-number">0</span> &#123;<br>				res++<br>			&#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> state == <span class="hljs-number">2</span> &#123;<br>				res += <span class="hljs-number">2</span><br>			&#125;<br>			state = <span class="hljs-number">2</span><br>		&#125; <span class="hljs-keyword">else</span> &#123;<br>			<span class="hljs-keyword">if</span> state == <span class="hljs-number">0</span> &#123;<br>				res += <span class="hljs-number">2</span><br>			&#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> state == <span class="hljs-number">1</span> &#123;<br>				res++<br>			&#125;<br>			state = <span class="hljs-number">0</span><br>		&#125;<br>	&#125;<br>	<span class="hljs-keyword">if</span> state == <span class="hljs-number">1</span> &#123;<br>		res += <span class="hljs-number">2</span><br>	&#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> state == <span class="hljs-number">2</span> &#123;<br>		res++<br>	&#125;<br>	<span class="hljs-keyword">return</span> res<br>&#125;<br></code></pre></td></tr></table></figure>
+</li>
+<li>
+<p>官解</p>
+<p>有点高手</p>
+<ul>
+<li>
+<p>动态规划</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs go"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">addMinimum</span><span class="hljs-params">(word <span class="hljs-type">string</span>)</span></span> <span class="hljs-type">int</span> &#123;<br>    n := <span class="hljs-built_in">len</span>(word)<br>    d := <span class="hljs-built_in">make</span>([]<span class="hljs-type">int</span>, n + <span class="hljs-number">1</span>)<br>    <span class="hljs-keyword">for</span> i := <span class="hljs-number">1</span>; i &lt;= n; i++ &#123;<br>        d[i] = d[i - <span class="hljs-number">1</span>] + <span class="hljs-number">2</span><br>        <span class="hljs-keyword">if</span> i &gt; <span class="hljs-number">1</span> &amp;&amp; word[i - <span class="hljs-number">1</span>] &gt; word[i - <span class="hljs-number">2</span>] &#123;<br>            d[i] = d[i - <span class="hljs-number">1</span>] - <span class="hljs-number">1</span><br>        &#125;<br>    &#125;<br>    <span class="hljs-keyword">return</span> d[n]<br>&#125;<br></code></pre></td></tr></table></figure>
+</li>
+<li>
+<p>直接拼接</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs go"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">addMinimum</span><span class="hljs-params">(word <span class="hljs-type">string</span>)</span></span> <span class="hljs-type">int</span> &#123;<br>    n := <span class="hljs-built_in">len</span>(word)<br>    res := <span class="hljs-type">int</span>(word[<span class="hljs-number">0</span>] - word[n - <span class="hljs-number">1</span>] + <span class="hljs-number">2</span>)<br>    <span class="hljs-keyword">for</span> i := <span class="hljs-number">1</span>; i &lt; n; i++ &#123;<br>        res += <span class="hljs-type">int</span>(word[i] - word[i - <span class="hljs-number">1</span>] + <span class="hljs-number">2</span>) % <span class="hljs-number">3</span><br>    &#125;<br>    <span class="hljs-keyword">return</span> res<br>&#125;<br></code></pre></td></tr></table></figure>
+</li>
+<li>
+<p>计算组数</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs go">class Solution &#123;<br>public:<br>    <span class="hljs-type">int</span> addMinimum(<span class="hljs-type">string</span> word) &#123;<br>        <span class="hljs-type">int</span> n = word.size(), cnt = <span class="hljs-number">1</span>;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">1</span>; i &lt; n; i++) &#123;<br>            <span class="hljs-keyword">if</span> (word[i] &lt;= word[i - <span class="hljs-number">1</span>]) &#123;<br>                cnt++;<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">return</span> cnt * <span class="hljs-number">3</span> - n;<br>    &#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
 </li>
 </ul>
 </li>
