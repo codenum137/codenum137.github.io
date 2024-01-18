@@ -27,8 +27,9 @@
 <meta property="og:image" content="https://codenum137.github.io/2024/01/03/leetcode24-01/image-20240104141742661.png">
 <meta property="og:image" content="https://codenum137.github.io/2024/01/03/leetcode24-01/image-20240105094754063.png">
 <meta property="og:image" content="https://codenum137.github.io/2024/01/03/leetcode24-01/image-20240110093759531.png">
+<meta property="og:image" content="https://codenum137.github.io/2024/01/03/leetcode24-01/image-20240118101445771.png">
 <meta property="article:published_time" content="2024-01-03T08:08:11.000Z">
-<meta property="article:modified_time" content="2024-01-12T01:14:13.803Z">
+<meta property="article:modified_time" content="2024-01-18T02:15:01.543Z">
 <meta property="article:author" content="hey137">
 <meta property="article:tag" content="leetcode">
 <meta property="article:tag" content="算法">
@@ -260,7 +261,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          13k 字
+          15k 字
         
       </span>
     
@@ -271,7 +272,7 @@
         
         
         
-          109 分钟
+          128 分钟
         
       </span>
     
@@ -621,6 +622,67 @@
 <li>
 <p>官解</p>
 <p>一模一样。</p>
+</li>
+</ul>
+<h2 id="2182-构造限制重复的字符串"><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/construct-string-with-repeat-limit/">2182. 构造限制重复的字符串</a></h2>
+<h2 id="83-删除排序链表中的重复元素"><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/remove-duplicates-from-sorted-list/">83. 删除排序链表中的重复元素</a></h2>
+<h2 id="82-删除排序链表中的重复元素-II"><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/remove-duplicates-from-sorted-list-ii/">82. 删除排序链表中的重复元素 II</a></h2>
+<blockquote>
+<p>给定一个已排序的链表的头 <code>head</code> ， <em>删除原始链表中所有重复数字的节点，只留下不同的数字</em> 。返回 <em>已排序的链表</em> 。</p>
+<p><strong>提示：</strong></p>
+<ul>
+<li>链表中节点数目在范围 <code>[0, 300]</code> 内</li>
+<li><code>-100 &lt;= Node.val &lt;= 100</code></li>
+<li>题目数据保证链表已经按升序 <strong>排列</strong></li>
+</ul>
+</blockquote>
+<ul>
+<li>
+<p>个人思路</p>
+<p>从链表头遍历，用一个指针记录当前确定数值不重复的节点（最右边），若该节点下一个节点和下两个节点的值一样，则继续遍历到下一个确定数值不重复的节点。</p>
+<p>AC</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs go"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">deleteDuplicates</span><span class="hljs-params">(head *ListNode)</span></span> *ListNode &#123;<br>	<span class="hljs-keyword">var</span> p, h *ListNode<br>	h = <span class="hljs-literal">nil</span><br>	p = h<br>	<span class="hljs-keyword">for</span> node := head; node != <span class="hljs-literal">nil</span>; node = node.Next &#123;<br>		<span class="hljs-keyword">if</span> node.Next != <span class="hljs-literal">nil</span> &amp;&amp; node.Val == node.Next.Val &#123;<br>			<span class="hljs-keyword">for</span> node.Next != <span class="hljs-literal">nil</span> &amp;&amp; node.Val == node.Next.Val &#123;<br>				node = node.Next<br>			&#125;<br>			<span class="hljs-keyword">if</span> node.Next == <span class="hljs-literal">nil</span> &amp;&amp; h != <span class="hljs-literal">nil</span> &#123;<br>				p.Next = <span class="hljs-literal">nil</span><br>			&#125;<br>		&#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> h == <span class="hljs-literal">nil</span> &#123;<br>			h = node<br>			p = h<br>		&#125; <span class="hljs-keyword">else</span> &#123;<br>			p.Next = node<br>			p = node<br>		&#125;<br>	&#125;<br>	<span class="hljs-keyword">return</span> h<br>&#125;<br></code></pre></td></tr></table></figure>
+</li>
+<li>
+<p>官解</p>
+<p>一样思路，但直接<code>cur.Next = cur.Next.Next</code>。</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs go"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">deleteDuplicates</span><span class="hljs-params">(head *ListNode)</span></span> *ListNode &#123;<br>    <span class="hljs-keyword">if</span> head == <span class="hljs-literal">nil</span> &#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">nil</span><br>    &#125;<br><br>    dummy := &amp;ListNode&#123;<span class="hljs-number">0</span>, head&#125;<br><br>    cur := dummy<br>    <span class="hljs-keyword">for</span> cur.Next != <span class="hljs-literal">nil</span> &amp;&amp; cur.Next.Next != <span class="hljs-literal">nil</span> &#123;<br>        <span class="hljs-keyword">if</span> cur.Next.Val == cur.Next.Next.Val &#123;<br>            x := cur.Next.Val<br>            <span class="hljs-keyword">for</span> cur.Next != <span class="hljs-literal">nil</span> &amp;&amp; cur.Next.Val == x &#123;<br>                cur.Next = cur.Next.Next<br>            &#125;<br>        &#125; <span class="hljs-keyword">else</span> &#123;<br>            cur = cur.Next<br>        &#125;<br>    &#125;<br><br>    <span class="hljs-keyword">return</span> dummy.Next<br>&#125;<br></code></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="2744-最大字符串配对数目"><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/find-maximum-number-of-string-pairs/">2744. 最大字符串配对数目</a></h2>
+<blockquote>
+<p>给你一个下标从 <strong>0</strong> 开始的数组 <code>words</code> ，数组中包含 <strong>互不相同</strong> 的字符串。</p>
+<p>如果字符串 <code>words[i]</code> 与字符串 <code>words[j]</code> 满足以下条件，我们称它们可以匹配：</p>
+<ul>
+<li>字符串 <code>words[i]</code> 等于 <code>words[j]</code> 的反转字符串。</li>
+<li><code>0 &lt;= i &lt; j &lt; words.length</code></li>
+</ul>
+<p>请你返回数组 <code>words</code> 中的 <strong>最大</strong> 匹配数目。</p>
+<p>注意，每个字符串最多匹配一次。</p>
+</blockquote>
+<ul>
+<li>
+<p>个人思路</p>
+<p>EZAC</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs go"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">reverseString</span><span class="hljs-params">(word <span class="hljs-type">string</span>)</span></span> <span class="hljs-type">string</span> &#123;<br>	res, index := <span class="hljs-built_in">make</span>([]<span class="hljs-type">byte</span>, <span class="hljs-built_in">len</span>(word)), <span class="hljs-number">0</span><br>	<span class="hljs-keyword">for</span> i := <span class="hljs-built_in">len</span>(word) - <span class="hljs-number">1</span>; i &gt;= <span class="hljs-number">0</span>; i-- &#123;<br>		res[index] = word[i]<br>		index++<br>	&#125;<br>	<span class="hljs-keyword">return</span> <span class="hljs-type">string</span>(res)<br>&#125;<br><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">maximumNumberOfStringPairs</span><span class="hljs-params">(words []<span class="hljs-type">string</span>)</span></span> <span class="hljs-type">int</span> &#123;<br>	visited, ans := <span class="hljs-built_in">make</span>([]<span class="hljs-type">int</span>, <span class="hljs-built_in">len</span>(words)), <span class="hljs-number">0</span><br>	<span class="hljs-keyword">for</span> i := <span class="hljs-number">0</span>; i &lt; <span class="hljs-built_in">len</span>(words); i++ &#123;<br>		res_word := reverseString(words[i])<br>		<span class="hljs-keyword">for</span> j := i + <span class="hljs-number">1</span>; j &lt; <span class="hljs-built_in">len</span>(words); j++ &#123;<br>			<span class="hljs-keyword">if</span> visited[j] == <span class="hljs-number">0</span> &amp;&amp; words[j] == res_word &#123;<br>				ans++<br>				visited[j] = <span class="hljs-number">1</span><br>			&#125;<br>		&#125;<br>	&#125;<br>	<span class="hljs-keyword">return</span> ans<br>&#125;<br></code></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="2171-拿出最少数目的魔法豆"><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/removing-minimum-number-of-magic-beans/">2171. 拿出最少数目的魔法豆</a></h2>
+<blockquote>
+<p>给定一个 <strong>正整数</strong> 数组 <code>beans</code> ，其中每个整数表示一个袋子里装的魔法豆的数目。</p>
+<p>请你从每个袋子中 <strong>拿出</strong> 一些豆子（也可以 <strong>不拿出</strong>），使得剩下的 <strong>非空</strong> 袋子中（即 <strong>至少还有一颗</strong> 魔法豆的袋子）魔法豆的数目 <strong>相等</strong>。一旦把魔法豆从袋子中取出，你不能再将它放到任何袋子中。</p>
+<p>请返回你需要拿出魔法豆的 <strong>最少数目</strong>。</p>
+</blockquote>
+<ul>
+<li>
+<p>个人思路</p>
+<p>拿豆使非空袋子的数量相等。</p>
+</li>
+<li>
+<p>官解</p>
+<p>遍历豆子数来计算最少数目。</p>
+<p><img src="/2024/01/03/leetcode24-01/image-20240118101445771.png" srcset="/img/loading.gif" lazyload alt="image-20240118101445771"></p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs go"><span class="hljs-function"><span class="hljs-keyword">func</span> <span class="hljs-title">minimumRemoval</span><span class="hljs-params">(beans []<span class="hljs-type">int</span>)</span></span> <span class="hljs-type">int64</span> &#123;<br>    n := <span class="hljs-built_in">len</span>(beans)<br>    sort.Ints(beans)<br>    total := <span class="hljs-type">int64</span>(<span class="hljs-number">0</span>) <span class="hljs-comment">// 豆子总数</span><br>    <span class="hljs-keyword">for</span> _, bean := <span class="hljs-keyword">range</span> beans &#123;<br>        total += <span class="hljs-type">int64</span>(bean)<br>    &#125;<br>    res := total <span class="hljs-comment">// 最少需要移除的豆子数</span><br>    <span class="hljs-keyword">for</span> i := <span class="hljs-number">0</span>; i &lt; n; i++ &#123;<br>        res = min(res, total - <span class="hljs-type">int64</span>(beans[i]) * <span class="hljs-type">int64</span>(n - i))<br>    &#125;<br>    <span class="hljs-keyword">return</span> res<br>&#125;<br></code></pre></td></tr></table></figure>
 </li>
 </ul>
 <link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
