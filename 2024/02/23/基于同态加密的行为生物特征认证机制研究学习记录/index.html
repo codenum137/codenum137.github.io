@@ -24,8 +24,13 @@
 <meta property="og:description" content="本科生毕业设计的学习记录。">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://codenum137.github.io/2024/02/23/%E5%9F%BA%E4%BA%8E%E5%90%8C%E6%80%81%E5%8A%A0%E5%AF%86%E7%9A%84%E8%A1%8C%E4%B8%BA%E7%94%9F%E7%89%A9%E7%89%B9%E5%BE%81%E8%AE%A4%E8%AF%81%E6%9C%BA%E5%88%B6%E7%A0%94%E7%A9%B6%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/image-20240227171637720.png">
+<meta property="og:image" content="https://codenum137.github.io/2024/02/23/%E5%9F%BA%E4%BA%8E%E5%90%8C%E6%80%81%E5%8A%A0%E5%AF%86%E7%9A%84%E8%A1%8C%E4%B8%BA%E7%94%9F%E7%89%A9%E7%89%B9%E5%BE%81%E8%AE%A4%E8%AF%81%E6%9C%BA%E5%88%B6%E7%A0%94%E7%A9%B6%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/image-20240303200145099-17094673061391.png">
+<meta property="og:image" content="https://codenum137.github.io/2024/02/23/%E5%9F%BA%E4%BA%8E%E5%90%8C%E6%80%81%E5%8A%A0%E5%AF%86%E7%9A%84%E8%A1%8C%E4%B8%BA%E7%94%9F%E7%89%A9%E7%89%B9%E5%BE%81%E8%AE%A4%E8%AF%81%E6%9C%BA%E5%88%B6%E7%A0%94%E7%A9%B6%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/image-20240303200231420.png">
+<meta property="og:image" content="https://codenum137.github.io/2024/02/23/%E5%9F%BA%E4%BA%8E%E5%90%8C%E6%80%81%E5%8A%A0%E5%AF%86%E7%9A%84%E8%A1%8C%E4%B8%BA%E7%94%9F%E7%89%A9%E7%89%B9%E5%BE%81%E8%AE%A4%E8%AF%81%E6%9C%BA%E5%88%B6%E7%A0%94%E7%A9%B6%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/image-20240303201151507.png">
+<meta property="og:image" content="https://codenum137.github.io/2024/02/23/%E5%9F%BA%E4%BA%8E%E5%90%8C%E6%80%81%E5%8A%A0%E5%AF%86%E7%9A%84%E8%A1%8C%E4%B8%BA%E7%94%9F%E7%89%A9%E7%89%B9%E5%BE%81%E8%AE%A4%E8%AF%81%E6%9C%BA%E5%88%B6%E7%A0%94%E7%A9%B6%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/image-20240308101717069.png">
+<meta property="og:image" content="https://codenum137.github.io/2024/02/23/%E5%9F%BA%E4%BA%8E%E5%90%8C%E6%80%81%E5%8A%A0%E5%AF%86%E7%9A%84%E8%A1%8C%E4%B8%BA%E7%94%9F%E7%89%A9%E7%89%B9%E5%BE%81%E8%AE%A4%E8%AF%81%E6%9C%BA%E5%88%B6%E7%A0%94%E7%A9%B6%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/image-20240308102203668.png">
 <meta property="article:published_time" content="2024-02-23T01:52:26.000Z">
-<meta property="article:modified_time" content="2024-02-27T13:17:58.657Z">
+<meta property="article:modified_time" content="2024-03-08T02:57:58.534Z">
 <meta property="article:author" content="hey137">
 <meta property="article:tag" content="同态加密">
 <meta property="article:tag" content="人工智能">
@@ -257,7 +262,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.5k 字
+          5.4k 字
         
       </span>
     
@@ -268,7 +273,7 @@
         
         
         
-          13 分钟
+          46 分钟
         
       </span>
     
@@ -395,8 +400,128 @@
 </ul>
 <h5 id="设计">设计</h5>
 <ul>
-<li>孪生网络：用于提取判别特征。令相同用户样本生成的向量靠近，不同用户样本生成的向量分离。由两个相同的子网络（CNN1D）组成，</li>
+<li>孪生网络：用于提取判别特征。令相同用户样本生成的向量靠近，不同用户样本生成的向量分离。由两个相同的子网络（CNN1D）组成，通过L2泛化将输入数据投射到半径为1的n维立体球上。</li>
+<li>距离函数：计算向量距离，不同用户的距离大，相同用户的距离小。</li>
+<li>决策网络：解决分类。这段文本描述了一个前馈神经网络的设计。该网络包括三个连续的稠密层，每一层的神经元数量逐渐减少，使用ReLU激活函数和L2范数作为核正则化器。前两层之后紧跟着一个批量归一化层，用于调节前一层的激活值，使其均值接近0，标准差接近1。最后一个稠密层之后是一个dropout层，丢失率为0.25，由一个具有sigmoid激活函数的单个单元组成，以保持与伯努利输出分布的一致性。</li>
+<li>保留一部分数据不用于训练，用于测试。</li>
 </ul>
+<h5 id="实现">实现</h5>
+<ul>
+<li>
+<p>样本制备：三元取样</p>
+</li>
+<li>
+<p>模型建立</p>
+<ul>
+<li>
+<p>AuthentiSense的深度学习部分利用了Siamese神经网络（NN）和决策网络。Siamese NN由两个子网络组成，通过组装层（例如Conv1D、Max Pooling1D、Flatten和Dense层）排列在Siamese架构中。然后，两个子网络的输出通过自定义的距离函数（使用Lambda层）传递，如图3所示。最后，我们将决策网络附加到Siamese网络，并通过堆叠全连接的Dense层构建我们的分类器。</p>
+</li>
+<li>
+<p>Siamese NN使用三个连续的卷积层，其滤波器数量逐渐增加（从64到256），从而在深度上扩展数据。最后一层的内核大小减小（从5到3），以进行更精细的计算。由于处理的是非归一化数据，因此在每个卷积层后添加批量标准化层，以规范化输入，从而稳定学习过程并显著减少训练Siamese网络所需的训练周期。此外，每个卷积层都包括一个内核正则化器（L2-范数），其值为10^-3，以防止过拟合。</p>
+</li>
+<li>
+<p>在卷积层之后，使用1维最大池化层对输入表示进行降采样，通过在指定大小的空间窗口上取最大值来实现。然后，将卷积块的输出展平，并传递给最后一个全连接（即密集）层，不使用激活函数，负责生成输入的嵌入表示，作为固定大小的数组（长度为32x1）。</p>
+</li>
+</ul>
+</li>
+<li>
+<p>训练策略</p>
+<ul>
+<li>
+<p>训练过程取决于样本生成策略（即成对或三元组）。对于成对训练，使用对比损失（参见附录A），而对于三元组训练则使用三元组损失。三元组损失同时学习正负距离，并更注重难以区分的负样本，从而减少易于区分的负样本数量。与成对训练相比，这有助于降低过拟合的风险。我们选择三元组训练，因此我们使用三元组损失来训练我们的Siamese网络。三元组损失的目标是确保具有相同标签的两个样本在嵌入空间中彼此靠近，而具有不同标签的两个样本的嵌入则彼此远离。</p>
+</li>
+<li>
+<p>为了训练网络，我们抽样所需批量大小的三元组。顾名思义，需要三个输入样本，分别是：i）锚点，即样本输入数据，ii）正样本，只是锚点的另一个变化，iii）负样本，与上述两个样本不同。这有助于我们的模型学习与锚点样本的不同之处。正样本和负样本分别传递给Siamese网络，因为三元组是在线挖掘的。正如图4所示，网络学习减少锚点和正样本之间的距离，同时增加锚点和负样本之间的距离，以使两个距离的差达到预定义的超参数Alpha α（方程1）。方程1中的alpha参数旨在确保锚点-正样本距离（d(a,p)）和锚点-负样本距离（d(a,n)）的差至少与Alpha相等，以防止模型崩溃到满足方程1的平凡解，其中f(a) = f(p) = f(n)。</p>
+<p><img src="/2024/02/23/%E5%9F%BA%E4%BA%8E%E5%90%8C%E6%80%81%E5%8A%A0%E5%AF%86%E7%9A%84%E8%A1%8C%E4%B8%BA%E7%94%9F%E7%89%A9%E7%89%B9%E5%BE%81%E8%AE%A4%E8%AF%81%E6%9C%BA%E5%88%B6%E7%A0%94%E7%A9%B6%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/image-20240303200145099-17094673061391.png" srcset="/img/loading.gif" lazyload alt="image-20240303200145099"></p>
+</li>
+<li>
+<p>三元组损失定义如下</p>
+<p><img src="/2024/02/23/%E5%9F%BA%E4%BA%8E%E5%90%8C%E6%80%81%E5%8A%A0%E5%AF%86%E7%9A%84%E8%A1%8C%E4%B8%BA%E7%94%9F%E7%89%A9%E7%89%B9%E5%BE%81%E8%AE%A4%E8%AF%81%E6%9C%BA%E5%88%B6%E7%A0%94%E7%A9%B6%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/image-20240303200231420.png" srcset="/img/loading.gif" lazyload alt="image-20240303200231420"></p>
+</li>
+<li>
+<p>理论来说，使用困难或中等难度的三元组会使模型训练效果更好，但困难三元组会使模型损坏，坍缩为平凡解。<strong>因此使用中等难度三元组训练。</strong></p>
+</li>
+<li>
+<p>在定义了嵌入三元组的损失并观察到一些三元组比其他三元组更有用，即它们的损失值有助于网络进行更好的权重优化之后，我们选择在线三元组挖掘方法来挖掘三元组。与离线三元组挖掘不同，离线三元组挖掘中数据作为三元组形式的输入传递给网络，而在线三元组挖掘在训练过程中在每个数据批次中计算三元组。**在线挖掘的思想是动态地在每个数据批次中计算有用的三元组。给定一个包含B个样本的批次，它计算B个嵌入，然后可以找到最多B3个三元组，并选择用于训练的半困难三元组。**正如已经描述的，我们使用半困难三元组挖掘来训练网络，因为半困难三元组不像困难三元组那样难以学习，但仍然提供有用的信息。我们采用的挖掘策略是在从随机抽取的样本批次中在线计算三元组，因此无法预先确定三元组的数量。</p>
+</li>
+</ul>
+</li>
+<li>
+<p>端到端模型参数优化</p>
+<p>“端到端模型参数优化”是指在机器学习或深度学习模型中，以统一和整体的方式优化所有参数的过程，从输入层到输出层。这涉及同时调整模型的所有参数，以改善其整体性能，而不是单独优化各个组件。</p>
+<p>在这种方法中，整个模型被视为单个系统，优化过程旨在找到最佳参数组合，以最小化损失函数或最大化奖励函数。这可能涉及使用梯度下降、反向传播或其他优化算法来调整模型的参数。</p>
+<p>端到端参数优化通常用于具有多个相互关联组件的复杂模型，例如深度神经网络。通过优化整个模型的参数，目的是让模型学习为其设计的整个任务的最佳参数组合，考虑模型不同部分之间的交互。这种方法旨在实现更好的性能和整体泛化。</p>
+<p><img src="/2024/02/23/%E5%9F%BA%E4%BA%8E%E5%90%8C%E6%80%81%E5%8A%A0%E5%AF%86%E7%9A%84%E8%A1%8C%E4%B8%BA%E7%94%9F%E7%89%A9%E7%89%B9%E5%BE%81%E8%AE%A4%E8%AF%81%E6%9C%BA%E5%88%B6%E7%A0%94%E7%A9%B6%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/image-20240303201151507.png" srcset="/img/loading.gif" lazyload alt="image-20240303201151507"></p>
+<ul>
+<li>包含以下步骤：首先，Siamese网络的权重被冻结（它被用作特征提取器），然后完全连接的决策网络被附加到Siamese网络，并使用二元交叉熵损失函数进行训练，以优化网络的权重。</li>
+</ul>
+</li>
+<li>
+<p>超参数微调和网络配置</p>
+<p>在构建模型架构之后，我们采用网格搜索方法并循环遍历预定义的超参数，如表I和表II所示，以选择一组最佳超参数，以最大化模型性能。具体来说，我们调查了关于优化器的选择、学习率、批量大小以及半困难三元组损失函数的边缘值（Alpha）的多个选项。最终，我们选择了最佳性能参数，以最大化模型的性能，如表III和表IV所示，并将它们用于训练我们的网络。</p>
+</li>
+</ul>
+<h4 id="评估">评估</h4>
+<h5 id="数据集">数据集</h5>
+<p>为了进行我们的实验，我们使用了<strong>DAKOTA数据集</strong>[40]，更具体地说，是记录了45个用户在使用手机银行应用时的运动传感器数值（即加速度计、陀螺仪和磁力计）。在这45个用户中，我们随机选择了35个用户进行训练，3个用户作为验证数据以确定分类阈值，还有7个用户用于测试。对每个用户在坐姿、站姿和手机放在桌子上的5种姿势下都进行了数据记录。因此，训练集中的每个用户都有15个90秒长的会话。因此，只需要很少的志愿者用户来训练特征提取器。此外，我们主要关注的是在系统部署后，对新加入的用户提供一种少样本学习的解决方案。我们可以要求志愿者提供我们想要的大量数据。然而，对于真实世界的用户，我们只能期望收集到少量样本（见表V）。由于原始数据的采样频率不是恒定的，每个传感器的起始和结束时间戳也不一致，因此我们对每个会话的传感器数据进行了重新采样，采样率为5毫秒，在数据降采样的区域取平均值，在数据升采样的区域进行线性插值。为了获得样本池，我们对每个记录的会话数据运行了一个固定长度的滑动窗口（1、3、5、10和15秒），步长等于其长度的1/10，并对其进行标记。对于每个窗口，每个运动传感器的每个轴的数值被连接起来形成一个一维数组，以后用于构建正负样本。窗口池然后被洗牌并分成批次，用于训练和测试集，用于Siamese网络。对于决策网络，随机采样了相同用户的窗口对（正样本）和不同用户的窗口对（负样本），生成了50000和10000对，然后分别进行批处理，用于训练和测试。</p>
+<h5 id="评估指标">评估指标</h5>
+<ul>
+<li>FAR</li>
+<li>FRR</li>
+<li>F1-Score</li>
+<li>AUC</li>
+<li>EER</li>
+</ul>
+<h5 id="实验准备">实验准备</h5>
+<h3 id="Challenges-and-Opportunities-of-Biometric-User-Authentication-in-the-Age-of-IoT-A-Survey">Challenges and Opportunities of Biometric User Authentication in the Age of IoT: A Survey.</h3>
+<p>Beijing University of Posts and Telecommunications (BUPT)</p>
+<h2 id="实践">实践</h2>
+<h3 id="安装tensorflow">安装tensorflow</h3>
+<ul>
+<li>
+<p><a target="_blank" rel="noopener" href="https://tensorflow.google.cn/install/pip?hl=zh-cn">使用 pip 安装 TensorFlow (google.cn)</a></p>
+</li>
+<li>
+<p>启用长路径无gpedit.msc <a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/403961135">找不到 gpedit.msc 的最优解决办法 - 知乎 (zhihu.com)</a></p>
+<p>[Windows 启用长路径（文件名过长，路径过长）_长路径支持-CSDN博客](<a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_46356818/article/details/121029550#:~:text=Windows">https://blog.csdn.net/weixin_46356818/article/details/121029550#:~:text=Windows</a> 启用长路径支持 1 找到并打开文件（本地组策略编辑器）gpedit.msc win%2Br%3A 输入gpedit.msc,注：若是发现找不到gpedit.msc，点此链接 2 依次点开 计算机配置&gt;管理模板&gt;系统&gt;文件系统，找到“启用win32长路径”并双击打开 选择“启用”选项，然后单击“确定” 退出，重启电脑)</p>
+</li>
+<li>
+<p>windows下cd无法切换盘符</p>
+<p>加<code>/d</code>，如</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh"><span class="hljs-built_in">cd</span> /d d:\download\<br></code></pre></td></tr></table></figure>
+</li>
+<li>
+<p>There was a problem confirming the ssl certificate: HTTPSConnectionPool</p>
+</li>
+</ul>
+<p>关闭vpn</p>
+<p>总结</p>
+<p><a target="_blank" rel="noopener" href="https://tensorflow.google.cn/install/pip?hl=zh-cn">使用 pip 安装 TensorFlow (google.cn)</a></p>
+<ol>
+<li>
+<p>安装anaconda</p>
+</li>
+<li>
+<p>安装microsoft c++<a target="_blank" rel="noopener" href="https://visualstudio.microsoft.com/zh-hans/downloads/">下载 Visual Studio Tools - 免费安装 Windows、Mac、Linux (microsoft.com)</a></p>
+</li>
+<li>
+<p>管理员打开anaconda prompt</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs sh">conda create tf python=3.8<br>conda activate tf<br>pip install tensorflow-cpu==2.4.0 -i https://pypi.douban/simple<br></code></pre></td></tr></table></figure>
+</li>
+</ol>
+<h2 id="理论知识">理论知识</h2>
+<h3 id="损失函数">损失函数</h3>
+<ul>
+<li>
+<p><img src="/2024/02/23/%E5%9F%BA%E4%BA%8E%E5%90%8C%E6%80%81%E5%8A%A0%E5%AF%86%E7%9A%84%E8%A1%8C%E4%B8%BA%E7%94%9F%E7%89%A9%E7%89%B9%E5%BE%81%E8%AE%A4%E8%AF%81%E6%9C%BA%E5%88%B6%E7%A0%94%E7%A9%B6%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/image-20240308101717069.png" srcset="/img/loading.gif" lazyload alt="image-20240308101717069"></p>
+<p>用于评估权重参数的效果如何，结果值趋向于0表示损失较小。上图是简单的损失函数，用不是该类别的值减去该类别的值再加1,1的值是可以微调的，用于防范两者差别很小导致的错误。</p>
+</li>
+<li>
+<p><img src="/2024/02/23/%E5%9F%BA%E4%BA%8E%E5%90%8C%E6%80%81%E5%8A%A0%E5%AF%86%E7%9A%84%E8%A1%8C%E4%B8%BA%E7%94%9F%E7%89%A9%E7%89%B9%E5%BE%81%E8%AE%A4%E8%AF%81%E6%9C%BA%E5%88%B6%E7%A0%94%E7%A9%B6%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/image-20240308102203668.png" srcset="/img/loading.gif" lazyload alt="image-20240308102203668"></p>
+<p>上图两个模型产生的值一样，但我们更倾向于模型B，更稳定。因为模型A只关注了局部，是一个过拟合的结果。</p>
+</li>
+</ul>
+<h3 id="正则化惩罚项">正则化惩罚项</h3>
 <link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
                 
               </div>
