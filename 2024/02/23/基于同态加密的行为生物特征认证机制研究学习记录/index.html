@@ -44,7 +44,7 @@
 <meta property="og:image" content="https://codenum137.github.io/2024/02/23/%E5%9F%BA%E4%BA%8E%E5%90%8C%E6%80%81%E5%8A%A0%E5%AF%86%E7%9A%84%E8%A1%8C%E4%B8%BA%E7%94%9F%E7%89%A9%E7%89%B9%E5%BE%81%E8%AE%A4%E8%AF%81%E6%9C%BA%E5%88%B6%E7%A0%94%E7%A9%B6%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/image-20240308133734165.png">
 <meta property="og:image" content="https://codenum137.github.io/2024/02/23/%E5%9F%BA%E4%BA%8E%E5%90%8C%E6%80%81%E5%8A%A0%E5%AF%86%E7%9A%84%E8%A1%8C%E4%B8%BA%E7%94%9F%E7%89%A9%E7%89%B9%E5%BE%81%E8%AE%A4%E8%AF%81%E6%9C%BA%E5%88%B6%E7%A0%94%E7%A9%B6%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/image-20240308133856466.png">
 <meta property="article:published_time" content="2024-02-23T01:52:26.000Z">
-<meta property="article:modified_time" content="2024-03-13T08:46:09.601Z">
+<meta property="article:modified_time" content="2024-04-29T14:59:39.157Z">
 <meta property="article:author" content="hey137">
 <meta property="article:tag" content="同态加密">
 <meta property="article:tag" content="人工智能">
@@ -276,7 +276,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          6.3k 字
+          7.7k 字
         
       </span>
     
@@ -287,7 +287,7 @@
         
         
         
-          53 分钟
+          64 分钟
         
       </span>
     
@@ -524,7 +524,72 @@
 </li>
 </ol>
 <h3 id="Siamese-tf2-master">Siamese-tf2-master</h3>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs sh">pip install -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple<br>pip install protobuf==3.20.0 -i https://pypi.tuna.tsinghua.edu.cn/simple<br><br></code></pre></td></tr></table></figure>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs sh">pip install -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple<br>pip install protobuf==3.20.0 -i https://pypi.tuna.tsinghua.edu.cn/simple<br></code></pre></td></tr></table></figure>
+<h3 id="AuthtiSense-Demo">AuthtiSense-Demo</h3>
+<h4 id="代码梳理">代码梳理</h4>
+<ul>
+<li>
+<p><code>nets/cnn.py</code></p>
+<p>cnn网络的架构</p>
+</li>
+<li>
+<p><code>nets/decision.py</code></p>
+<p>几个全连接层，用于增大负样本之间的距离，减小正样本之间的距离</p>
+</li>
+<li>
+<p><code>nets/siamese.py</code></p>
+<p>结合cnn网络、距离函数、决策网络</p>
+</li>
+<li>
+<p><code>utils/utils.py</code></p>
+<table>
+<thead>
+<tr>
+<th>函数</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>pre_deal_dataset</td>
+<td>去除数据集中末尾的分号和逗号</td>
+</tr>
+<tr>
+<td>feature_normalize</td>
+<td>将数据标准化，减平均数后除以标准差</td>
+</tr>
+<tr>
+<td>load_dataset</td>
+<td>加载数据库，将清洗过后的数据库（去除分号和逗号的数据库）<br>中的数据标准化（使用feature_normalize函数），<br>最后调用segment_signal数据按90条的窗口生成新数据</td>
+</tr>
+<tr>
+<td>windows</td>
+<td>生成数据窗口的起点和终点。程序中按90条的大小半覆盖前进</td>
+</tr>
+<tr>
+<td>segment_signal</td>
+<td>90条数据生成一条新数据，维度是90x3</td>
+</tr>
+<tr>
+<td>doubleGenerator</td>
+<td>将segment_signal函数处理后的数据一正一负生成数据</td>
+</tr>
+<tr>
+<td>devide_dataset</td>
+<td>将数据集分为训练集、验证集和测试集</td>
+</tr>
+<tr>
+<td>contrastive_loss</td>
+<td>计算对比损失</td>
+</tr>
+</tbody>
+</table>
+<p>doubleGenerator产生的数据维数是 [2（样本对）, batch_size, 90, 3]，label</p>
+</li>
+</ul>
+<h4 id="保存和重载模型权重">保存和重载模型权重</h4>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_44048809/article/details/105705272">Keras中使用ModelCheckpoint对训练完成的模型进行保存及载入_modelcheckpoint 保存模型结构-CSDN博客</a></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment">#callback中使用ModelCheckpoint(filepath=save_dir,monitor=&quot;val_loss&quot;,save_best_only=True,save_weights_only=True,)来保存模型的权重</span><br><span class="hljs-comment"># 载入模型时需要自己构建网络架构，再载入权重</span><br>model=siamese(input_shape)<br>model.load_wights(<span class="hljs-string">&quot;model_data/model.h5&quot;</span>)<br></code></pre></td></tr></table></figure>
 <h2 id="理论知识">理论知识</h2>
 <h3 id="7-前向传播整体流程-哔哩哔哩-bilibili"><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1FW4y1b7WM?p=10&amp;spm_id_from=pageDriver&amp;vd_source=c7b6824c61369ce64fcb831e5abaf88d">7-前向传播整体流程_哔哩哔哩_bilibili</a></h3>
 <h4 id="损失函数">损失函数</h4>
@@ -650,10 +715,29 @@
 </ul>
 </li>
 </ul>
-<h3 id="随记">随记</h3>
+<h3 id="同态加密">同态加密</h3>
+<h4 id="公钥和私钥">公钥和私钥</h4>
+<p>如果使用对称加密算法，加解密使用同一个密钥，除了自己保存外，对方也要知道这个密钥，才能对数据进行解密。如果你把密钥也一起传过去，就存在密码泄漏的可能。所以我们使用<strong>非对称算法</strong>，过程如下：</p>
+<ol>
+<li>首先 接收方 生成一对密钥，即私钥和公钥；</li>
+<li>然后，接收方 将公钥发送给 发送方；</li>
+<li>发送方用收到的公钥对数据加密，再发送给接收方；</li>
+<li>接收方收到数据后，使用自己的私钥解密。</li>
+</ol>
+<p>由于在非对称算法中，公钥加密的数据必须用对应的私钥才能解密，而私钥又只有接收方自己知道，这样就保证了数据传输的安全性。</p>
+<p>总结：</p>
 <ul>
-<li></li>
+<li>每个用户都有一对私钥和公钥。</li>
 </ul>
+<ul>
+<li>私钥用来进行解密和签名，是给自己用的。</li>
+<li>公钥由本人公开，用于加密和验证签名，是给别人用的。</li>
+<li>当该用户发送文件时，用私钥签名，别人用他给的公钥解密，可以保证该信息是由他发送的。即数字签名。</li>
+</ul>
+<ul>
+<li>当该用户接受文件时，别人用他的公钥加密，他用私钥解密，可以保证该信息只能由他看到。即安全传输。</li>
+</ul>
+<p>重点在于与对称加密中，加密和解密使用相同密码不同（使用相同密码如何保证密码的传输安全性），而非对称加密中，公钥是用来加密的，私钥是用来解密的，因此公钥是可以公开的，不怕被窃取；私钥用于解密，不需要传播。</p>
 <link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
                 
               </div>
