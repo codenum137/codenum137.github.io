@@ -50,8 +50,11 @@
 <meta property="og:image" content="https://codenum137.github.io/2023/10/23/%E8%B7%AF%E7%94%B1%E6%A0%87%E8%AF%86%E9%A1%B9%E7%9B%AE%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/image-20231107130825682.png">
 <meta property="og:image" content="https://codenum137.github.io/2023/10/23/%E8%B7%AF%E7%94%B1%E6%A0%87%E8%AF%86%E9%A1%B9%E7%9B%AE%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/image-20231120152630696.png">
 <meta property="og:image" content="https://codenum137.github.io/2023/10/23/%E8%B7%AF%E7%94%B1%E6%A0%87%E8%AF%86%E9%A1%B9%E7%9B%AE%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/image-20240415105954981.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/10/23/%E8%B7%AF%E7%94%B1%E6%A0%87%E8%AF%86%E9%A1%B9%E7%9B%AE%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/image-20241021144217029.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/10/23/%E8%B7%AF%E7%94%B1%E6%A0%87%E8%AF%86%E9%A1%B9%E7%9B%AE%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/image-20241021144232873.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/10/23/%E8%B7%AF%E7%94%B1%E6%A0%87%E8%AF%86%E9%A1%B9%E7%9B%AE%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/image-20241021144643328.png">
 <meta property="article:published_time" content="2023-10-23T03:00:14.000Z">
-<meta property="article:modified_time" content="2024-09-09T09:08:33.549Z">
+<meta property="article:modified_time" content="2024-11-05T06:31:13.179Z">
 <meta property="article:author" content="hey137">
 <meta property="article:tag" content="linux">
 <meta property="article:tag" content="shell">
@@ -287,7 +290,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          25k 字
+          28k 字
         
       </span>
     
@@ -298,7 +301,7 @@
         
         
         
-          213 分钟
+          235 分钟
         
       </span>
     
@@ -614,6 +617,12 @@
 <p><a target="_blank" rel="noopener" href="https://docs.frrouting.org/en/latest/isisd.html#isis-interface">ISIS — FRR latest documentation (frrouting.org)</a></p>
 <p><img src="/2023/10/23/%E8%B7%AF%E7%94%B1%E6%A0%87%E8%AF%86%E9%A1%B9%E7%9B%AE%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/image-20231218153819693.png" srcset="/img/loading.gif" lazyload alt="image-20231218153819693"></p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs sh">isis fast-reroute lfa<br>isis fast-reroute remote-lfa tunnel mpls-ldp [level-1 | level-2]<br></code></pre></td></tr></table></figure>
+<h4 id="配置TI-LFA">配置TI-LFA</h4>
+<p>有关TI-LFA的详细介绍<a target="_blank" rel="noopener" href="https://support.huawei.com/enterprise/zh/doc/EDOC1100167260">Segment Routing TI-LFA FRR保护技术 - 华为 (huawei.com)</a></p>
+<p>FRRouting上的配置与SR和TI相关，如下：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><code class="hljs sh">vtysh -c <span class="hljs-string">&quot;</span><br><span class="hljs-string">config</span><br><span class="hljs-string">ro isis sonic</span><br><span class="hljs-string">is-type level-1</span><br><span class="hljs-string">net 49.0001.0000.0000.0006.00</span><br><span class="hljs-string"></span><br><span class="hljs-string">segment-routing on</span><br><span class="hljs-string">segment-routing global-block 16000 23999</span><br><span class="hljs-string">segment-routing node-msd 8</span><br><span class="hljs-string">segment-routing prefix 6.6.6.6/32 index 60</span><br><span class="hljs-string">segment-routing prefix 2001::6/128 index 61</span><br><span class="hljs-string">interface lo</span><br><span class="hljs-string">ip address 6.6.6.6/32</span><br><span class="hljs-string">ipv6 address 2001::6/128</span><br><span class="hljs-string">ip ro isis sonic</span><br><span class="hljs-string">ipv6 ro isis sonic</span><br><span class="hljs-string">isis passive</span><br><span class="hljs-string">exit</span><br><span class="hljs-string"></span><br><span class="hljs-string">interface Ethernet4</span><br><span class="hljs-string">ipv6 ro isis sonic</span><br><span class="hljs-string">ip ro isis sonic</span><br><span class="hljs-string">isis fast-reroute ti-lfa</span><br><span class="hljs-string">exit</span><br><span class="hljs-string">end</span><br><span class="hljs-string">write&quot;</span><br></code></pre></td></tr></table></figure>
+<p>注意，以后有关FRRouting的相关内容可以去这个网站查看<a target="_blank" rel="noopener" href="https://app.slack.com/client/T4SEHL8CQ/C4TS8E59D">random（频道） - FRRouting - Slack</a>。来自<a target="_blank" rel="noopener" href="https://frrouting.org/community/">FRRouting Community – FRRouting</a></p>
+<p>另一方面，多关注github的issue页面。<a target="_blank" rel="noopener" href="https://github.com/FRRouting/frr/issues">FRRouting/frr: The FRRouting Protocol Suite (github.com)</a></p>
 <h3 id="重启网络服务">重启网络服务</h3>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">sudo service networking restart<br></code></pre></td></tr></table></figure>
 <h3 id="无管理口，重启dhcp">无管理口，重启dhcp</h3>
@@ -819,7 +828,7 @@ VMware会在主机上建立单独的专用网络，用以在主机和虚拟机�
 <ol>
 <li>
 <p>输入以下命令</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs sh"><span class="hljs-comment"># 下载zerotier客户端</span><br>curl -s https://install.zerotier.com | sudo bash<br><span class="hljs-comment"># 加入刚刚创建的网络</span><br>sudo zerotier-cli <span class="hljs-built_in">join</span> e3918db48310f5b4<br></code></pre></td></tr></table></figure>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs sh"><span class="hljs-comment"># 下载zerotier客户端</span><br>curl -s https://install.zerotier.com | sudo bash<br><span class="hljs-comment"># 加入刚刚创建的网络</span><br>sudo zerotier-cli <span class="hljs-built_in">join</span> b6079f73c60b1fdf<br></code></pre></td></tr></table></figure>
 </li>
 <li>
 <p>其他相关命令</p>
@@ -873,6 +882,9 @@ VMware会在主机上建立单独的专用网络，用以在主机和虚拟机�
 </li>
 <li>
 <p>vmware workstation的安装位置应是默认的，这样gns3才能找到。</p>
+</li>
+<li>
+<p>若gns3路由和vm虚拟机直连无法ping通，尝试将对应的vmnet的mtu和子网域改成一致的。</p>
 </li>
 </ol>
 <h3 id="增加gns3vm-的内存">增加gns3vm 的内存</h3>
@@ -963,6 +975,10 @@ VMware会在主机上建立单独的专用网络，用以在主机和虚拟机�
 <h3 id="ubuntu16-04系统时间错误导致wifi登录认证失败">ubuntu16.04系统时间错误导致wifi登录认证失败</h3>
 <p>[12.10 - How to fix wrong system time and date? - Ask Ubuntu](<a target="_blank" rel="noopener" href="https://askubuntu.com/questions/214246/how-to-fix-wrong-system-time-and-date#:~:text=This">https://askubuntu.com/questions/214246/how-to-fix-wrong-system-time-and-date#:~:text=This</a> works for Ubuntu 16.04 Stop the ntp,if not just do sudo apt-get install ntp)</p>
 <p><img src="/2023/10/23/%E8%B7%AF%E7%94%B1%E6%A0%87%E8%AF%86%E9%A1%B9%E7%9B%AE%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/image-20240415105954981.png" srcset="/img/loading.gif" lazyload alt="image-20240415105954981"></p>
+<h3 id="linux内核不支持ipv6">linux内核不支持ipv6</h3>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/5201351/p/17122078.html">关于Linux从内核启动选项中开启对ipv6的支持 - 520_1351 - 博客园 (cnblogs.com)</a></p>
+<p>体现为输入<code>route -A inet6</code>命令时显示<code>not supported</code>字样。</p>
+<p>解决方法：修改文件<code>/boot/grub2/grubenv</code>或<code>/boot/grub/grub.cfg</code>中的<code>ipv6.disable=1</code>为<code>ipv6.disable=0</code>。</p>
 <h2 id="54所">54所</h2>
 <h3 id="疑难杂症-2">疑难杂症</h3>
 <p>ipv6默认地址（fe80开头）不能删除，会影响ipv6 isis的正常运行。fe80开头是全球单播链路地址啥的</p>
@@ -1001,7 +1017,32 @@ VMware会在主机上建立单独的专用网络，用以在主机和虚拟机�
 <p><a target="_blank" rel="noopener" href="https://blog.csdn.net/oushaojun2/article/details/134184994">MobaXterm使用VNC远程显示和控制ubuntu桌面_ubuntu远程工具mobaxterm连接-CSDN博客</a></p>
 <h3 id="ubuntu18-04开启vnc">ubuntu18.04开启vnc</h3>
 <p><a target="_blank" rel="noopener" href="https://blog.csdn.net/langyou0/article/details/107959002">Ubuntu18.04 最简单远程桌面_ubuntu18.04远程登录vnc-CSDN博客</a></p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs sh">sudo dpkg -i cloud*<br>sudo growpart /dev/vda 3<br>sudo resize2fs /dev/vda3<br><br>scp gns@192.168.122.1:~/cloud* ~/<br>scp -r gns@192.168.122.1:~/see_netlink ~/<br>scp -r gns@192.168.122.1:~/SM_X86 ~/<br>scp -r gns@192.168.122.1:~/element0508 ~/<br>scp -r gns@192.168.122.1:~/out ~/<br>scp gns@192.168.122.1:~/seepa* ~/<br>scp -r gns@192.168.122.1:~/zb_netlink ~/<br>scp -r gns@192.168.122.1:~/hiredis_v1.2 ~/<br>scp -r gns@192.168.122.1:~/res-awawre ~/<br>scp -r gns@192.168.122.1:~/SM_ARM ~/<br><br>sudo -s<br><span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;TMOUT=43200&quot;</span> &gt;&gt; /etc/profile<br><span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;export TMOUT&quot;</span> &gt;&gt; /etc/profile<br><span class="hljs-built_in">source</span> /etc/profile<br></code></pre></td></tr></table></figure>
+<h3 id="ubuntu系统下todesk无法联网">ubuntu系统下todesk无法联网</h3>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_41786546/article/details/135255189">Ubuntu系统Todesk远程控制：网络连接不上问题解决办法_ubuntu todesk 无法联网-CSDN博客</a></p>
+<ol>
+<li>先关闭todesk</li>
+<li>命令行关闭服务：sudo systemctl stop todeskd.service</li>
+<li>找到 /opt/todesk/config/todeskd.conf 这个文件，并将其删除(sudo rm -r 文件名”)，</li>
+<li>命令行重新启动服务：sudo systemctl start todeskd.service</li>
+<li>重新启动todesk。</li>
+</ol>
+<h2 id="QEMU">QEMU</h2>
+<ol>
+<li>
+<p>gns3qemu命令</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs sh">/usr/bin/qemu-system-x86_64 -name sonic-vs-6 -m 4096M -smp cpus=2,sockets=1 -enable-kvm -machine smm=off -boot order=d -drive file=/home/bupt/GNS3/projects/TILFA/project-files/qemu/1677e622-9ecc-40bc-a09e-3d3c4cd0f88b/hda_disk.qcow2,<span class="hljs-keyword">if</span>=virtio,index=0,media=disk,<span class="hljs-built_in">id</span>=drive0 -uuid 1677e622-9ecc-40bc-a09e-3d3c4cd0f88b -serial telnet:127.0.0.1:5011,server,nowait -monitor tcp:127.0.0.1:41753,server,nowait -net none <br>-device e1000,mac=0c:77:e6:22:00:00,netdev=gns3-0 -netdev socket,<span class="hljs-built_in">id</span>=gns3-0,udp=127.0.0.1:10117,localaddr=127.0.0.1:10116 <br>-device e1000,mac=0c:77:e6:22:00:01,netdev=gns3-1 -netdev socket,<span class="hljs-built_in">id</span>=gns3-1,udp=127.0.0.1:10119,localaddr=127.0.0.1:10118 <br>-device e1000,mac=0c:77:e6:22:00:02,netdev=gns3-2 -netdev socket,<span class="hljs-built_in">id</span>=gns3-2,udp=127.0.0.1:10121,localaddr=127.0.0.1:10120 <br>-device e1000,mac=0c:77:e6:22:00:03,netdev=gns3-3 -netdev socket,<span class="hljs-built_in">id</span>=gns3-3,udp=127.0.0.1:10123,localaddr=127.0.0.1:10122 <br>-device e1000,mac=0c:77:e6:22:00:04,netdev=gns3-4 -netdev socket,<span class="hljs-built_in">id</span>=gns3-4,udp=127.0.0.1:10125,localaddr=127.0.0.1:10124 <br>-device e1000,mac=0c:77:e6:22:00:05,netdev=gns3-5 -netdev socket,<span class="hljs-built_in">id</span>=gns3-5,udp=127.0.0.1:10127,localaddr=127.0.0.1:10126 <br>-device e1000,mac=0c:77:e6:22:00:06,netdev=gns3-6 -netdev socket,<span class="hljs-built_in">id</span>=gns3-6,udp=127.0.0.1:10129,localaddr=127.0.0.1:10128 <br>-device e1000,mac=0c:77:e6:22:00:07,netdev=gns3-7 -netdev socket,<span class="hljs-built_in">id</span>=gns3-7,udp=127.0.0.1:10131,localaddr=127.0.0.1:10130 <br>-device e1000,mac=0c:77:e6:22:00:08,netdev=gns3-8 -netdev socket,<span class="hljs-built_in">id</span>=gns3-8,udp=127.0.0.1:10133,localaddr=127.0.0.1:10132 <br>-device e1000,mac=0c:77:e6:22:00:09,netdev=gns3-9 -netdev socket,<span class="hljs-built_in">id</span>=gns3-9,udp=127.0.0.1:10135,localaddr=127.0.0.1:10134 -display none<br></code></pre></td></tr></table></figure>
+</li>
+<li>
+<p>多网卡qemu命令</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs sh">qemu-system-x86_64 -enable-kvm -cpu host -nographic -name sonic-simulator_1 -m 2048M -smp cpus=2 -drive file=sonic-vs-2.img,index=0,media=disk,<span class="hljs-built_in">id</span>=drive0 -serial telnet:127.0.0.1:5002,server,nowait -monitor tcp:127.0.0.1:44002,server,nowait -net nic,macaddr=52:54:00:12:34:20 -net tap,script=/etc/qemu-ifup,downscript=/etc/qemu-ifdown<br><br>++ ifconfig<br>++ grep -ci br0<br>+ br0_exist_flag=2<br>+ <span class="hljs-string">&#x27;[&#x27;</span> 2 -eq 0 <span class="hljs-string">&#x27;]&#x27;</span><br>+ sudo tunctl -t tap3 -u root<br>TUNSETIFF: Device or resource busy<br>+ sudo ifconfig tap3 up<br>+ sudo brctl addif br0 tap3<br></code></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>qemu eth0</p>
+<p><img src="/2023/10/23/%E8%B7%AF%E7%94%B1%E6%A0%87%E8%AF%86%E9%A1%B9%E7%9B%AE%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/image-20241021144217029.png" srcset="/img/loading.gif" lazyload alt="image-20241021144217029"></p>
+<p>gns3 eth0</p>
+<p><img src="/2023/10/23/%E8%B7%AF%E7%94%B1%E6%A0%87%E8%AF%86%E9%A1%B9%E7%9B%AE%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/image-20241021144232873.png" srcset="/img/loading.gif" lazyload alt="image-20241021144232873"></p>
+<p>gns3 Ethernet0</p>
+<p><img src="/2023/10/23/%E8%B7%AF%E7%94%B1%E6%A0%87%E8%AF%86%E9%A1%B9%E7%9B%AE%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/image-20241021144643328.png" srcset="/img/loading.gif" lazyload alt="image-20241021144643328"></p>
 <link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
                 
               </div>
