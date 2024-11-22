@@ -1,0 +1,1742 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/H.png">
+  <link rel="icon" href="/img/H.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="hey137">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="本人的linux期末复习，学的比较认真，但本复习也仅是PPT罢了。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="linux期末复习">
+<meta property="og:url" content="https://codenum137.github.io/codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/index.html">
+<meta property="og:site_name" content="Hey~">
+<meta property="og:description" content="本人的linux期末复习，学的比较认真，但本复习也仅是PPT罢了。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230615230416980-16868424622501.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230615230505504-16868424622502.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230615230600769-16868424622503.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230615230936669-16868424622504.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230615230953055-16868424622515.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230615231520416-16868424622517.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230615231716977-16868424622516.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230615231802483-16868424622518.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230615232519245.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230615233032709.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230615233053781.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230615233115819.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230615233305581.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616081544244.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616081629979.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616081642026.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616081651669.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616082100144.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616082114628.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616082134292.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616082155313.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616082248944.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616082357438.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616082501645.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616082525369.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616082620669.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616082703865.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616082834764.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616082900925.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616082933637.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616082951367.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616083014776.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616083036415.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616083211225.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616083308935.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616083415265.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616083531877.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616083611478.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616083628155.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616083734961.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616083757348.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616084034607.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616084336584.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616084347218.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616084401108.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616084413342.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616084427852.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616084438710.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616084458642.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616084725099.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616084742233.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616084819973.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616084856944.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616084914882.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616084944497.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616085020215.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616085029314.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616085103223.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616085136811.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616085159640.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616085213041.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616085237032.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616085300920.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616085454205.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616085516360.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616085533044.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616085556339.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616085622825.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616085656653.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616085727227.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616085748055.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616085808084.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616085837004.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616085908969.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616085943538.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616085952887.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616090002049.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616090032243.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616090049103.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616090200197.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616090233977.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616090304664.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616090314128.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616090334721.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616090921661.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616090943234.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616090956401.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616091020444.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616091031350.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616091128039.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616091107409.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616091213584.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616091221086.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616091231540.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616091345004.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616091426166.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616091454401.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616091524390.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616091603362.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616091629891.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616091747096.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616091805604.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616091823267.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616091832014.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616091840902.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616091856467.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616091908698.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616091923109.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616091933639.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616092152866.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616092231919.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616092308694.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616092451116.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616092507234.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616092524837.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616092558597.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616092612102.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616092754372.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616092812018.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616092906896.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616092925771.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616092935019.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616092944064.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616093026633.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616093048712.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616093111231.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616093126770.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616093135171.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616093150875.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616093202122.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616093325709.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616093506321.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616093520982.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616093613443.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616093622354.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616093631284.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616093639080.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616093647892.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616093655961.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616094526316.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616094534765.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616094543615.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616094555755.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616094609675.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616094622568.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616094702368.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616094710128.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616094721464.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616094747531.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616094805661.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616094815628.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616094843189.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616094852779.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616094904233.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616094918564.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616094933211.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616094946652.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616095045139.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616100032500.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616100042068.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616100055216.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616101245293.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616101257264.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616101321361.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616101333060.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616101404331.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616101513717.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616101522912.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616101539799.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616101554822.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616101606729.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616101642017.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616101649068.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616101700222.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616101709034.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616101718706.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616101736673.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616101813559.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616101821956.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616103446495.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616103511542.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616103530831.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616103552689.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616103617784.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616103638548.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616103645702.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616103654282.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616103703613.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616103716608.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616103741513.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616103824279.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616103832011.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616103842153.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616114434374.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616114455954.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616114504283.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616114525313.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616115051476.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616115104331.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616115136463.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616115151885.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616115209110.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616115334359.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616115352009.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616115400250.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616115410331.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616115436420.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616115521151.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616115533295.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616115543694.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616115551486.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616115600052.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616115616437.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616115634138.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616115729248.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616115809077.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616115916941.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616120300800.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616120311234.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616120345615.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616120355737.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616120405343.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616120413323.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616120431557.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616120453425.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616120508710.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616120517245.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616120532832.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616120547396.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616120554929.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616120604010.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616120632643.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616121003053.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616121045533.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616121125990.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616121134429.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616121155302.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616121318660.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616121334696.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616121511249.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616121527371.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616121618312.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616121653451.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616121705041.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616121748462.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616121909939.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616121922017.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616122152520.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616122222289.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616122233406.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616122243203.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616122337261.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616122346942.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616122424730.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616122432385.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616122440472.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616122454132.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616122503432.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616122520099.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616122540636.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616122553164.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616122606462.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616122615256.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616122625453.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616122634398.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616122647796.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616122700915.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616122709336.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616122724695.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616122732232.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616122742815.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616122905612.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616122917922.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616123014990.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616123024648.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616123035218.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616123050457.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616123058482.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616123112777.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616123208692.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616123219802.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616123231123.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616123240079.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616123257421.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616123312772.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616123407380.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616123414810.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616123429623.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616123447151.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616123455702.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616123510628.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616123519704.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616123547666.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616123555788.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616123616043.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616123648578.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616123721648.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616123728743.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616123736376.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616123751156.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616123803398.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616123814163.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616123942687.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616123951012.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616123958792.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616124007419.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616124015213.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616124029808.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616124102457.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616124122540.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616124224611.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616124249421.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616124256963.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616124305716.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616124313639.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616124320610.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616124327933.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616124337430.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616124346630.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616124405908.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616124452054.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616124459749.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616124506434.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616124513040.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616124520571.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616124529998.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616124548314.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616124556803.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616124605260.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616124613080.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616124623813.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616124631066.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616124641951.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616124650251.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616124712989.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616124722339.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616124730359.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616124737313.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616124745779.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616124754407.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616124801738.png">
+<meta property="article:published_time" content="2023-06-15T15:19:50.000Z">
+<meta property="article:modified_time" content="2023-11-27T08:56:17.619Z">
+<meta property="article:author" content="hey137">
+<meta property="article:tag" content="linux">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://codenum137.github.io/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230615230416980-16868424622501.png">
+  
+  
+  
+  <title>linux期末复习 - Hey~</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="https://lib.baomitu.com/font-awesome/6.1.2/css/all.min.css">
+<link rel="stylesheet" href="/css/code-collapse.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"codenum137.github.io","root":"/","version":"1.9.5","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"VUZA7v64z7VyTAP8IacQddb3-gzGzoHsz","app_key":"s9nmj2bQKMeENVBm24I948wx","server_url":"https://vuza7v64.lc-cn-n1-shared.com","path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+    <!-- Google tag (gtag.js) -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript("https://www.googletagmanager.com/gtag/js?id=", function() {
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            dataLayer.push(arguments);
+          }
+          gtag('js', new Date());
+          gtag('config', '');
+        });
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Hey~</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="linux期末复习"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2023-06-15 23:19" pubdate>
+          2023年6月15日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2.5k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          21 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span>次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">linux期末复习</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1>linux期末复习</h1>
+<h2 id="开始使用Linux">开始使用Linux</h2>
+<h3 id="使用系统命令">使用系统命令</h3>
+<h4 id="man">man</h4>
+<ul>
+<li>
+<p>man name</p>
+</li>
+<li>
+<p>man section name（用于区分不同section中的同一个name）</p>
+<p>一般章节编号：1 命令；2 系统调用；3 库函数；5 配置文件</p>
+</li>
+<li>
+<p>man -k regexp</p>
+<p>列出与关键字正则表达式regexp相关的手册目录。</p>
+</li>
+</ul>
+<h4 id="date">date</h4>
+<ul>
+<li>
+<p>可以根据需要定制输出格式</p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230615230416980-16868424622501.png" srcset="/img/loading.gif" lazyload alt="image-20230615230416980"></p>
+</li>
+<li>
+<p>通过 NTP 协议校对系统时间：命令 ntpdate</p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230615230505504-16868424622502.png" srcset="/img/loading.gif" lazyload alt="image-20230615230505504"></p>
+</li>
+</ul>
+<h4 id="who，tty">who，tty</h4>
+<ul>
+<li>who 列出当前已登录入系统的用户<br>
+<img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230615230600769-16868424622503.png" srcset="/img/loading.gif" lazyload alt="image-20230615230600769"></li>
+<li>tty 可以打印出当前终端的设备文件名</li>
+<li>who am i 可以列出当前终端上的登录 用户</li>
+</ul>
+<h4 id="uptime，w，sar">uptime，w，sar</h4>
+<ul>
+<li>
+<p>命令 uptime</p>
+<ul>
+<li>
+<p>系统自启动后到现在的运行时间（年龄）</p>
+</li>
+<li>
+<p>当前登录入系统的用户数</p>
+</li>
+<li>
+<p>近期 1 分钟， 5 分钟， 15 分钟内系统 CPU 的负载（平均调度队列长度）</p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230615230936669-16868424622504.png" srcset="/img/loading.gif" lazyload alt="image-20230615230936669"></p>
+</li>
+</ul>
+</li>
+<li>
+<p>w 命令（ Who &amp; What）</p>
+<ul>
+<li>列出终端的空闲时间（ IDLE）</li>
+<li>JCPU ：终端上正在运行的作业占用的 CPU 时间（包括前台程序和后台<br>
+程序）</li>
+<li>PCPU ：终端上正在运行的前台程序占用 CPU 时间</li>
+<li>WHAT 列出终端上的用户正在执行什么命令</li>
+</ul>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230615230953055-16868424622515.png" srcset="/img/loading.gif" lazyload alt="image-20230615230953055"></p>
+</li>
+<li>
+<p>sar 命令 (system activity）</p>
+<ul>
+<li>打印系统活动报告</li>
+</ul>
+</li>
+<li>
+<p>其他： top htop nmon 等监控系统性能的工具</p>
+</li>
+</ul>
+<h4 id="ps">ps</h4>
+<ul>
+<li>功能：查阅 进程状态 (process）（ 实际上就是将内核中进程状态信息有选择地打印出来)</li>
+<li>选项：
+<ul>
+<li>无选项：只列出在当前终端上启动的进程</li>
+<li>e 选项：列出系统中所有的进程（进程范围 )</li>
+<li>f 选项：以 full 格式列出每一个进程（控制列的数目 )</li>
+<li>l 选项：以 long 格式列出每一个进程（控制列的数目）</li>
+</ul>
+</li>
+<li>列出的进程属性
+<ul>
+<li>UID ：用户 ID( 注册名）</li>
+<li>PID ：进程 ID</li>
+<li>PPID ：父进程的 PID</li>
+<li>C：CPU 占用指数：最近一段时间（秒级别）进程占用 CPU 情况</li>
+<li>STIME ：启动时间</li>
+<li>SZ ：进程逻辑内存大小 (Size)</li>
+<li>TTY ：终端的名字</li>
+<li>COMMAND ：命令名</li>
+<li>WCHAN ：进程在内核的何处睡眠 (Wait Channel)</li>
+<li>TIME ：累计执行时间（占用 CPU 的时间 )</li>
+<li>PRI ：优先级</li>
+<li>S ：状态 S(Sleep) R(Run) Z(Zombie)</li>
+</ul>
+</li>
+</ul>
+<h4 id="top">top</h4>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230615231520416-16868424622517.png" srcset="/img/loading.gif" lazyload alt="image-20230615231520416"></p>
+<ul>
+<li>PR: 进程优先级，越小越优先； NI 进程优先级值可被修正数据值</li>
+<li>VIRT: 进程 逻辑地址空间大小 (virtual） VIRT=SWAP+RES</li>
+<li>RES: 驻留 内存数(resident）也就是占用物理内存 数， RES=CODE+DATA</li>
+<li>S: 进程状态 。 D= 不可中断的睡眠状态 R= 运行 S= 睡眠 T= 跟踪 停止 Z= 僵尸进程</li>
+<li>SHR ：与其 他进程共享的内存数 (Share )</li>
+<li>CPU ：占用 CPU 百分比； ；%MEM ：占用 内存百分比</li>
+</ul>
+<h4 id="free">free</h4>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230615231716977-16868424622516.png" srcset="/img/loading.gif" lazyload alt="image-20230615231716977"></p>
+<h4 id="vmstat">vmstat</h4>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230615231802483-16868424622518.png" srcset="/img/loading.gif" lazyload alt="image-20230615231802483"></p>
+<h4 id="passwd">passwd</h4>
+<ul>
+<li>
+<p>普通用户</p>
+<p>使用 passwd 命令更改自己的上机口令，在更改前系统会先验证原来的口令</p>
+</li>
+<li>
+<p>超级用户</p>
+<ul>
+<li>修改口令之前不验证旧的口令</li>
+<li>可修改自己的口令，还可强迫设置其它用户口令</li>
+<li>修改超级用户 root 的口令时要特别注意</li>
+</ul>
+</li>
+</ul>
+<h5 id="linux口令的保存与验证">linux口令的保存与验证</h5>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230615232519245.png" srcset="/img/loading.gif" lazyload alt="image-20230615232519245"></p>
+<h3 id="通信命令">通信命令</h3>
+<h4 id="telnet或ssh">telnet或ssh</h4>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230615233032709.png" srcset="/img/loading.gif" lazyload alt="image-20230615233032709"></p>
+<h4 id="ftp">ftp</h4>
+<ul>
+<li>
+<p>用法</p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230615233053781.png" srcset="/img/loading.gif" lazyload alt="image-20230615233053781"></p>
+</li>
+<li>
+<p>常用命令</p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230615233115819.png" srcset="/img/loading.gif" lazyload alt="image-20230615233115819"></p>
+</li>
+</ul>
+<h3 id="linux文本格式">linux文本格式</h3>
+<ul>
+<li>
+<p>Windows 和 Unix 文本文件结构的不同</p>
+<p>文本文件行的行尾不同</p>
+<ul>
+<li>UNIX ：行尾处仅存 换行 字符</li>
+<li>Windows ：行尾处存 回车 和换行 两个字符</li>
+</ul>
+<p>这还会导致两者的大小不一样</p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230615233305581.png" srcset="/img/loading.gif" lazyload alt="image-20230615233305581"></p>
+</li>
+</ul>
+<h3 id="中文编码">中文编码</h3>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616081544244.png" srcset="/img/loading.gif" lazyload alt="image-20230616081544244"></p>
+<h3 id="实用程序指令">实用程序指令</h3>
+<h4 id="cal">cal</h4>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616081629979.png" srcset="/img/loading.gif" lazyload alt="image-20230616081629979"></p>
+<h4 id="bc">bc</h4>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616081642026.png" srcset="/img/loading.gif" lazyload alt="image-20230616081642026"></p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616081651669.png" srcset="/img/loading.gif" lazyload alt="image-20230616081651669"></p>
+<h2 id="文本文件处理">文本文件处理</h2>
+<h3 id="文本文件处理及工具">文本文件处理及工具</h3>
+<p>主要涉及的概念</p>
+<ul>
+<li>进程的标准输入输出</li>
+<li>重定向机制</li>
+<li>管道机制</li>
+<li>文件通配符</li>
+</ul>
+<h3 id="读取文本内容">读取文本内容</h3>
+<h4 id="more，less">more，less</h4>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616082100144.png" srcset="/img/loading.gif" lazyload alt="image-20230616082100144"></p>
+<p>more</p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616082114628.png" srcset="/img/loading.gif" lazyload alt="image-20230616082114628"></p>
+<p>less</p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616082134292.png" srcset="/img/loading.gif" lazyload alt="image-20230616082134292"></p>
+<h4 id="cat与od">cat与od</h4>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616082155313.png" srcset="/img/loading.gif" lazyload alt="image-20230616082155313"></p>
+<h4 id="head与tail">head与tail</h4>
+<p>-f 选项可以实时打印内容。</p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616082248944.png" srcset="/img/loading.gif" lazyload alt="image-20230616082248944"></p>
+<h4 id="tee">tee</h4>
+<p>三通可以远程操作其他人的终端。</p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616082357438.png" srcset="/img/loading.gif" lazyload alt="image-20230616082357438"></p>
+<h4 id="wc">wc</h4>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616082501645.png" srcset="/img/loading.gif" lazyload alt="image-20230616082501645"></p>
+<h4 id="sort">sort</h4>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616082525369.png" srcset="/img/loading.gif" lazyload alt="image-20230616082525369"></p>
+<h4 id="tr">tr</h4>
+<p>用于替换，但是翻译。</p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616082620669.png" srcset="/img/loading.gif" lazyload alt="image-20230616082620669"></p>
+<h4 id="uniq">uniq</h4>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616082703865.png" srcset="/img/loading.gif" lazyload alt="image-20230616082703865"></p>
+<h3 id="正则表达式及应用">正则表达式及应用</h3>
+<h4 id="正则表达式的功能">正则表达式的功能</h4>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616082834764.png" srcset="/img/loading.gif" lazyload alt="image-20230616082834764"></p>
+<h4 id="单字符正则表达式">单字符正则表达式</h4>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616082900925.png" srcset="/img/loading.gif" lazyload alt="image-20230616082900925"></p>
+<p><strong>定义集合</strong></p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616082933637.png" srcset="/img/loading.gif" lazyload alt="image-20230616082933637"></p>
+<h4 id="多字符表达式">多字符表达式</h4>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616082951367.png" srcset="/img/loading.gif" lazyload alt="image-20230616082951367"></p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616083014776.png" srcset="/img/loading.gif" lazyload alt="image-20230616083014776"></p>
+<h4 id="锚点">锚点</h4>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616083036415.png" srcset="/img/loading.gif" lazyload alt="image-20230616083036415"></p>
+<h4 id="文本行筛选（grep）">文本行筛选（grep）</h4>
+<p>寻找符合条件的文本行。</p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616083211225.png" srcset="/img/loading.gif" lazyload alt="image-20230616083211225"></p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616083308935.png" srcset="/img/loading.gif" lazyload alt="image-20230616083308935"></p>
+<h4 id="流编辑（sed）">流编辑（sed）</h4>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616083415265.png" srcset="/img/loading.gif" lazyload alt="image-20230616083415265"></p>
+<p>正则表达式替换</p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616083531877.png" srcset="/img/loading.gif" lazyload alt="image-20230616083531877"></p>
+<h4 id="复杂筛选及加工（awk）">复杂筛选及加工（awk）</h4>
+<p><strong>内置变量NR，表示行号。</strong></p>
+<p><strong>$n表示第几列，特别的，$0表示一整行。</strong></p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616083611478.png" srcset="/img/loading.gif" lazyload alt="image-20230616083611478"></p>
+<p>描述条件</p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616083628155.png" srcset="/img/loading.gif" lazyload alt="image-20230616083628155"></p>
+<p>动作</p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616083734961.png" srcset="/img/loading.gif" lazyload alt="image-20230616083734961"></p>
+<p>举例</p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616083757348.png" srcset="/img/loading.gif" lazyload alt="image-20230616083757348"></p>
+<h4 id="sed与awk对比">sed与awk对比</h4>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616084034607.png" srcset="/img/loading.gif" lazyload alt="image-20230616084034607"></p>
+<h4 id="举例">举例</h4>
+<p>例1</p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616084336584.png" srcset="/img/loading.gif" lazyload alt="image-20230616084336584"></p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616084347218.png" srcset="/img/loading.gif" lazyload alt="image-20230616084347218"></p>
+<p>例2</p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616084401108.png" srcset="/img/loading.gif" lazyload alt="image-20230616084401108"></p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616084413342.png" srcset="/img/loading.gif" lazyload alt="image-20230616084413342"></p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616084427852.png" srcset="/img/loading.gif" lazyload alt="image-20230616084427852"></p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616084438710.png" srcset="/img/loading.gif" lazyload alt="image-20230616084438710"></p>
+<p>例3</p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616084458642.png" srcset="/img/loading.gif" lazyload alt="image-20230616084458642"></p>
+<h3 id="文件比对">文件比对</h3>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616084725099.png" srcset="/img/loading.gif" lazyload alt="image-20230616084725099"></p>
+<h4 id="cmp">cmp</h4>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616084742233.png" srcset="/img/loading.gif" lazyload alt="image-20230616084742233"></p>
+<h4 id="md5sum">md5sum</h4>
+<p>用于比较大文件内容</p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616084819973.png" srcset="/img/loading.gif" lazyload alt="image-20230616084819973"></p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616084856944.png" srcset="/img/loading.gif" lazyload alt="image-20230616084856944"></p>
+<h4 id="diff">diff</h4>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616084914882.png" srcset="/img/loading.gif" lazyload alt="image-20230616084914882"></p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616084944497.png" srcset="/img/loading.gif" lazyload alt="image-20230616084944497"></p>
+<h4 id="举例-2">举例</h4>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616085020215.png" srcset="/img/loading.gif" lazyload alt="image-20230616085020215"></p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616085029314.png" srcset="/img/loading.gif" lazyload alt="image-20230616085029314"></p>
+<h3 id="vi编辑器">vi编辑器</h3>
+<h4 id="用户偏好设置">用户偏好设置</h4>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616085103223.png" srcset="/img/loading.gif" lazyload alt="image-20230616085103223"></p>
+<h4 id="工作状态">工作状态</h4>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616085136811.png" srcset="/img/loading.gif" lazyload alt="image-20230616085136811"></p>
+<h4 id="编辑与光标移动">编辑与光标移动</h4>
+<p><strong>光标单字符移动</strong></p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616085159640.png" srcset="/img/loading.gif" lazyload alt="image-20230616085159640"></p>
+<p><strong>翻页</strong></p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616085213041.png" srcset="/img/loading.gif" lazyload alt="image-20230616085213041"></p>
+<p><strong>光标快速移动</strong></p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616085237032.png" srcset="/img/loading.gif" lazyload alt="image-20230616085237032"></p>
+<p><strong>光标移动到指定行</strong></p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616085300920.png" srcset="/img/loading.gif" lazyload alt="image-20230616085300920"></p>
+<h4 id="查找、编辑及存盘">查找、编辑及存盘</h4>
+<p><strong>删除</strong></p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616085454205.png" srcset="/img/loading.gif" lazyload alt="image-20230616085454205"></p>
+<p><strong>字符替换</strong></p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616085516360.png" srcset="/img/loading.gif" lazyload alt="image-20230616085516360"></p>
+<p><strong>取消和重复</strong></p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616085533044.png" srcset="/img/loading.gif" lazyload alt="image-20230616085533044"></p>
+<p><strong>存盘操作</strong></p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616085556339.png" srcset="/img/loading.gif" lazyload alt="image-20230616085556339"></p>
+<p><strong>剪切板</strong></p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616085622825.png" srcset="/img/loading.gif" lazyload alt="image-20230616085622825"></p>
+<p><strong>快操作（删除和复制）</strong></p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616085656653.png" srcset="/img/loading.gif" lazyload alt="image-20230616085656653"></p>
+<p><strong>行合并，刷屏，状态显示</strong></p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616085727227.png" srcset="/img/loading.gif" lazyload alt="image-20230616085727227"></p>
+<p><strong>模式查找</strong></p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616085748055.png" srcset="/img/loading.gif" lazyload alt="image-20230616085748055"></p>
+<p><strong>模式替换</strong></p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616085808084.png" srcset="/img/loading.gif" lazyload alt="image-20230616085808084"></p>
+<p><strong>模式转义符</strong></p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616085837004.png" srcset="/img/loading.gif" lazyload alt="image-20230616085837004"></p>
+<p><strong>模式中的正则表达式</strong></p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616085908969.png" srcset="/img/loading.gif" lazyload alt="image-20230616085908969"></p>
+<h4 id="编辑命令">编辑命令</h4>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616085943538.png" srcset="/img/loading.gif" lazyload alt="image-20230616085943538"></p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616085952887.png" srcset="/img/loading.gif" lazyload alt="image-20230616085952887"></p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616090002049.png" srcset="/img/loading.gif" lazyload alt="image-20230616090002049"></p>
+<h4 id="可能会出现的问题">可能会出现的问题</h4>
+<p><strong>死机问题</strong></p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616090032243.png" srcset="/img/loading.gif" lazyload alt="image-20230616090032243"></p>
+<p><strong>意外中止问题（jobs）</strong></p>
+<p>使用jobs</p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616090049103.png" srcset="/img/loading.gif" lazyload alt="image-20230616090049103"></p>
+<p><strong>退格键无法使用</strong></p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616090200197.png" srcset="/img/loading.gif" lazyload alt="image-20230616090200197"></p>
+<p><strong>屏幕显示乱码</strong></p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616090233977.png" srcset="/img/loading.gif" lazyload alt="image-20230616090233977"></p>
+<p><strong>文件格式问题（windows）</strong></p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616090304664.png" srcset="/img/loading.gif" lazyload alt="image-20230616090304664"></p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616090314128.png" srcset="/img/loading.gif" lazyload alt="image-20230616090314128"></p>
+<p><strong>中文编码问题</strong></p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616090334721.png" srcset="/img/loading.gif" lazyload alt="image-20230616090334721"></p>
+<h2 id="文件系统管理">文件系统管理</h2>
+<h3 id="文件名和文件通配符">文件名和文件通配符</h3>
+<h4 id="文件命名和目录结构">文件命名和目录结构</h4>
+<p><strong>命名规则</strong></p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616090921661.png" srcset="/img/loading.gif" lazyload alt="image-20230616090921661"></p>
+<p><strong>常见目录和文件</strong></p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616090943234.png" srcset="/img/loading.gif" lazyload alt="image-20230616090943234"></p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616090956401.png" srcset="/img/loading.gif" lazyload alt="image-20230616090956401"></p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616091020444.png" srcset="/img/loading.gif" lazyload alt="image-20230616091020444"></p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616091031350.png" srcset="/img/loading.gif" lazyload alt="image-20230616091031350"></p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616091128039.png" srcset="/img/loading.gif" lazyload alt="image-20230616091128039"></p>
+<p><strong>动态链接</strong></p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616091107409.png" srcset="/img/loading.gif" lazyload alt="image-20230616091107409"></p>
+<h4 id="文件通配符规则">文件通配符规则</h4>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616091213584.png" srcset="/img/loading.gif" lazyload alt="image-20230616091213584"></p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616091221086.png" srcset="/img/loading.gif" lazyload alt="image-20230616091221086"></p>
+<p>点与点点不是通配符，而是目录存储结构。</p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616091231540.png" srcset="/img/loading.gif" lazyload alt="image-20230616091231540"></p>
+<p><strong>注意</strong></p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616091345004.png" srcset="/img/loading.gif" lazyload alt="image-20230616091345004"></p>
+<h4 id="文件通配符处理过程">文件通配符处理过程</h4>
+<p><strong>shell与kernel</strong></p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616091426166.png" srcset="/img/loading.gif" lazyload alt="image-20230616091426166"></p>
+<p><strong>获取命令行参数</strong></p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616091454401.png" srcset="/img/loading.gif" lazyload alt="image-20230616091454401"></p>
+<p><strong>shell通配符处理</strong></p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616091524390.png" srcset="/img/loading.gif" lazyload alt="image-20230616091524390"></p>
+<p><strong>举例</strong></p>
+<p>注意有无引号的区别</p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616091603362.png" srcset="/img/loading.gif" lazyload alt="image-20230616091603362"></p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616091629891.png" srcset="/img/loading.gif" lazyload alt="image-20230616091629891"></p>
+<h3 id="文件和目录管理">文件和目录管理</h3>
+<h4 id="列出文件目录（ls）">列出文件目录（ls）</h4>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616091747096.png" srcset="/img/loading.gif" lazyload alt="image-20230616091747096"></p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616091805604.png" srcset="/img/loading.gif" lazyload alt="image-20230616091805604"></p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616091823267.png" srcset="/img/loading.gif" lazyload alt="image-20230616091823267"></p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616091832014.png" srcset="/img/loading.gif" lazyload alt="image-20230616091832014"></p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616091840902.png" srcset="/img/loading.gif" lazyload alt="image-20230616091840902"></p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616091856467.png" srcset="/img/loading.gif" lazyload alt="image-20230616091856467"></p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616091908698.png" srcset="/img/loading.gif" lazyload alt="image-20230616091908698"></p>
+<h4 id="文件的复制与删除（cp，mv）">文件的复制与删除（cp，mv）</h4>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616091923109.png" srcset="/img/loading.gif" lazyload alt="image-20230616091923109"></p>
+<p>注意拷贝到当前目录的正确用法。</p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616091933639.png" srcset="/img/loading.gif" lazyload alt="image-20230616091933639"></p>
+<p><strong>mv</strong></p>
+<p>mv命令可以改名。</p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616092152866.png" srcset="/img/loading.gif" lazyload alt="image-20230616092152866"></p>
+<p><strong>rm</strong></p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616092231919.png" srcset="/img/loading.gif" lazyload alt="image-20230616092231919"></p>
+<p>显示区分命令选项和处理对象，-- 结束命令解析。</p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616092308694.png" srcset="/img/loading.gif" lazyload alt="image-20230616092308694"></p>
+<h4 id="目录管理（mkdir，rmdir，cp-v-u，rsync）">目录管理（mkdir，rmdir，cp -v -u，rsync）</h4>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616092451116.png" srcset="/img/loading.gif" lazyload alt="image-20230616092451116"></p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616092507234.png" srcset="/img/loading.gif" lazyload alt="image-20230616092507234"></p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616092524837.png" srcset="/img/loading.gif" lazyload alt="image-20230616092524837"></p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616092558597.png" srcset="/img/loading.gif" lazyload alt="image-20230616092558597"></p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616092612102.png" srcset="/img/loading.gif" lazyload alt="image-20230616092612102"></p>
+<p><strong>举例</strong></p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616092754372.png" srcset="/img/loading.gif" lazyload alt="image-20230616092754372"></p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616092812018.png" srcset="/img/loading.gif" lazyload alt="image-20230616092812018"></p>
+<h4 id="目录遍历">目录遍历</h4>
+<h5 id="find">find</h5>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616092906896.png" srcset="/img/loading.gif" lazyload alt="image-20230616092906896"></p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616092925771.png" srcset="/img/loading.gif" lazyload alt="image-20230616092925771"></p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616092935019.png" srcset="/img/loading.gif" lazyload alt="image-20230616092935019"></p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616092944064.png" srcset="/img/loading.gif" lazyload alt="image-20230616092944064"></p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616093026633.png" srcset="/img/loading.gif" lazyload alt="image-20230616093026633"></p>
+<p><strong>find动作</strong></p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616093048712.png" srcset="/img/loading.gif" lazyload alt="image-20230616093048712"></p>
+<h5 id="应用">应用</h5>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616093111231.png" srcset="/img/loading.gif" lazyload alt="image-20230616093111231"></p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616093126770.png" srcset="/img/loading.gif" lazyload alt="image-20230616093126770"></p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616093135171.png" srcset="/img/loading.gif" lazyload alt="image-20230616093135171"></p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616093150875.png" srcset="/img/loading.gif" lazyload alt="image-20230616093150875"></p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616093202122.png" srcset="/img/loading.gif" lazyload alt="image-20230616093202122"></p>
+<h4 id="批量处理文件（xargs）">批量处理文件（xargs）</h4>
+<p>重点在于find配置其他命令会不断创建进程。</p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616093325709.png" srcset="/img/loading.gif" lazyload alt="image-20230616093325709"></p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616093506321.png" srcset="/img/loading.gif" lazyload alt="image-20230616093506321"></p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616093520982.png" srcset="/img/loading.gif" lazyload alt="image-20230616093520982"></p>
+<h4 id="打包与压缩（tar）">打包与压缩（tar）</h4>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616093613443.png" srcset="/img/loading.gif" lazyload alt="image-20230616093613443"></p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616093622354.png" srcset="/img/loading.gif" lazyload alt="image-20230616093622354"></p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616093631284.png" srcset="/img/loading.gif" lazyload alt="image-20230616093631284"></p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616093639080.png" srcset="/img/loading.gif" lazyload alt="image-20230616093639080"></p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616093647892.png" srcset="/img/loading.gif" lazyload alt="image-20230616093647892"></p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616093655961.png" srcset="/img/loading.gif" lazyload alt="image-20230616093655961"></p>
+<h3 id="命令获取信息方法">命令获取信息方法</h3>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616094526316.png" srcset="/img/loading.gif" lazyload alt="image-20230616094526316"></p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616094534765.png" srcset="/img/loading.gif" lazyload alt="image-20230616094534765"></p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616094543615.png" srcset="/img/loading.gif" lazyload alt="image-20230616094543615"></p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616094555755.png" srcset="/img/loading.gif" lazyload alt="image-20230616094555755"></p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616094609675.png" srcset="/img/loading.gif" lazyload alt="image-20230616094609675"></p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616094622568.png" srcset="/img/loading.gif" lazyload alt="image-20230616094622568"></p>
+<p><strong>命令行参数的三种风格</strong></p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616094702368.png" srcset="/img/loading.gif" lazyload alt="image-20230616094702368"></p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616094710128.png" srcset="/img/loading.gif" lazyload alt="image-20230616094710128"></p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616094721464.png" srcset="/img/loading.gif" lazyload alt="image-20230616094721464"></p>
+<h3 id="文件系统">文件系统</h3>
+<h4 id="文件系统的创建与安装">文件系统的创建与安装</h4>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616094747531.png" srcset="/img/loading.gif" lazyload alt="image-20230616094747531"></p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616094805661.png" srcset="/img/loading.gif" lazyload alt="image-20230616094805661"></p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616094815628.png" srcset="/img/loading.gif" lazyload alt="image-20230616094815628"></p>
+<h4 id="文件系统的存储结构">文件系统的存储结构</h4>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616094843189.png" srcset="/img/loading.gif" lazyload alt="image-20230616094843189"></p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616094852779.png" srcset="/img/loading.gif" lazyload alt="image-20230616094852779"></p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616094904233.png" srcset="/img/loading.gif" lazyload alt="image-20230616094904233"></p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616094918564.png" srcset="/img/loading.gif" lazyload alt="image-20230616094918564"></p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616094933211.png" srcset="/img/loading.gif" lazyload alt="image-20230616094933211"></p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616094946652.png" srcset="/img/loading.gif" lazyload alt="image-20230616094946652"></p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616095045139.png" srcset="/img/loading.gif" lazyload alt="image-20230616095045139"></p>
+<h4 id="硬链接">硬链接</h4>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616100032500.png" srcset="/img/loading.gif" lazyload alt="image-20230616100032500"></p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616100042068.png" srcset="/img/loading.gif" lazyload alt="image-20230616100042068"></p>
+<p>+2是当前目录.和上级目录的链接；直属子目录数来自下级目录的…</p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616100055216.png" srcset="/img/loading.gif" lazyload alt="image-20230616100055216"></p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616101245293.png" srcset="/img/loading.gif" lazyload alt="image-20230616101245293"></p>
+<h4 id="符号链接">符号链接</h4>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616101257264.png" srcset="/img/loading.gif" lazyload alt="image-20230616101257264"></p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616101321361.png" srcset="/img/loading.gif" lazyload alt="image-20230616101321361"></p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616101333060.png" srcset="/img/loading.gif" lazyload alt="image-20230616101333060"></p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616101404331.png" srcset="/img/loading.gif" lazyload alt="image-20230616101404331"></p>
+<h4 id="系统调用">系统调用</h4>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616101513717.png" srcset="/img/loading.gif" lazyload alt="image-20230616101513717"></p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616101522912.png" srcset="/img/loading.gif" lazyload alt="image-20230616101522912"></p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616101539799.png" srcset="/img/loading.gif" lazyload alt="image-20230616101539799"></p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616101554822.png" srcset="/img/loading.gif" lazyload alt="image-20230616101554822"></p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616101606729.png" srcset="/img/loading.gif" lazyload alt="image-20230616101606729"></p>
+<h4 id="访问i节点和目录">访问i节点和目录</h4>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616101642017.png" srcset="/img/loading.gif" lazyload alt="image-20230616101642017"></p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616101649068.png" srcset="/img/loading.gif" lazyload alt="image-20230616101649068"></p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616101700222.png" srcset="/img/loading.gif" lazyload alt="image-20230616101700222"></p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616101709034.png" srcset="/img/loading.gif" lazyload alt="image-20230616101709034"></p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616101718706.png" srcset="/img/loading.gif" lazyload alt="image-20230616101718706"></p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616101736673.png" srcset="/img/loading.gif" lazyload alt="image-20230616101736673"></p>
+<h3 id="文件和目录权限">文件和目录权限</h3>
+<h4 id="文件的权限">文件的权限</h4>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616101813559.png" srcset="/img/loading.gif" lazyload alt="image-20230616101813559"></p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616101821956.png" srcset="/img/loading.gif" lazyload alt="image-20230616101821956"></p>
+<h4 id="目录权限">目录权限</h4>
+<p>目录权限的理解</p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616103446495.png" srcset="/img/loading.gif" lazyload alt="image-20230616103446495"></p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616103511542.png" srcset="/img/loading.gif" lazyload alt="image-20230616103511542"></p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616103530831.png" srcset="/img/loading.gif" lazyload alt="image-20230616103530831"></p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616103552689.png" srcset="/img/loading.gif" lazyload alt="image-20230616103552689"></p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616103617784.png" srcset="/img/loading.gif" lazyload alt="image-20230616103617784"></p>
+<h4 id="权限相关命令">权限相关命令</h4>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616103638548.png" srcset="/img/loading.gif" lazyload alt="image-20230616103638548"></p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616103645702.png" srcset="/img/loading.gif" lazyload alt="image-20230616103645702"></p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616103654282.png" srcset="/img/loading.gif" lazyload alt="image-20230616103654282"></p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616103703613.png" srcset="/img/loading.gif" lazyload alt="image-20230616103703613"></p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616103716608.png" srcset="/img/loading.gif" lazyload alt="image-20230616103716608"></p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616103741513.png" srcset="/img/loading.gif" lazyload alt="image-20230616103741513"></p>
+<h4 id="设定文件和目录权限">设定文件和目录权限</h4>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616103824279.png" srcset="/img/loading.gif" lazyload alt="image-20230616103824279"></p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616103832011.png" srcset="/img/loading.gif" lazyload alt="image-20230616103832011"></p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616103842153.png" srcset="/img/loading.gif" lazyload alt="image-20230616103842153"></p>
+<h4 id="SUID权限">SUID权限</h4>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616114434374.png" srcset="/img/loading.gif" lazyload alt="image-20230616114434374"></p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616114455954.png" srcset="/img/loading.gif" lazyload alt="image-20230616114455954"></p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616114504283.png" srcset="/img/loading.gif" lazyload alt="image-20230616114504283"></p>
+<p>SUID使得用户可以通过文件主提供的程序，以文件主的权限访问文件。</p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616114525313.png" srcset="/img/loading.gif" lazyload alt="image-20230616114525313"></p>
+<h2 id="bash及脚本程序设计">bash及脚本程序设计</h2>
+<h3 id="shell的基本机制">shell的基本机制</h3>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616115051476.png" srcset="/img/loading.gif" lazyload alt="image-20230616115051476"></p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616115104331.png" srcset="/img/loading.gif" lazyload alt="image-20230616115104331"></p>
+<h4 id="bash的启动">bash的启动</h4>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616115136463.png" srcset="/img/loading.gif" lazyload alt="image-20230616115136463"></p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616115151885.png" srcset="/img/loading.gif" lazyload alt="image-20230616115151885"></p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616115209110.png" srcset="/img/loading.gif" lazyload alt="image-20230616115209110"></p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616115334359.png" srcset="/img/loading.gif" lazyload alt="image-20230616115334359"></p>
+<h4 id="历史与别名">历史与别名</h4>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616115352009.png" srcset="/img/loading.gif" lazyload alt="image-20230616115352009"></p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616115400250.png" srcset="/img/loading.gif" lazyload alt="image-20230616115400250"></p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616115410331.png" srcset="/img/loading.gif" lazyload alt="image-20230616115410331"></p>
+<h4 id="输入重定向">输入重定向</h4>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616115436420.png" srcset="/img/loading.gif" lazyload alt="image-20230616115436420"></p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616115521151.png" srcset="/img/loading.gif" lazyload alt="image-20230616115521151"></p>
+<h4 id="输出重定向">输出重定向</h4>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616115533295.png" srcset="/img/loading.gif" lazyload alt="image-20230616115533295"></p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616115543694.png" srcset="/img/loading.gif" lazyload alt="image-20230616115543694"></p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616115551486.png" srcset="/img/loading.gif" lazyload alt="image-20230616115551486"></p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616115600052.png" srcset="/img/loading.gif" lazyload alt="image-20230616115600052"></p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616115616437.png" srcset="/img/loading.gif" lazyload alt="image-20230616115616437"></p>
+<p><strong>举例</strong></p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616115634138.png" srcset="/img/loading.gif" lazyload alt="image-20230616115634138"></p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616115729248.png" srcset="/img/loading.gif" lazyload alt="image-20230616115729248"></p>
+<p>注意先后顺序</p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616115809077.png" srcset="/img/loading.gif" lazyload alt="image-20230616115809077"></p>
+<h4 id="管道">管道</h4>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616115916941.png" srcset="/img/loading.gif" lazyload alt="image-20230616115916941"></p>
+<h3 id="变量">变量</h3>
+<h4 id="变量赋值及使用">变量赋值及使用</h4>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616120300800.png" srcset="/img/loading.gif" lazyload alt="image-20230616120300800"></p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616120311234.png" srcset="/img/loading.gif" lazyload alt="image-20230616120311234"></p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616120345615.png" srcset="/img/loading.gif" lazyload alt="image-20230616120345615"></p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616120355737.png" srcset="/img/loading.gif" lazyload alt="image-20230616120355737"></p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616120405343.png" srcset="/img/loading.gif" lazyload alt="image-20230616120405343"></p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616120413323.png" srcset="/img/loading.gif" lazyload alt="image-20230616120413323"></p>
+<h4 id="在脚本中编辑文件">在脚本中编辑文件</h4>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616120431557.png" srcset="/img/loading.gif" lazyload alt="image-20230616120431557"></p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616120453425.png" srcset="/img/loading.gif" lazyload alt="image-20230616120453425"></p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616120508710.png" srcset="/img/loading.gif" lazyload alt="image-20230616120508710"></p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616120517245.png" srcset="/img/loading.gif" lazyload alt="image-20230616120517245"></p>
+<h4 id="环境变量">环境变量</h4>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616120532832.png" srcset="/img/loading.gif" lazyload alt="image-20230616120532832"></p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616120547396.png" srcset="/img/loading.gif" lazyload alt="image-20230616120547396"></p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616120554929.png" srcset="/img/loading.gif" lazyload alt="image-20230616120554929"></p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616120604010.png" srcset="/img/loading.gif" lazyload alt="image-20230616120604010"></p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616120632643.png" srcset="/img/loading.gif" lazyload alt="image-20230616120632643"></p>
+<h3 id="替换">替换</h3>
+<p>无正则表达式替换</p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616121003053.png" srcset="/img/loading.gif" lazyload alt="image-20230616121003053"></p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616121045533.png" srcset="/img/loading.gif" lazyload alt="image-20230616121045533"></p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616121125990.png" srcset="/img/loading.gif" lazyload alt="image-20230616121125990"></p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616121134429.png" srcset="/img/loading.gif" lazyload alt="image-20230616121134429"></p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616121155302.png" srcset="/img/loading.gif" lazyload alt="image-20230616121155302"></p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616121318660.png" srcset="/img/loading.gif" lazyload alt="image-20230616121318660"></p>
+<h3 id="元字符和转义字符">元字符和转义字符</h3>
+<h4 id="元字符">元字符</h4>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616121334696.png" srcset="/img/loading.gif" lazyload alt="image-20230616121334696"></p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616121511249.png" srcset="/img/loading.gif" lazyload alt="image-20230616121511249"></p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616121527371.png" srcset="/img/loading.gif" lazyload alt="image-20230616121527371"></p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616121618312.png" srcset="/img/loading.gif" lazyload alt="image-20230616121618312"></p>
+<h4 id="引号和转义字符">引号和转义字符</h4>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616121653451.png" srcset="/img/loading.gif" lazyload alt="image-20230616121653451"></p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616121705041.png" srcset="/img/loading.gif" lazyload alt="image-20230616121705041"></p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616121748462.png" srcset="/img/loading.gif" lazyload alt="image-20230616121748462"></p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616121909939.png" srcset="/img/loading.gif" lazyload alt="image-20230616121909939"></p>
+<h4 id="例：终止指定名字的所有进程">例：终止指定名字的所有进程</h4>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616121922017.png" srcset="/img/loading.gif" lazyload alt="image-20230616121922017"></p>
+<h3 id="条件">条件</h3>
+<h4 id="shell中逻辑判断">shell中逻辑判断</h4>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616122152520.png" srcset="/img/loading.gif" lazyload alt="image-20230616122152520"></p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616122222289.png" srcset="/img/loading.gif" lazyload alt="image-20230616122222289"></p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616122233406.png" srcset="/img/loading.gif" lazyload alt="image-20230616122233406"></p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616122243203.png" srcset="/img/loading.gif" lazyload alt="image-20230616122243203"></p>
+<h4 id="test命令和方括号命令">test命令和方括号命令</h4>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616122337261.png" srcset="/img/loading.gif" lazyload alt="image-20230616122337261"></p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616122346942.png" srcset="/img/loading.gif" lazyload alt="image-20230616122346942"></p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616122424730.png" srcset="/img/loading.gif" lazyload alt="image-20230616122424730"></p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616122432385.png" srcset="/img/loading.gif" lazyload alt="image-20230616122432385"></p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616122440472.png" srcset="/img/loading.gif" lazyload alt="image-20230616122440472"></p>
+<h4 id="命令组合">命令组合</h4>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616122454132.png" srcset="/img/loading.gif" lazyload alt="image-20230616122454132"></p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616122503432.png" srcset="/img/loading.gif" lazyload alt="image-20230616122503432"></p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616122520099.png" srcset="/img/loading.gif" lazyload alt="image-20230616122520099"></p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616122540636.png" srcset="/img/loading.gif" lazyload alt="image-20230616122540636"></p>
+<h4 id="条件分支">条件分支</h4>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616122553164.png" srcset="/img/loading.gif" lazyload alt="image-20230616122553164"></p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616122606462.png" srcset="/img/loading.gif" lazyload alt="image-20230616122606462"></p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616122615256.png" srcset="/img/loading.gif" lazyload alt="image-20230616122615256"></p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616122625453.png" srcset="/img/loading.gif" lazyload alt="image-20230616122625453"></p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616122634398.png" srcset="/img/loading.gif" lazyload alt="image-20230616122634398"></p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616122647796.png" srcset="/img/loading.gif" lazyload alt="image-20230616122647796"></p>
+<h3 id="循环">循环</h3>
+<h4 id="表达式运算">表达式运算</h4>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616122700915.png" srcset="/img/loading.gif" lazyload alt="image-20230616122700915"></p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616122709336.png" srcset="/img/loading.gif" lazyload alt="image-20230616122709336"></p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616122724695.png" srcset="/img/loading.gif" lazyload alt="image-20230616122724695"></p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616122732232.png" srcset="/img/loading.gif" lazyload alt="image-20230616122732232"></p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616122742815.png" srcset="/img/loading.gif" lazyload alt="image-20230616122742815"></p>
+<h4 id="内部命令eval">内部命令eval</h4>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616122905612.png" srcset="/img/loading.gif" lazyload alt="image-20230616122905612"></p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616122917922.png" srcset="/img/loading.gif" lazyload alt="image-20230616122917922"></p>
+<h4 id="while循环">while循环</h4>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616123014990.png" srcset="/img/loading.gif" lazyload alt="image-20230616123014990"></p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616123024648.png" srcset="/img/loading.gif" lazyload alt="image-20230616123024648"></p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616123035218.png" srcset="/img/loading.gif" lazyload alt="image-20230616123035218"></p>
+<h4 id="for循环">for循环</h4>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616123050457.png" srcset="/img/loading.gif" lazyload alt="image-20230616123050457"></p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616123058482.png" srcset="/img/loading.gif" lazyload alt="image-20230616123058482"></p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616123112777.png" srcset="/img/loading.gif" lazyload alt="image-20230616123112777"></p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616123208692.png" srcset="/img/loading.gif" lazyload alt="image-20230616123208692"></p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616123219802.png" srcset="/img/loading.gif" lazyload alt="image-20230616123219802"></p>
+<h3 id="函数">函数</h3>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616123231123.png" srcset="/img/loading.gif" lazyload alt="image-20230616123231123"></p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616123240079.png" srcset="/img/loading.gif" lazyload alt="image-20230616123240079"></p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616123257421.png" srcset="/img/loading.gif" lazyload alt="image-20230616123257421"></p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616123312772.png" srcset="/img/loading.gif" lazyload alt="image-20230616123312772"></p>
+<h2 id="进程控制">进程控制</h2>
+<h3 id="数据">数据</h3>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616123407380.png" srcset="/img/loading.gif" lazyload alt="image-20230616123407380"></p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616123414810.png" srcset="/img/loading.gif" lazyload alt="image-20230616123414810"></p>
+<h3 id="fork">fork</h3>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616123429623.png" srcset="/img/loading.gif" lazyload alt="image-20230616123429623"></p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616123447151.png" srcset="/img/loading.gif" lazyload alt="image-20230616123447151"></p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616123455702.png" srcset="/img/loading.gif" lazyload alt="image-20230616123455702"></p>
+<h3 id="exec">exec</h3>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616123510628.png" srcset="/img/loading.gif" lazyload alt="image-20230616123510628"></p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616123519704.png" srcset="/img/loading.gif" lazyload alt="image-20230616123519704"></p>
+<h3 id="命令行参数和环境参数">命令行参数和环境参数</h3>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616123547666.png" srcset="/img/loading.gif" lazyload alt="image-20230616123547666"></p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616123555788.png" srcset="/img/loading.gif" lazyload alt="image-20230616123555788"></p>
+<h3 id="僵尸进程">僵尸进程</h3>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616123616043.png" srcset="/img/loading.gif" lazyload alt="image-20230616123616043"></p>
+<h3 id="wait">wait</h3>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616123648578.png" srcset="/img/loading.gif" lazyload alt="image-20230616123648578"></p>
+<h3 id="自编xsh0">自编xsh0</h3>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616123721648.png" srcset="/img/loading.gif" lazyload alt="image-20230616123721648"></p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616123728743.png" srcset="/img/loading.gif" lazyload alt="image-20230616123728743"></p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616123736376.png" srcset="/img/loading.gif" lazyload alt="image-20230616123736376"></p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616123751156.png" srcset="/img/loading.gif" lazyload alt="image-20230616123751156"></p>
+<h3 id="system">system</h3>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616123803398.png" srcset="/img/loading.gif" lazyload alt="image-20230616123803398"></p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616123814163.png" srcset="/img/loading.gif" lazyload alt="image-20230616123814163"></p>
+<h2 id="重定向与管道">重定向与管道</h2>
+<h3 id="进程和文件描述符">进程和文件描述符</h3>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616123942687.png" srcset="/img/loading.gif" lazyload alt="image-20230616123942687"></p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616123951012.png" srcset="/img/loading.gif" lazyload alt="image-20230616123951012"></p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616123958792.png" srcset="/img/loading.gif" lazyload alt="image-20230616123958792"></p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616124007419.png" srcset="/img/loading.gif" lazyload alt="image-20230616124007419"></p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616124015213.png" srcset="/img/loading.gif" lazyload alt="image-20230616124015213"></p>
+<h3 id="重定向">重定向</h3>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616124029808.png" srcset="/img/loading.gif" lazyload alt="image-20230616124029808"></p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616124102457.png" srcset="/img/loading.gif" lazyload alt="image-20230616124102457"></p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616124122540.png" srcset="/img/loading.gif" lazyload alt="image-20230616124122540"></p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616124224611.png" srcset="/img/loading.gif" lazyload alt="image-20230616124224611"></p>
+<h3 id="管道-2">管道</h3>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616124249421.png" srcset="/img/loading.gif" lazyload alt="image-20230616124249421"></p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616124256963.png" srcset="/img/loading.gif" lazyload alt="image-20230616124256963"></p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616124305716.png" srcset="/img/loading.gif" lazyload alt="image-20230616124305716"></p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616124313639.png" srcset="/img/loading.gif" lazyload alt="image-20230616124313639"></p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616124320610.png" srcset="/img/loading.gif" lazyload alt="image-20230616124320610"></p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616124327933.png" srcset="/img/loading.gif" lazyload alt="image-20230616124327933"></p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616124337430.png" srcset="/img/loading.gif" lazyload alt="image-20230616124337430"></p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616124346630.png" srcset="/img/loading.gif" lazyload alt="image-20230616124346630"></p>
+<h4 id="命名管道">命名管道</h4>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616124405908.png" srcset="/img/loading.gif" lazyload alt="image-20230616124405908"></p>
+<h2 id="信号">信号</h2>
+<h3 id="信号的产生及类型">信号的产生及类型</h3>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616124452054.png" srcset="/img/loading.gif" lazyload alt="image-20230616124452054"></p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616124459749.png" srcset="/img/loading.gif" lazyload alt="image-20230616124459749"></p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616124506434.png" srcset="/img/loading.gif" lazyload alt="image-20230616124506434"></p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616124513040.png" srcset="/img/loading.gif" lazyload alt="image-20230616124513040"></p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616124520571.png" srcset="/img/loading.gif" lazyload alt="image-20230616124520571"></p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616124529998.png" srcset="/img/loading.gif" lazyload alt="image-20230616124529998"></p>
+<h3 id="进程对信号的处理">进程对信号的处理</h3>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616124548314.png" srcset="/img/loading.gif" lazyload alt="image-20230616124548314"></p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616124556803.png" srcset="/img/loading.gif" lazyload alt="image-20230616124556803"></p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616124605260.png" srcset="/img/loading.gif" lazyload alt="image-20230616124605260"></p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616124613080.png" srcset="/img/loading.gif" lazyload alt="image-20230616124613080"></p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616124623813.png" srcset="/img/loading.gif" lazyload alt="image-20230616124623813"></p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616124631066.png" srcset="/img/loading.gif" lazyload alt="image-20230616124631066"></p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616124641951.png" srcset="/img/loading.gif" lazyload alt="image-20230616124641951"></p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616124650251.png" srcset="/img/loading.gif" lazyload alt="image-20230616124650251"></p>
+<h3 id="全局跳转">全局跳转</h3>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616124712989.png" srcset="/img/loading.gif" lazyload alt="image-20230616124712989"></p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616124722339.png" srcset="/img/loading.gif" lazyload alt="image-20230616124722339"></p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616124730359.png" srcset="/img/loading.gif" lazyload alt="image-20230616124730359"></p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616124737313.png" srcset="/img/loading.gif" lazyload alt="image-20230616124737313"></p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616124745779.png" srcset="/img/loading.gif" lazyload alt="image-20230616124745779"></p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616124754407.png" srcset="/img/loading.gif" lazyload alt="image-20230616124754407"></p>
+<p><img src="/2023/06/15/linux%E6%9C%9F%E6%9C%AB%E5%A4%8D%E4%B9%A0/image-20230616124801738.png" srcset="/img/loading.gif" lazyload alt="image-20230616124801738"></p>
+<link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E5%AD%A6%E4%B9%A0/" class="category-chain-item">学习</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/%E5%AD%A6%E4%B9%A0/%E5%A4%A7%E5%AD%A6/" class="category-chain-item">大学</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/%E5%AD%A6%E4%B9%A0/%E5%A4%A7%E5%AD%A6/%E5%A4%A7%E4%B8%89%E4%B8%8B/" class="category-chain-item">大三下</a>
+  
+  
+
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/linux/" class="print-no-link">#linux</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>linux期末复习</div>
+      <div>https://codenum137.github.io/codenum137.github.io/2023/06/15/linux期末复习/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>hey137</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2023年6月15日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2023/10/20/%E5%8D%9A%E5%AE%A2%E7%9A%84%E6%90%AD%E5%BB%BA/" title="博客的搭建">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">博客的搭建</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"VUZA7v64z7VyTAP8IacQddb3-gzGzoHsz","appKey":"s9nmj2bQKMeENVBm24I948wx","path":"window.location.pathname","placeholder":"欢迎评论交流=v=","avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"https://vuza7v64.lc-cn-n1-shared.com","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+  
+<script src="/js/code-collapse.js"></script>
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

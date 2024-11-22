@@ -1,0 +1,995 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/H.png">
+  <link rel="icon" href="/img/H.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="hey137">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="如何在GNS3平台上使用SONIC路由器搭建网络，并与真机互通（虚实结合），主要使用ISIS协议。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="GNS3部署SONIC路由器并与真机互通">
+<meta property="og:url" content="https://codenum137.github.io/codenum137.github.io/2023/11/13/GNS3%E9%83%A8%E7%BD%B2SONIC%E8%B7%AF%E7%94%B1%E5%99%A8%E5%B9%B6%E4%B8%8E%E7%9C%9F%E6%9C%BA%E4%BA%92%E9%80%9A/index.html">
+<meta property="og:site_name" content="Hey~">
+<meta property="og:description" content="如何在GNS3平台上使用SONIC路由器搭建网络，并与真机互通（虚实结合），主要使用ISIS协议。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://codenum137.github.io/2023/11/13/GNS3%E9%83%A8%E7%BD%B2SONIC%E8%B7%AF%E7%94%B1%E5%99%A8%E5%B9%B6%E4%B8%8E%E7%9C%9F%E6%9C%BA%E4%BA%92%E9%80%9A/image-20231113121555664.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/11/13/GNS3%E9%83%A8%E7%BD%B2SONIC%E8%B7%AF%E7%94%B1%E5%99%A8%E5%B9%B6%E4%B8%8E%E7%9C%9F%E6%9C%BA%E4%BA%92%E9%80%9A/image-20231113120552853.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/11/13/GNS3%E9%83%A8%E7%BD%B2SONIC%E8%B7%AF%E7%94%B1%E5%99%A8%E5%B9%B6%E4%B8%8E%E7%9C%9F%E6%9C%BA%E4%BA%92%E9%80%9A/image-20231113120924658.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/11/13/GNS3%E9%83%A8%E7%BD%B2SONIC%E8%B7%AF%E7%94%B1%E5%99%A8%E5%B9%B6%E4%B8%8E%E7%9C%9F%E6%9C%BA%E4%BA%92%E9%80%9A/image-20231113121417056.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/11/13/GNS3%E9%83%A8%E7%BD%B2SONIC%E8%B7%AF%E7%94%B1%E5%99%A8%E5%B9%B6%E4%B8%8E%E7%9C%9F%E6%9C%BA%E4%BA%92%E9%80%9A/image-20231113124143272.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/11/13/GNS3%E9%83%A8%E7%BD%B2SONIC%E8%B7%AF%E7%94%B1%E5%99%A8%E5%B9%B6%E4%B8%8E%E7%9C%9F%E6%9C%BA%E4%BA%92%E9%80%9A/image-20231113130455168.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/11/13/GNS3%E9%83%A8%E7%BD%B2SONIC%E8%B7%AF%E7%94%B1%E5%99%A8%E5%B9%B6%E4%B8%8E%E7%9C%9F%E6%9C%BA%E4%BA%92%E9%80%9A/image-20231113130529564.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/11/13/GNS3%E9%83%A8%E7%BD%B2SONIC%E8%B7%AF%E7%94%B1%E5%99%A8%E5%B9%B6%E4%B8%8E%E7%9C%9F%E6%9C%BA%E4%BA%92%E9%80%9A/image-20231102144701101.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/11/13/GNS3%E9%83%A8%E7%BD%B2SONIC%E8%B7%AF%E7%94%B1%E5%99%A8%E5%B9%B6%E4%B8%8E%E7%9C%9F%E6%9C%BA%E4%BA%92%E9%80%9A/image-20231102145308528.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/11/13/GNS3%E9%83%A8%E7%BD%B2SONIC%E8%B7%AF%E7%94%B1%E5%99%A8%E5%B9%B6%E4%B8%8E%E7%9C%9F%E6%9C%BA%E4%BA%92%E9%80%9A/image-20231113130721710.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/11/13/GNS3%E9%83%A8%E7%BD%B2SONIC%E8%B7%AF%E7%94%B1%E5%99%A8%E5%B9%B6%E4%B8%8E%E7%9C%9F%E6%9C%BA%E4%BA%92%E9%80%9A/image-20231113131519924.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/11/13/GNS3%E9%83%A8%E7%BD%B2SONIC%E8%B7%AF%E7%94%B1%E5%99%A8%E5%B9%B6%E4%B8%8E%E7%9C%9F%E6%9C%BA%E4%BA%92%E9%80%9A/image-20231113131649960.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/11/13/GNS3%E9%83%A8%E7%BD%B2SONIC%E8%B7%AF%E7%94%B1%E5%99%A8%E5%B9%B6%E4%B8%8E%E7%9C%9F%E6%9C%BA%E4%BA%92%E9%80%9A/image-20231113131721483.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/11/13/GNS3%E9%83%A8%E7%BD%B2SONIC%E8%B7%AF%E7%94%B1%E5%99%A8%E5%B9%B6%E4%B8%8E%E7%9C%9F%E6%9C%BA%E4%BA%92%E9%80%9A/image-20231113132439009.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/11/13/GNS3%E9%83%A8%E7%BD%B2SONIC%E8%B7%AF%E7%94%B1%E5%99%A8%E5%B9%B6%E4%B8%8E%E7%9C%9F%E6%9C%BA%E4%BA%92%E9%80%9A/image-20231222100434956.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/11/13/GNS3%E9%83%A8%E7%BD%B2SONIC%E8%B7%AF%E7%94%B1%E5%99%A8%E5%B9%B6%E4%B8%8E%E7%9C%9F%E6%9C%BA%E4%BA%92%E9%80%9A/image-20231222100712177.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/11/13/GNS3%E9%83%A8%E7%BD%B2SONIC%E8%B7%AF%E7%94%B1%E5%99%A8%E5%B9%B6%E4%B8%8E%E7%9C%9F%E6%9C%BA%E4%BA%92%E9%80%9A/image-20231222100843620.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/11/13/GNS3%E9%83%A8%E7%BD%B2SONIC%E8%B7%AF%E7%94%B1%E5%99%A8%E5%B9%B6%E4%B8%8E%E7%9C%9F%E6%9C%BA%E4%BA%92%E9%80%9A/image-20231222101008891.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/11/13/GNS3%E9%83%A8%E7%BD%B2SONIC%E8%B7%AF%E7%94%B1%E5%99%A8%E5%B9%B6%E4%B8%8E%E7%9C%9F%E6%9C%BA%E4%BA%92%E9%80%9A/image-20231222102934408.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/11/13/GNS3%E9%83%A8%E7%BD%B2SONIC%E8%B7%AF%E7%94%B1%E5%99%A8%E5%B9%B6%E4%B8%8E%E7%9C%9F%E6%9C%BA%E4%BA%92%E9%80%9A/image-20231222103155726.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/11/13/GNS3%E9%83%A8%E7%BD%B2SONIC%E8%B7%AF%E7%94%B1%E5%99%A8%E5%B9%B6%E4%B8%8E%E7%9C%9F%E6%9C%BA%E4%BA%92%E9%80%9A/image-20231222103717425.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/11/13/GNS3%E9%83%A8%E7%BD%B2SONIC%E8%B7%AF%E7%94%B1%E5%99%A8%E5%B9%B6%E4%B8%8E%E7%9C%9F%E6%9C%BA%E4%BA%92%E9%80%9A/image-20231222103950427.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/11/13/GNS3%E9%83%A8%E7%BD%B2SONIC%E8%B7%AF%E7%94%B1%E5%99%A8%E5%B9%B6%E4%B8%8E%E7%9C%9F%E6%9C%BA%E4%BA%92%E9%80%9A/image-20231222104637434.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/11/13/GNS3%E9%83%A8%E7%BD%B2SONIC%E8%B7%AF%E7%94%B1%E5%99%A8%E5%B9%B6%E4%B8%8E%E7%9C%9F%E6%9C%BA%E4%BA%92%E9%80%9A/image-20231222105250470.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/11/13/GNS3%E9%83%A8%E7%BD%B2SONIC%E8%B7%AF%E7%94%B1%E5%99%A8%E5%B9%B6%E4%B8%8E%E7%9C%9F%E6%9C%BA%E4%BA%92%E9%80%9A/image-20231222105623542.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/11/13/GNS3%E9%83%A8%E7%BD%B2SONIC%E8%B7%AF%E7%94%B1%E5%99%A8%E5%B9%B6%E4%B8%8E%E7%9C%9F%E6%9C%BA%E4%BA%92%E9%80%9A/image-20231222105541701.png">
+<meta property="og:image" content="https://codenum137.github.io/2023/11/13/GNS3%E9%83%A8%E7%BD%B2SONIC%E8%B7%AF%E7%94%B1%E5%99%A8%E5%B9%B6%E4%B8%8E%E7%9C%9F%E6%9C%BA%E4%BA%92%E9%80%9A/image-20231107121044655.png">
+<meta property="article:published_time" content="2023-11-13T03:10:14.000Z">
+<meta property="article:modified_time" content="2024-04-17T08:28:31.473Z">
+<meta property="article:author" content="hey137">
+<meta property="article:tag" content="linux">
+<meta property="article:tag" content="shell">
+<meta property="article:tag" content="debian">
+<meta property="article:tag" content="gns3">
+<meta property="article:tag" content="sonic">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://codenum137.github.io/2023/11/13/GNS3%E9%83%A8%E7%BD%B2SONIC%E8%B7%AF%E7%94%B1%E5%99%A8%E5%B9%B6%E4%B8%8E%E7%9C%9F%E6%9C%BA%E4%BA%92%E9%80%9A/image-20231113121555664.png">
+  
+  
+  
+  <title>GNS3部署SONIC路由器并与真机互通 - Hey~</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="https://lib.baomitu.com/font-awesome/6.1.2/css/all.min.css">
+<link rel="stylesheet" href="/css/code-collapse.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"codenum137.github.io","root":"/","version":"1.9.5","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"VUZA7v64z7VyTAP8IacQddb3-gzGzoHsz","app_key":"s9nmj2bQKMeENVBm24I948wx","server_url":"https://vuza7v64.lc-cn-n1-shared.com","path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+    <!-- Google tag (gtag.js) -->
+    <script async>
+      if (!Fluid.ctx.dnt) {
+        Fluid.utils.createScript("https://www.googletagmanager.com/gtag/js?id=", function() {
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            dataLayer.push(arguments);
+          }
+          gtag('js', new Date());
+          gtag('config', '');
+        });
+      }
+    </script>
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Hey~</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="GNS3部署SONIC路由器并与真机互通"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2023-11-13 11:10" pubdate>
+          2023年11月13日 上午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          8.5k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          72 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span>次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">GNS3部署SONIC路由器并与真机互通</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1>GNS3部署SONIC路由器并与真机互通</h1>
+<h2 id="部署环境">部署环境</h2>
+<ul>
+<li>GNS3 2.2.38 <a target="_blank" rel="noopener" href="https://cn.linux-console.net/?p=22052">如何在 Ubuntu 22.04|20.04|18.04 上安装 GNS3 (linux-console.net)</a></li>
+<li>Linux sonic 5.10.0-18-2-amd64 #1 SMP Debian 5.10.140-1 (2022-09-02) x86_64</li>
+</ul>
+<h2 id="配置ip地址及ISIS协议">配置ip地址及ISIS协议</h2>
+<h3 id="python脚本说明">python脚本说明</h3>
+<h4 id="python脚本代码">python脚本代码</h4>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># author: hey137</span><br><br>ROUTE_NUM = <span class="hljs-built_in">int</span>(<span class="hljs-built_in">input</span>(<span class="hljs-string">&quot;请输入路由器数目\n&quot;</span>))<br>TERM_NUM = <span class="hljs-built_in">int</span>(<span class="hljs-built_in">input</span>(<span class="hljs-string">&quot;请输入终端数目\n&quot;</span>))<br><br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">make_ipv4</span>(<span class="hljs-params">my_id, oid, mask</span>):<br>    <span class="hljs-keyword">if</span> my_id &lt; oid:<br>        ip = <span class="hljs-string">&quot;10.&quot;</span> + <span class="hljs-built_in">str</span>(my_id) + <span class="hljs-string">&quot;.&quot;</span> + <span class="hljs-built_in">str</span>(oid) + <span class="hljs-string">&quot;.&quot;</span> + <span class="hljs-built_in">str</span>(my_id)<br>    <span class="hljs-keyword">else</span>:<br>        ip = <span class="hljs-string">&quot;10.&quot;</span> + <span class="hljs-built_in">str</span>(oid) + <span class="hljs-string">&quot;.&quot;</span> + <span class="hljs-built_in">str</span>(my_id) + <span class="hljs-string">&quot;.&quot;</span> + <span class="hljs-built_in">str</span>(my_id)<br>    <span class="hljs-keyword">if</span> mask &gt; <span class="hljs-number">0</span>:<br>        ip = ip + <span class="hljs-string">&quot;/&quot;</span> + <span class="hljs-built_in">str</span>(mask)<br>    <span class="hljs-keyword">return</span> ip<br><br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">make_ipv6</span>(<span class="hljs-params">my_id, oid, mask</span>):<br>    <span class="hljs-keyword">if</span> my_id &lt; oid:<br>        ip = <span class="hljs-string">&quot;2023:&quot;</span> + <span class="hljs-built_in">str</span>(my_id) + <span class="hljs-string">&quot;:&quot;</span> + <span class="hljs-built_in">str</span>(oid) + <span class="hljs-string">&quot;::&quot;</span> + <span class="hljs-built_in">str</span>(my_id)<br>    <span class="hljs-keyword">else</span>:<br>        ip = <span class="hljs-string">&quot;2023:&quot;</span> + <span class="hljs-built_in">str</span>(oid) + <span class="hljs-string">&quot;:&quot;</span> + <span class="hljs-built_in">str</span>(my_id) + <span class="hljs-string">&quot;::&quot;</span> + <span class="hljs-built_in">str</span>(my_id)<br>    <span class="hljs-keyword">if</span> mask &gt; <span class="hljs-number">0</span>:<br>        ip = ip + <span class="hljs-string">&quot;/&quot;</span> + <span class="hljs-built_in">str</span>(mask)<br>    <span class="hljs-keyword">return</span> ip<br><br><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">Terminal</span>:<br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self, tid</span>):<br>        <span class="hljs-comment"># tid:term_id</span><br>        self.oid = <span class="hljs-literal">None</span><br>        self.<span class="hljs-built_in">id</span> = tid + ROUTE_NUM<br><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">add_ens4_route</span>(<span class="hljs-params">self, oid</span>):<br>        self.oid = oid<br><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">make_sh</span>(<span class="hljs-params">self</span>):<br>        file_name = <span class="hljs-string">&quot;t&quot;</span> + <span class="hljs-built_in">str</span>(self.<span class="hljs-built_in">id</span> - ROUTE_NUM) + <span class="hljs-string">&quot;.sh&quot;</span><br>        <span class="hljs-keyword">with</span> <span class="hljs-built_in">open</span>(file_name, <span class="hljs-string">&quot;w&quot;</span>) <span class="hljs-keyword">as</span> f:<br>            pre_order = \<br>                <span class="hljs-string">&quot;&quot;&quot;sudo sed -i -e &#x27;s/source-directory \\/run/# source-directory \\/run/g&#x27; /etc/network/interfaces</span><br><span class="hljs-string">sudo sed -i -e &#x27;8a \\\\nauto ens5\\niface ens5 inet dhcp&#x27; /etc/network/interfaces</span><br><span class="hljs-string">sudo rm /etc/network/interfaces.d/50-cloud-init</span><br><span class="hljs-string">&quot;&quot;&quot;</span><br>            f.write(pre_order)<br>            <span class="hljs-comment"># 修改权限</span><br>            chmod = <span class="hljs-string">&quot;sudo chmod 777 /etc/network/interfaces.d\n&quot;</span><br>            f.write(chmod)<br>            <span class="hljs-comment"># 配置ip和默认网关</span><br>            my_ipv6 = make_ipv6(self.<span class="hljs-built_in">id</span>, self.oid, <span class="hljs-number">64</span>)<br>            o_ipv6 = make_ipv6(self.oid, self.<span class="hljs-built_in">id</span>, <span class="hljs-number">0</span>)<br>            ipv4 = make_ipv4(self.<span class="hljs-built_in">id</span>, self.oid, <span class="hljs-number">24</span>)<br>            o_ipv4 = make_ipv4(self.oid, self.<span class="hljs-built_in">id</span>, <span class="hljs-number">0</span>)<br>            ip_config = <span class="hljs-string">&quot;&quot;&quot;sudo cat &lt;&lt; EOF &gt; /etc/network/interfaces.d/10-ens4</span><br><span class="hljs-string">auto ens4</span><br><span class="hljs-string">iface ens4 inet6 static</span><br><span class="hljs-string">address &quot;&quot;&quot;</span> + my_ipv6 + <span class="hljs-string">&quot;&quot;&quot;</span><br><span class="hljs-string">gateway &quot;&quot;&quot;</span> + o_ipv6 + <span class="hljs-string">&quot;&quot;&quot;</span><br><span class="hljs-string">iface ens4 inet static</span><br><span class="hljs-string">address &quot;&quot;&quot;</span> + ipv4 + <span class="hljs-string">&quot;&quot;&quot;</span><br><span class="hljs-string">up ip route add 10.0.0.0/8 via &quot;&quot;&quot;</span> + o_ipv4 + <span class="hljs-string">&quot;&quot;&quot;</span><br><span class="hljs-string">EOF</span><br><span class="hljs-string">&quot;&quot;&quot;</span><br>            f.write(ip_config)<br>            restart_net = <span class="hljs-string">&quot;sudo systemctl restart networking\n&quot;</span><br>            f.write(restart_net)<br><br><br><span class="hljs-keyword">class</span> <span class="hljs-title class_">Router</span>:<br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">__init__</span>(<span class="hljs-params">self, rid</span>):<br>        <span class="hljs-comment"># rid:router_id</span><br>        self.inter_map = &#123;&#125;<br>        self.<span class="hljs-built_in">id</span> = rid<br><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">add_edge</span>(<span class="hljs-params">self, _inter, oid</span>):<br>        <span class="hljs-comment"># oid:other_id</span><br>        self.inter_map[_inter] = oid<br><br>    <span class="hljs-keyword">def</span> <span class="hljs-title function_">make_sh</span>(<span class="hljs-params">self</span>):<br>        file_name = <span class="hljs-string">&quot;r&quot;</span> + <span class="hljs-built_in">str</span>(self.<span class="hljs-built_in">id</span>) + <span class="hljs-string">&quot;.sh&quot;</span><br>        <span class="hljs-keyword">with</span> <span class="hljs-built_in">open</span>(file_name, <span class="hljs-string">&quot;w&quot;</span>) <span class="hljs-keyword">as</span> f:<br>            <span class="hljs-comment"># 修改密码</span><br>            change_passwd = <span class="hljs-string">&quot;echo -e \&quot;123\n123\n\&quot; | sudo passwd admin\n&quot;</span><br>            f.write(change_passwd)<br>            <span class="hljs-comment"># 配置isis自启动</span><br>            start_isis = <span class="hljs-string">&quot;&quot;&quot;cat &lt;&lt; EOF &gt; start_isisd.service</span><br><span class="hljs-string">[Unit]</span><br><span class="hljs-string">Description=Docker ISISD Service</span><br><span class="hljs-string">After=docker.service</span><br><span class="hljs-string">Requires=docker.service</span><br><span class="hljs-string"></span><br><span class="hljs-string">[Service]</span><br><span class="hljs-string">ExecStart=/usr/bin/docker exec -i bgp /bin/bash -c &quot;/usr/lib/frr/isisd -A 127.0.0.1 -d&quot;</span><br><span class="hljs-string">Restart=always</span><br><span class="hljs-string">RestartSec=5</span><br><span class="hljs-string"></span><br><span class="hljs-string">[Install]</span><br><span class="hljs-string">WantedBy=multi-user.target</span><br><span class="hljs-string">EOF</span><br><span class="hljs-string">sudo mv start_isisd.service /etc/systemd/system/</span><br><span class="hljs-string">sudo systemctl daemon-reload</span><br><span class="hljs-string">sudo systemctl enable start_isisd.service</span><br><span class="hljs-string">/usr/bin/docker exec -i bgp /bin/bash -c &quot;/usr/lib/frr/isisd -A 127.0.0.1 -d&quot;</span><br><span class="hljs-string">&quot;&quot;&quot;</span><br>            f.write(start_isis)<br>            <span class="hljs-comment"># 配置ip</span><br>            <span class="hljs-keyword">for</span> _inter, oid <span class="hljs-keyword">in</span> self.inter_map.items():<br>                old_id = <span class="hljs-string">&quot;10.0.0.&quot;</span> + <span class="hljs-built_in">str</span>(_inter * <span class="hljs-number">2</span>) + <span class="hljs-string">&quot;/31&quot;</span><br>                ipv4 = make_ipv4(self.<span class="hljs-built_in">id</span>, oid, <span class="hljs-number">24</span>)<br>                ipv6 = make_ipv6(self.<span class="hljs-built_in">id</span>, oid, <span class="hljs-number">64</span>)<br>                remove_ip = <span class="hljs-string">&quot;sudo config interface ip remove Ethernet&quot;</span> + <span class="hljs-built_in">str</span>(_inter * <span class="hljs-number">4</span>) + <span class="hljs-string">&quot; &quot;</span> + old_id + <span class="hljs-string">&quot;\n&quot;</span><br>                add_ipv4 = <span class="hljs-string">&quot;sudo config interface ip add Ethernet&quot;</span> + <span class="hljs-built_in">str</span>(_inter * <span class="hljs-number">4</span>) + <span class="hljs-string">&quot; &quot;</span> + ipv4 + <span class="hljs-string">&quot;\n&quot;</span><br>                add_ipv6 = <span class="hljs-string">&quot;sudo config interface ip add Ethernet&quot;</span> + <span class="hljs-built_in">str</span>(_inter * <span class="hljs-number">4</span>) + <span class="hljs-string">&quot; &quot;</span> + ipv6 + <span class="hljs-string">&quot;\n&quot;</span><br>                change_mtu = <span class="hljs-string">&quot;sudo config interface mtu Ethernet&quot;</span> + <span class="hljs-built_in">str</span>(_inter * <span class="hljs-number">4</span>) + <span class="hljs-string">&quot; 1500\n&quot;</span><br>                start_up = <span class="hljs-string">&quot;sudo config interface startup Ethernet&quot;</span> + <span class="hljs-built_in">str</span>(_inter * <span class="hljs-number">4</span>) + <span class="hljs-string">&quot;\n&quot;</span><br>                f.write(remove_ip)<br>                f.write(add_ipv4)<br>                f.write(add_ipv6)<br>                f.write(change_mtu)<br>                f.write(start_up)<br>            save = <span class="hljs-string">&quot;sudo config save -y\n&quot;</span><br>            f.write(save)<br>            <span class="hljs-comment"># 配置isis</span><br>            pre_order = <span class="hljs-string">&quot;&quot;&quot;vtysh -c &quot;</span><br><span class="hljs-string">config</span><br><span class="hljs-string">ro isis sonic</span><br><span class="hljs-string">&quot;&quot;&quot;</span><br>            <span class="hljs-comment"># net 49.0001.0000.0000.str(rid)(左边补齐0).00</span><br>            net = <span class="hljs-string">&quot;net 49.0001.0000.0000.&quot;</span> + <span class="hljs-string">&quot;0&quot;</span> * (<span class="hljs-number">4</span> - <span class="hljs-built_in">len</span>(<span class="hljs-built_in">str</span>(self.<span class="hljs-built_in">id</span>))) + <span class="hljs-built_in">str</span>(self.<span class="hljs-built_in">id</span>) + <span class="hljs-string">&quot;.00\n&quot;</span><br>            f.write(pre_order)<br>            f.write(net)<br>            <span class="hljs-keyword">for</span> _inter <span class="hljs-keyword">in</span> self.inter_map.keys():<br>                enter_inter = <span class="hljs-string">&quot;interface Ethernet&quot;</span> + <span class="hljs-built_in">str</span>(_inter * <span class="hljs-number">4</span>) + <span class="hljs-string">&quot;\n&quot;</span><br>                isis = <span class="hljs-string">&quot;ipv6 ro isis sonic\nip ro isis sonic\n&quot;</span><br>                f.write(enter_inter)<br>                f.write(isis)<br>                f.write(<span class="hljs-string">&quot;exit\n&quot;</span>)<br>            f.write(<span class="hljs-string">&quot;end\n&quot;</span>)<br>            f.write(<span class="hljs-string">&quot;write\&quot;&quot;</span>)<br><br><br><span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">&#x27;__main__&#x27;</span>:<br>    router = [Router(<span class="hljs-number">0</span>)]<br>    term = [Terminal(<span class="hljs-number">0</span>)]<br>    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">1</span>, ROUTE_NUM + <span class="hljs-number">1</span>):<br>        router.append(Router(i))<br>    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">1</span>, TERM_NUM + <span class="hljs-number">1</span>):<br>        term.append(Terminal(i))<br>    <span class="hljs-keyword">if</span> TERM_NUM &gt; <span class="hljs-number">0</span>:<br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;请输入&quot;</span> + <span class="hljs-built_in">str</span>(TERM_NUM) + <span class="hljs-string">&quot;条终端链路信息 格式：（终端n通过路由器a的ei接口与路由器a相连 n inter_ei aID)&quot;</span>)<br>    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(TERM_NUM):<br>        edge = <span class="hljs-built_in">input</span>()<br>        term_id, inter, r_id = edge.split()<br>        term_id = <span class="hljs-built_in">int</span>(term_id)<br>        r_id = <span class="hljs-built_in">int</span>(r_id)<br>        inter = <span class="hljs-built_in">int</span>(inter)<br>        term[term_id].add_ens4_route(r_id)<br>        router[r_id].add_edge(inter, term[term_id].<span class="hljs-built_in">id</span>)<br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;请输入路由链路信息，以空行结尾 格式：（路由器a的ei接口与路由器b的ej接口相连aID inter_ei inter_ej bID）&quot;</span>)<br>    <span class="hljs-keyword">while</span> <span class="hljs-literal">True</span>:<br>        edge = <span class="hljs-built_in">input</span>()<br>        <span class="hljs-keyword">if</span> edge == <span class="hljs-string">&quot;&quot;</span>:<br>            <span class="hljs-keyword">break</span><br>        s_router, s_inter, d_inter, d_router = edge.split()<br>        s_router = <span class="hljs-built_in">int</span>(s_router)<br>        s_inter = <span class="hljs-built_in">int</span>(s_inter)<br>        d_router = <span class="hljs-built_in">int</span>(d_router)<br>        d_inter = <span class="hljs-built_in">int</span>(d_inter)<br>        router[s_router].add_edge(s_inter, d_router)<br>        router[d_router].add_edge(d_inter, s_router)<br><br>    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">1</span>, ROUTE_NUM + <span class="hljs-number">1</span>):<br>        router[i].make_sh()<br>    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">1</span>, TERM_NUM + <span class="hljs-number">1</span>):<br>        term[i].make_sh()<br><br></code></pre></td></tr></table></figure>
+<h4 id="输入说明">输入说明</h4>
+<p>简单以下面的拓扑图为例说明。</p>
+<p><img src="/2023/11/13/GNS3%E9%83%A8%E7%BD%B2SONIC%E8%B7%AF%E7%94%B1%E5%99%A8%E5%B9%B6%E4%B8%8E%E7%9C%9F%E6%9C%BA%E4%BA%92%E9%80%9A/image-20231113121555664.png" srcset="/img/loading.gif" lazyload alt="image-20231113121555664"></p>
+<ol>
+<li>
+<p>运行python脚本，输入路由器数目和终端数目。</p>
+<p><img src="/2023/11/13/GNS3%E9%83%A8%E7%BD%B2SONIC%E8%B7%AF%E7%94%B1%E5%99%A8%E5%B9%B6%E4%B8%8E%E7%9C%9F%E6%9C%BA%E4%BA%92%E9%80%9A/image-20231113120552853.png" srcset="/img/loading.gif" lazyload alt="image-20231113120552853"></p>
+</li>
+<li>
+<p><strong>本程序默认一个终端仅会连接一个路由器</strong>，故接下来要求输入2条终端链路信息。</p>
+<p><img src="/2023/11/13/GNS3%E9%83%A8%E7%BD%B2SONIC%E8%B7%AF%E7%94%B1%E5%99%A8%E5%B9%B6%E4%B8%8E%E7%9C%9F%E6%9C%BA%E4%BA%92%E9%80%9A/image-20231113120924658.png" srcset="/img/loading.gif" lazyload alt="image-20231113120924658"></p>
+</li>
+<li>
+<p>然后输入路由器之间的链路信息即可。</p>
+<p><img src="/2023/11/13/GNS3%E9%83%A8%E7%BD%B2SONIC%E8%B7%AF%E7%94%B1%E5%99%A8%E5%B9%B6%E4%B8%8E%E7%9C%9F%E6%9C%BA%E4%BA%92%E9%80%9A/image-20231113121417056.png" srcset="/img/loading.gif" lazyload alt="image-20231113121417056"></p>
+</li>
+<li>
+<p>程序会在本级文件夹生成路由器（以r开头）和终端（以t开头）的配置脚本。</p>
+</li>
+</ol>
+<h3 id="部署步骤">部署步骤</h3>
+<ol>
+<li>
+<p>创建脚本后复制对应脚本内容。</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">vim init.sh<br></code></pre></td></tr></table></figure>
+</li>
+<li>
+<p>增加权限。</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">sudo <span class="hljs-built_in">chmod</span> +x init.sh<br></code></pre></td></tr></table></figure>
+</li>
+<li>
+<p>运行脚本。</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">./init.sh<br></code></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>另路由器初始账号密码</p>
+<figure class="highlight txt"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs txt">admin<br></code></pre></td></tr></table></figure>
+<figure class="highlight txt"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs txt">YourPaSsWoRd<br></code></pre></td></tr></table></figure>
+<p>终端账号密码</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">debian<br></code></pre></td></tr></table></figure>
+<h3 id="配置脚本说明">配置脚本说明</h3>
+<h4 id="ip地址">ip地址</h4>
+<ul>
+<li>程序为路由器和终端分配了ID，路由器的ID不变（与输入一致），终端的ID是输入的ID再加上路由器的数目，故终端数量和路由器数量之和不能超过255。</li>
+<li>ipv4地址的分配遵循如下规则：若虚拟设备（即路由器或终端）a与另一台虚拟设备b相连，id分别为aID、bID。且minID，maxID分别表示aID和bID的较小值和较大值，那么a该链路的端口ip即为<code>10.minID.maxID.aID/24</code>,b该链路的端口ip为<code>10.minID.maxID.bID/24</code>。</li>
+<li>ipv6地址的分配与ipv4类似：若虚拟设备（即路由器或终端）a与另一台虚拟设备b相连，id分别为aID、bID。且minID，maxID分别表示aID和bID的较小值和较大值，那么a该链路的端口ip即为<code>2023:minID:maxID::aID/64</code>,b该链路的端口ip为<code>2023:minID:maxID::bID/64</code>。</li>
+</ul>
+<p>故上述拓扑图配置后ip地址如下：</p>
+<p><img src="/2023/11/13/GNS3%E9%83%A8%E7%BD%B2SONIC%E8%B7%AF%E7%94%B1%E5%99%A8%E5%B9%B6%E4%B8%8E%E7%9C%9F%E6%9C%BA%E4%BA%92%E9%80%9A/image-20231113124143272.png" srcset="/img/loading.gif" lazyload alt="image-20231113124143272"></p>
+<h4 id="终端脚本">终端脚本</h4>
+<ol>
+<li>脚本为终端配置了ipv4，ipv6地址。</li>
+<li>配置了一条静态路由，目的地址为<code>10.0.0.0/8</code>，下一跳为与其相连的路由器端口ip。</li>
+</ol>
+<h4 id="路由器脚本">路由器脚本</h4>
+<ol>
+<li>修改<code>admin</code>的密码为<code>123</code>。</li>
+<li>配置了所用端口的ipv4，ipv6地址，并修改mtu为<code>1500</code>。</li>
+<li>配置了所用端口的isis协议，如设备a的net地址为<code>49.0001.0000.0000.aID.00</code>。</li>
+<li>isisd的开机自启动服务。</li>
+</ol>
+<h2 id="虚拟网元连接真机">虚拟网元连接真机</h2>
+<p>​		因为本项目是在vm上的gns3，所以要去修改vm的网络适配器，而不是在gns3的设置中去增加vmnet5,6,7…并添加到云的特殊接口上去配置（虽然可能也行，但没寻找到成功的方法）。故需要去配置vmware上的网络适配器。<strong>桥接后的cloud逻辑上可看作物理网线上的一个端口。</strong></p>
+<p>​		假如我们在物理电脑A上配置了上述拓扑的1号路由和2号路由的情况下，想通过物理网线连接到物理电脑B上的3号路由，可通过分别在两台电脑上进行以下步骤实现。</p>
+<p><strong>桥接物理网线到cloud（以电脑A为例）</strong></p>
+<ol>
+<li>
+<p>配置物理网线的网卡的ip地址，这里只需要这根逻辑网线的ip在同一个网段即可，即电脑A的网线网卡ip，电脑A上与cloud相连的路由器端口ip，电脑B的网线网卡ip，电脑B上与cloud相连的路由器端口ip在同一个网段，可自行分配ip。我这里仍分配在<code>10.2.3.0/24</code>网段。</p>
+<p>默认网关在你从电脑cmd去ping虚拟网元时起作用（也可配置静态路由），希望ping通哪个虚拟网络，就填哪个虚拟网络的接入路由的端口ip。</p>
+<p><img src="/2023/11/13/GNS3%E9%83%A8%E7%BD%B2SONIC%E8%B7%AF%E7%94%B1%E5%99%A8%E5%B9%B6%E4%B8%8E%E7%9C%9F%E6%9C%BA%E4%BA%92%E9%80%9A/image-20231113130455168.png" srcset="/img/loading.gif" lazyload alt="image-20231113130455168"></p>
+<p><img src="/2023/11/13/GNS3%E9%83%A8%E7%BD%B2SONIC%E8%B7%AF%E7%94%B1%E5%99%A8%E5%B9%B6%E4%B8%8E%E7%9C%9F%E6%9C%BA%E4%BA%92%E9%80%9A/image-20231113130529564.png" srcset="/img/loading.gif" lazyload alt="image-20231113130529564"></p>
+</li>
+<li>
+<p>在vmware虚拟网络编辑器上编辑桥接模式的vmnet0，需要选择为本机网线连接的那个网卡。</p>
+<p><img src="/2023/11/13/GNS3%E9%83%A8%E7%BD%B2SONIC%E8%B7%AF%E7%94%B1%E5%99%A8%E5%B9%B6%E4%B8%8E%E7%9C%9F%E6%9C%BA%E4%BA%92%E9%80%9A/image-20231102144701101.png" srcset="/img/loading.gif" lazyload alt="image-20231102144701101"></p>
+</li>
+<li>
+<p>在gns的虚拟机设置中增加桥接模式的网络适配器，不需要选择复制物理网络连接状态（复制物理网络连接状态是供移动端，无线网络选择的）下图已经添加好了。且注意网络适配器就是云上的eth0，而网络适配器2就是云上的eth1，以此类推。</p>
+<p><img src="/2023/11/13/GNS3%E9%83%A8%E7%BD%B2SONIC%E8%B7%AF%E7%94%B1%E5%99%A8%E5%B9%B6%E4%B8%8E%E7%9C%9F%E6%9C%BA%E4%BA%92%E9%80%9A/image-20231102145308528.png" srcset="/img/loading.gif" lazyload alt="image-20231102145308528"></p>
+</li>
+<li>
+<p>进入gns3的命令行，配置新增加的桥接模式的网卡，这里是eth2。</p>
+<ol>
+<li>
+<p>修改/etc/netplan/00-installer-config.yaml即可，</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">sudo nano /etc/netplan/00-installer-config.yaml<br></code></pre></td></tr></table></figure>
+</li>
+<li>
+<p>修改相应内容，配置新增网卡的ip地址和mtu，注意yaml文件对缩进空格严格。</p>
+<p><img src="/2023/11/13/GNS3%E9%83%A8%E7%BD%B2SONIC%E8%B7%AF%E7%94%B1%E5%99%A8%E5%B9%B6%E4%B8%8E%E7%9C%9F%E6%9C%BA%E4%BA%92%E9%80%9A/image-20231113130721710.png" srcset="/img/loading.gif" lazyload alt="image-20231113130721710"></p>
+</li>
+<li>
+<p>输入以下命令重启网络服务。</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">sudo netplan apply<br></code></pre></td></tr></table></figure>
+</li>
+<li>
+<p>查看配置是否成功</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">ip addr<br></code></pre></td></tr></table></figure>
+<p><img src="/2023/11/13/GNS3%E9%83%A8%E7%BD%B2SONIC%E8%B7%AF%E7%94%B1%E5%99%A8%E5%B9%B6%E4%B8%8E%E7%9C%9F%E6%9C%BA%E4%BA%92%E9%80%9A/image-20231113131519924.png" srcset="/img/loading.gif" lazyload alt="image-20231113131519924"></p>
+</li>
+</ol>
+</li>
+<li>
+<p>在gns3上添加cloud，选择GNS3 VM，连线，cloud连接eth2。</p>
+<p><img src="/2023/11/13/GNS3%E9%83%A8%E7%BD%B2SONIC%E8%B7%AF%E7%94%B1%E5%99%A8%E5%B9%B6%E4%B8%8E%E7%9C%9F%E6%9C%BA%E4%BA%92%E9%80%9A/image-20231113131649960.png" srcset="/img/loading.gif" lazyload alt="image-20231113131649960"></p>
+<p><img src="/2023/11/13/GNS3%E9%83%A8%E7%BD%B2SONIC%E8%B7%AF%E7%94%B1%E5%99%A8%E5%B9%B6%E4%B8%8E%E7%9C%9F%E6%9C%BA%E4%BA%92%E9%80%9A/image-20231113131721483.png" srcset="/img/loading.gif" lazyload alt="image-20231113131721483"></p>
+</li>
+</ol>
+<p>在电脑B上也进行同样操作，即可连通。</p>
+<p><img src="/2023/11/13/GNS3%E9%83%A8%E7%BD%B2SONIC%E8%B7%AF%E7%94%B1%E5%99%A8%E5%B9%B6%E4%B8%8E%E7%9C%9F%E6%9C%BA%E4%BA%92%E9%80%9A/image-20231113132439009.png" srcset="/img/loading.gif" lazyload alt="image-20231113132439009"></p>
+<h2 id="linux环境gns3虚实结合">linux环境gns3虚实结合</h2>
+<h3 id="配置环境">配置环境</h3>
+<ul>
+<li>服务器：Ubuntu18.04</li>
+<li>gns3 2.2.44.1</li>
+<li>外接终端，linux和windows均可。</li>
+</ul>
+<h3 id="配置步骤">配置步骤</h3>
+<ol>
+<li>
+<p>简单拓扑和ip规划如下，配置相应ip即可。</p>
+<p><img src="/2023/11/13/GNS3%E9%83%A8%E7%BD%B2SONIC%E8%B7%AF%E7%94%B1%E5%99%A8%E5%B9%B6%E4%B8%8E%E7%9C%9F%E6%9C%BA%E4%BA%92%E9%80%9A/image-20231222100434956.png" srcset="/img/loading.gif" lazyload alt="image-20231222100434956"></p>
+</li>
+<li>
+<p>配置2号路由的e1端口和桥接网口的mtu一致，这里配置为9000。sonic路由的e1端口对应命令行中的Ethernet4，外接终端最好也配置为一样的。</p>
+<p><img src="/2023/11/13/GNS3%E9%83%A8%E7%BD%B2SONIC%E8%B7%AF%E7%94%B1%E5%99%A8%E5%B9%B6%E4%B8%8E%E7%9C%9F%E6%9C%BA%E4%BA%92%E9%80%9A/image-20231222100712177.png" srcset="/img/loading.gif" lazyload alt="image-20231222100712177"></p>
+<p><img src="/2023/11/13/GNS3%E9%83%A8%E7%BD%B2SONIC%E8%B7%AF%E7%94%B1%E5%99%A8%E5%B9%B6%E4%B8%8E%E7%9C%9F%E6%9C%BA%E4%BA%92%E9%80%9A/image-20231222100843620.png" srcset="/img/loading.gif" lazyload alt="image-20231222100843620"></p>
+</li>
+<li>
+<p>路由器1号即可ping通外接终端。</p>
+<p><img src="/2023/11/13/GNS3%E9%83%A8%E7%BD%B2SONIC%E8%B7%AF%E7%94%B1%E5%99%A8%E5%B9%B6%E4%B8%8E%E7%9C%9F%E6%9C%BA%E4%BA%92%E9%80%9A/image-20231222101008891.png" srcset="/img/loading.gif" lazyload alt="image-20231222101008891"></p>
+<p>外接终端也可ping通路由器</p>
+<p><img src="/2023/11/13/GNS3%E9%83%A8%E7%BD%B2SONIC%E8%B7%AF%E7%94%B1%E5%99%A8%E5%B9%B6%E4%B8%8E%E7%9C%9F%E6%9C%BA%E4%BA%92%E9%80%9A/image-20231222102934408.png" srcset="/img/loading.gif" lazyload alt="image-20231222102934408"></p>
+</li>
+<li>
+<p>外接终端需要配置静态路由，或者将默认网关设为<code>10.1.3.1</code>，即可ping通2号路由器。静态路由配置见<a target="_blank" rel="noopener" href="https://blog.csdn.net/LJ511100/article/details/123851574">linux和windows配置IPV4/IPV6地址、静态路由、查看路由、ping命令_ipv4和ipv6怎么ping-CSDN博客</a></p>
+<p>下图可观察到原来ping不通的10.1.2.2通过配置静态路由后可ping通。-S参数指定网卡，确保10.1.2.2是2号路由器的ip地址，而不是公网上的地址。</p>
+<p><img src="/2023/11/13/GNS3%E9%83%A8%E7%BD%B2SONIC%E8%B7%AF%E7%94%B1%E5%99%A8%E5%B9%B6%E4%B8%8E%E7%9C%9F%E6%9C%BA%E4%BA%92%E9%80%9A/image-20231222103155726.png" srcset="/img/loading.gif" lazyload alt="image-20231222103155726"></p>
+</li>
+</ol>
+<h3 id="注意事项">注意事项</h3>
+<ol>
+<li>
+<p>桥接网卡需要配置ip，不配置sonic路由无法ping通外接终端，即使sonic路由器上无法ping通该地址。</p>
+<p><img src="/2023/11/13/GNS3%E9%83%A8%E7%BD%B2SONIC%E8%B7%AF%E7%94%B1%E5%99%A8%E5%B9%B6%E4%B8%8E%E7%9C%9F%E6%9C%BA%E4%BA%92%E9%80%9A/image-20231222103717425.png" srcset="/img/loading.gif" lazyload alt="image-20231222103717425"></p>
+<p>服务器（运行gns3的电脑）也无法ping通sonic路由器。</p>
+<p><img src="/2023/11/13/GNS3%E9%83%A8%E7%BD%B2SONIC%E8%B7%AF%E7%94%B1%E5%99%A8%E5%B9%B6%E4%B8%8E%E7%9C%9F%E6%9C%BA%E4%BA%92%E9%80%9A/image-20231222103950427.png" srcset="/img/loading.gif" lazyload alt="image-20231222103950427"></p>
+</li>
+<li>
+<p>mtu的一致问题</p>
+<ul>
+<li>本人测试中，若外接终端是linux环境，那么只需保证sonic路由器端口和服务器的桥接网口的mtu一致即可，外接终端的mtu不一致也可连通。</li>
+<li>但若外接终端是windows环境，则sonic路由器端口、服务器的桥接网口和终端网口三者的mtu一致才能连通。</li>
+</ul>
+<p>保险起见，拓扑中的所有mtu最好都设置成一致的。</p>
+<p>且mtu不一致导致无法连通时，即使把mtu配置为相同的数值也无法连通，原因不知，可尝试删除gns3上的链路或cloud解决。</p>
+</li>
+<li>
+<p>mtu的设置范围</p>
+<ul>
+<li>
+<p>sonic的mtu设置范围为68-9216，默认是9100。<img src="/2023/11/13/GNS3%E9%83%A8%E7%BD%B2SONIC%E8%B7%AF%E7%94%B1%E5%99%A8%E5%B9%B6%E4%B8%8E%E7%9C%9F%E6%9C%BA%E4%BA%92%E9%80%9A/image-20231222104637434.png" srcset="/img/loading.gif" lazyload alt="image-20231222104637434"></p>
+</li>
+<li>
+<p>ubuntu18.04 mtu范围也是68-9216，默认是1500</p>
+<p><img src="/2023/11/13/GNS3%E9%83%A8%E7%BD%B2SONIC%E8%B7%AF%E7%94%B1%E5%99%A8%E5%B9%B6%E4%B8%8E%E7%9C%9F%E6%9C%BA%E4%BA%92%E9%80%9A/image-20231222105250470.png" srcset="/img/loading.gif" lazyload alt="image-20231222105250470"></p>
+</li>
+<li>
+<p>windows</p>
+<p>与windows版本有关，在windows10中可设置为9100。</p>
+<p><img src="/2023/11/13/GNS3%E9%83%A8%E7%BD%B2SONIC%E8%B7%AF%E7%94%B1%E5%99%A8%E5%B9%B6%E4%B8%8E%E7%9C%9F%E6%9C%BA%E4%BA%92%E9%80%9A/image-20231222105623542.png" srcset="/img/loading.gif" lazyload alt="image-20231222105623542"></p>
+<p>而windows11即使开启巨型帧服务，上限也只能是9014。</p>
+<p><img src="/2023/11/13/GNS3%E9%83%A8%E7%BD%B2SONIC%E8%B7%AF%E7%94%B1%E5%99%A8%E5%B9%B6%E4%B8%8E%E7%9C%9F%E6%9C%BA%E4%BA%92%E9%80%9A/image-20231222105541701.png" srcset="/img/loading.gif" lazyload alt="image-20231222105541701"></p>
+</li>
+</ul>
+</li>
+<li>
+<p>ip规划问题</p>
+<p>外接终端若配置10.0.0.0/8的静态路由，下一跳指向sonic路由器，将无法连接10.0.0.0/8网段下的其他ip，这点需要注意。可通过将sonic路由ip规划为11.0.0.0/8网段下解决。</p>
+</li>
+</ol>
+<h2 id="疑难杂症">疑难杂症</h2>
+<ol>
+<li>
+<p>无法ping通直连网，即物理机不能ping通直接连接到cloud上的路由器端口ip。</p>
+<p>解决措施：</p>
+<ol>
+<li>检查防火墙是否关闭。</li>
+<li>删除cloud，重新加入。</li>
+<li>检查ip设置是否在同一个网段。</li>
+</ol>
+</li>
+<li>
+<p>能ping通直连网，但无法ping通虚拟网络中的其他路由ip。</p>
+<p>解决措施：</p>
+<ol>
+<li>
+<p>检查逻辑网线上的mtu是否一致。</p>
+<p>脚本已将sonic路由器的mtu设为1500，故检查windows的mtu是否为1500，在cmd输入以下命令查看。</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cmd">netsh interface ipv4 show subinterfaces<br></code></pre></td></tr></table></figure>
+<p>vmware的shell终端输入以下命令查看。</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">ip addr<br></code></pre></td></tr></table></figure>
+</li>
+<li>
+<p>检查ip配置是否正确，isis协议配置是否正确。</p>
+</li>
+</ol>
+</li>
+<li>
+<p>添加cloud连线时出现链路已经存在的报错</p>
+<p><img src="/2023/11/13/GNS3%E9%83%A8%E7%BD%B2SONIC%E8%B7%AF%E7%94%B1%E5%99%A8%E5%B9%B6%E4%B8%8E%E7%9C%9F%E6%9C%BA%E4%BA%92%E9%80%9A/image-20231107121044655.png" srcset="/img/loading.gif" lazyload alt="image-20231107121044655"></p>
+<p>解决措施：关闭gns3再打开即可。</p>
+</li>
+</ol>
+<link rel="stylesheet" href="/css/spoiler.css" type="text/css"><script src="/js/spoiler.js" type="text/javascript" async></script>
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E5%BC%80%E5%8F%91/" class="category-chain-item">开发</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/%E5%BC%80%E5%8F%91/%E8%B7%AF%E7%94%B1%E6%A0%87%E8%AF%86/" class="category-chain-item">路由标识</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/linux/" class="print-no-link">#linux</a>
+      
+        <a href="/tags/shell/" class="print-no-link">#shell</a>
+      
+        <a href="/tags/debian/" class="print-no-link">#debian</a>
+      
+        <a href="/tags/gns3/" class="print-no-link">#gns3</a>
+      
+        <a href="/tags/sonic/" class="print-no-link">#sonic</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>GNS3部署SONIC路由器并与真机互通</div>
+      <div>https://codenum137.github.io/codenum137.github.io/2023/11/13/GNS3部署SONIC路由器并与真机互通/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>hey137</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2023年11月13日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2023/11/17/%E9%A9%AC%E5%85%8B%E6%80%9D%E7%9A%84%E5%93%B2%E5%AD%A6%E9%9D%A9%E5%91%BD%E5%8F%8A%E5%85%B6%E5%BD%93%E4%BB%A3%E6%84%8F%E4%B9%89%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/" title="马克思的哲学革命及其当代意义学习记录">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">马克思的哲学革命及其当代意义学习记录</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2023/11/01/leetcode23-11/" title="leetcode23-11">
+                        <span class="hidden-mobile">leetcode23-11</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"VUZA7v64z7VyTAP8IacQddb3-gzGzoHsz","appKey":"s9nmj2bQKMeENVBm24I948wx","path":"window.location.pathname","placeholder":"欢迎评论交流=v=","avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"https://vuza7v64.lc-cn-n1-shared.com","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+  
+<script src="/js/code-collapse.js"></script>
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
